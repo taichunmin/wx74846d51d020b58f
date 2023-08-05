@@ -1,0 +1,102 @@
+<view>
+    <view class="custom"></view>
+    <view bindtap="back" class="back" style="top: {{menuButtonHeight}}px;">
+        <icon class="back-icon"></icon>
+    </view>
+    <view class="head-block" style="margin-top: {{blockPosition}}px;">
+        <view class="wait-block">
+            <icon class="wait-icon" wx:if="{{goodsData.order_status=='false'}}"></icon>
+            <icon class="success-icon" wx:if="{{goodsData.order_status=='true'||goodsData.order_status=='success'}}"></icon>
+            <icon class="fail-icon" wx:if="{{goodsData.order_status=='cancel'||goodsData.order_status=='manualCancellation'}}"></icon>
+            <view class="wait-text">{{goodsData.order_status_text}}</view>
+        </view>
+        <view class="confirm-receipt" wx:if="{{goodsData.order_status=='false'&&goodsData.order_payment_status=='true'&&goodsData.express_information!=null}}">{{goodsData.receiving_time}}</view>
+        <view class="confirm-receipt" wx:if="{{goodsData.order_status=='cancel'||goodsData.order_status=='manualCancellation'}}">{{goodsData.order_status=='cancel'?'订单由于超时未支付被取消':''}}</view>
+    </view>
+    <view class="content">
+        <view class="public-style user-info-block" wx:if="{{(goodsData.order_status=='false'||goodsData.order_status=='cancel'||goodsData.order_status=='manualCancellation')&&goodsData.express_information==null}}">
+            <view class="user-info-phone-block">
+                <view class="user-info-phone-block-left">
+                    <icon class="shipToAddress"></icon>
+                    <view class="consignee">{{goodsData.address_info.consignee}}</view>
+                    <view class="user-info-phone">{{goodsData.address_info.consignee_phone}}</view>
+                </view>
+                <view bindtap="editAddress" class="user-info-phone-block-right" wx:if="{{goodsData.order_status=='false'}}">修改</view>
+            </view>
+            <view class="user-info-address">{{goodsData.address_info.consignee_address}}</view>
+        </view>
+        <view class="public-style user-info-order-block" wx:if="{{goodsData.express_information!=null&&goodsData.order_status!='cancel'&&goodsData.order_status!='manualCancellation'}}">
+            <view class="express-delivery-block" wx:if="{{goodsData.express_information!=null}}">
+                <view class="express-delivery-title-block">
+                    <icon class="express-delivery-icon"></icon>
+                    <view class="express-delivery-title">{{goodsData.express_information.express_name}}</view>
+                </view>
+                <view class="copy-block">
+                    <icon class="icon-copy"></icon>
+                    <view bindtap="onCopyUIDBtnClickCall" class="copy-text" data-smile="{{goodsData.express_information.courier_number}}">复制单号</view>
+                </view>
+            </view>
+            <view class="user-info-address">{{goodsData.express_information.courier_number}}</view>
+            <view class="line" wx:if="{{goodsData.express_information!=null}}"></view>
+            <view class="user-info-block" wx:if="{{goodsData.express_information!=null}}">
+                <view class="user-info-phone-block">
+                    <icon class="shipToAddress"></icon>
+                    <view class="consignee">{{goodsData.address_info.consignee}}</view>
+                    <view class="user-info-phone">{{goodsData.address_info.consignee_phone}}</view>
+                </view>
+                <view class="user-info-address">{{goodsData.address_info.consignee_address}}</view>
+            </view>
+        </view>
+        <view class="public-style goods-info-block">
+            <view bindtap="onGoToGoodsDetail" class="goods-info-top">
+                <view class="goods-info-left">
+                    <lazy-image ImgBlockHeight="{{65}}" ImgBlockWidth="{{65}}" mode="aspectFill" src="{{goodsData.classification_img}}"></lazy-image>
+                </view>
+                <view class="goods-info-right">
+                    <view class="goods-title">{{goodsData.goods_name}}</view>
+                    <view class="goods-selected">
+                        <view class="goods-category goods-public-style">已选：{{goodsData.classification_name}}</view>
+                        <view class="goods-count goods-public-style">共{{goodsData.purchase_count}}件</view>
+                    </view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="goods-express-delivery-block">
+                <view class="goods-express-delivery-left">
+                    <view class="goods-express-delivery-left-item">订单编号：</view>
+                    <view class="goods-express-delivery-left-item" wx:if="{{goodsData.order_status!='cancel'&&unpaid!=true&&goodsData.order_status!='manualCancellation'}}">支付方式：</view>
+                    <view class="goods-express-delivery-left-item">下单时间：</view>
+                </view>
+                <view class="goods-express-delivery-right">
+                    <view class="goods-express-delivery-right-item">{{goodsData.item_order_number}}</view>
+                    <view class="goods-express-delivery-right-item" wx:if="{{goodsData.order_status!='cancel'&&unpaid!=true&&goodsData.order_status!='manualCancellation'}}">{{goodsData.pay_method}}</view>
+                    <view class="goods-express-delivery-right-item">{{goodsData.order_create_time}}</view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="goods-total">
+                <view class="goods-total-inside-block">
+                    <view wx:if="{{goodsData.goldCoin_display=='true'}}">
+                        <text class="gold-coin-total-text">金币合计：</text>
+                        <text class="gold-coin-total-count">{{goodsData.deduct_gold_coins==null?goodsData.goods_need_gold_coins:goodsData.deduct_gold_coins}}</text>
+                    </view>
+                    <view wx:if="{{goodsData.amount_display=='true'}}">
+                        <text class="gold-coin-total-text">金额合计：</text>
+                        <text class="gold-coin-total-count">￥{{goodsData.price_after_discount}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="bottom-btn">
+        <view class="btn-block">
+            <button class="btn-public-style contact-customer-service" openType="contact">联系客服</button>
+        </view>
+        <view class="btn-block" wx:if="{{goodsData.order_status=='false'&&goodsData.order_payment_status=='false'}}">
+            <button bindtap="onCancelOrder" class="btn-public-style immediate-payment">取消订单</button>
+        </view>
+        <view class="btn-block" wx:if="{{goodsData.order_status=='false'&&goodsData.order_payment_status=='false'}}">
+            <button bindtap="immediatePayment" class="btn-public-style immediate-payment">立即支付</button>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,15 @@
+<view class="wrap">
+    <view class="topLine"></view>
+    <view class="block" wx:for="{{logData}}" wx:key="index">
+        <view class="firstBlock">
+            <view class="version">{{item.version_number}}</view>
+            <view class="update">{{item.update_date}}</view>
+        </view>
+        <view class="item" wx:for="{{item.update_content}}" wx:key="index">
+            <view class="pointBlock">
+                <icon class="point"></icon>
+            </view>
+            <view class="text">{{item.content}}</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,31 @@
+<view class="wrap" style="background: {{addressData==''?'#f9f9f9':'#ffffff'}};">
+    <view class="topLine"></view>
+    <view class="top-block" wx:if="{{addressData!==''}}">
+        <view bindtap="{{mode==1?'onAddressSelected':'onEdit'}}" class="outside-block" data-id="{{index}}" wx:for="{{addressData}}" wx:key="index">
+            <view class="inside-block inside-block-choose">
+                <view class="radio-block" wx:if="{{mode==1}}">
+                    <radio checked="{{item.checked}}" class="rightArrowImg" color="#f5a200"></radio>
+                </view>
+                <view class="left-block">
+                    <view class="info-block">
+                        <text class="name">{{item.consignee}}</text>
+                        <text class="phone">{{item.receiving_phone}}</text>
+                        <text class="default-text" wx:if="{{item.default_address=='true'}}">默认</text>
+                    </view>
+                    <view class="address">{{item.address}}</view>
+                </view>
+                <view class="right-block" wx:if="{{mode!=1}}">
+                    <icon class="edit"></icon>
+                </view>
+            </view>
+            <view class="line"></view>
+        </view>
+    </view>
+    <view class="none-address-block" wx:else>
+        <icon class="address-icon"></icon>
+        <view class="none-address-text">暂无收货地址</view>
+    </view>
+    <view class="bottom-block">
+        <button bindtap="onAddAddress" class="add-address-btn">添加收货地址</button>
+    </view>
+</view>

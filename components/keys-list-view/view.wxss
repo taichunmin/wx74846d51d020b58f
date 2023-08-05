@@ -1,0 +1,87 @@
+.keys-base-main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+
+.keys-base-data-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 0rpx;
+    overflow: auto;
+    width: 100%;
+}
+
+.keys-table-row {
+    background: #131418;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    min-height: 80rpx;
+}
+
+.keys-table-data-odd-style:nth-child(odd) {
+    background: #1a1d26;
+    border-radius: 0 0 0 0;
+    opacity: 1;
+}
+
+.keys-table-head-text {
+    color: #fff;
+    font-size: 26rpx;
+    line-height: 26rpx;
+}
+
+.keys-table-data,.keys-table-head-text {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    font-family: siyuan,monospace;
+    font-weight: 400;
+    justify-content: center;
+    width: 100%;
+}
+
+.keys-table-data {
+    color: #f5f5f5;
+    font-size: 24rpx;
+    line-height: 24rpx;
+}
+
+.icon-item-edit {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCI+PGRlZnM+PHN0eWxlPkBmb250LWZhY2V7Zm9udC1mYW1pbHk6ZmVlZGJhY2staWNvbmZvbnQ7c3JjOnVybCgvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmMj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt3b2ZmMiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmY/dD0xNjMwMDMzNzU5OTQ0KSBmb3JtYXQoJnF1b3Q7d29mZiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt0cnVldHlwZSZxdW90Oyl9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTk1MC45NTUgMTg3LjY0OGE1NS40NjcgNTUuNDY3IDAgMCAwLTc4LjQyMiAwbC0zMjIuNzMgMzIzLjQ5OWE1NS40NjcgNTUuNDY3IDAgMSAwIDc4LjUwNiA3OC40MjFMOTUxLjA0IDI2Ni4xNTVhNTUuNDY3IDU1LjQ2NyAwIDAgMCAwLTc4LjUwN3pNNTQ1LjYyIDMxMi42NjFIMjQ1Ljc2djUzOS43MzRoNTMyLjIyNFY2MTIuNjA4YTU1LjQ2NyA1NS40NjcgMCAxIDEgMTEwLjkzMyAwdjI4Ni43MmE2NCA2NCAwIDAgMS02NCA2NEgxOTguOTEyYTY0IDY0IDAgMCAxLTY0LTY0di02MzMuNmE2NCA2NCAwIDAgMSA2NC02NGgzNDYuNjI0YTU1LjQ2NyA1NS40NjcgMCAwIDEgMCAxMTAuOTMzeiIgZmlsbD0iIzgzOEI5OSIvPjwvc3ZnPg==");
+    background-size: 30rpx 30rpx;
+    height: 30rpx;
+    width: 30rpx;
+}
+
+.icon-item-delete {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlPkBmb250LWZhY2V7Zm9udC1mYW1pbHk6ZmVlZGJhY2staWNvbmZvbnQ7c3JjOnVybCgvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmMj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt3b2ZmMiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmY/dD0xNjMwMDMzNzU5OTQ0KSBmb3JtYXQoJnF1b3Q7d29mZiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt0cnVldHlwZSZxdW90Oyl9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTM2Ni45MzMgMTYyLjEzM2gyOTAuMTM0YzI1LjYgMCA1MS4yLTI1LjYgNTEuMi01MS4ycy0yNS42LTQyLjY2Ni01MS4yLTQyLjY2NkgzNjYuOTMzYy0yNS42IDAtNDIuNjY2IDE3LjA2Ni00Mi42NjYgNDIuNjY2czE3LjA2NiA1MS4yIDQyLjY2NiA1MS4yek01MTIgNzUwLjkzM2MyNS42IDAgNTEuMi0yNS42IDUxLjItNTEuMnYtMTUzLjZjMC0yNS42LTI1LjYtNTEuMi01MS4yLTUxLjJzLTUxLjIgMjUuNi01MS4yIDUxLjJ2MTYyLjEzNGMwIDI1LjYgMjUuNiA0Mi42NjYgNTEuMiA0Mi42NjZ6IiBmaWxsPSIjODM4Qjk5Ii8+PHBhdGggZD0iTTg0NC44IDI1NkgxNzkuMmMtMjUuNiAwLTUxLjIgMjUuNi01MS4yIDUxLjJzMjUuNiA1MS4yIDUxLjIgNTEuMmgxNy4wNjd2NjA1Ljg2N2g2NDB2LTYxNC40aDE3LjA2NmMyNS42IDAgNTEuMi0yNS42IDUxLjItNTEuMlM4NzAuNCAyNTYgODQ0LjggMjU2em0tMTI4IDU4OC44SDMwNy4yVjM2Ni45MzNoNDE4LjEzM1Y4NDQuOHoiIGZpbGw9IiM4MzhCOTkiLz48L3N2Zz4=");
+    background-size: 30rpx 30rpx;
+    height: 30rpx;
+    width: 30rpx;
+}
+
+.keys-opera-button {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+}
+
+.right-button-item-hover {
+    background: #404346;
+}
+
+.keys-opera-button-line {
+    border-left: 2rpx solid hsla(0,0%,100%,.1);
+    box-sizing: border-box;
+    height: 30%;
+    margin-top: 6rpx;
+}

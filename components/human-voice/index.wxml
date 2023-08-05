@@ -1,0 +1,6 @@
+<view class="output-audio">
+    <view bindtap="onUserClickOnPlayCbk" class="audio">
+        <icon class="ico badge-left-voice-on" wx:if="{{show_img==true}}"></icon>
+        <icon class="icon1 badge-left-voice-close" wx:if="{{show_img==false}}"></icon>
+    </view>
+</view>

@@ -1,0 +1,76 @@
+<view class="custom">
+    <view bindtap="back" class="nav" style="margin-top: {{navHeight}}px;">
+        <view class="icon-block">
+            <icon class="back-icon"></icon>
+        </view>
+        <view class="page-title">
+            <text>金币排行榜</text>
+        </view>
+    </view>
+    <view class="mine">
+        <view class="headPortrait-block">
+            <image class="default-img" src="../../static/img/default_head_portrait.svg" wx:if="{{imgUrl==''}}"></image>
+            <image class="headPortraitImg" src="{{imgUrl}}" wx:else></image>
+        </view>
+        <view class="ranking">
+            <view class="rankingNumber">
+                <text>{{myRanking}}</text>
+            </view>
+            <view class="rankingText">
+                <text>我的排名</text>
+            </view>
+        </view>
+        <view class="myCoins">
+            <view class="myCoinsNumber">
+                <text>{{gold_coin_count}}</text>
+            </view>
+            <view class="myCoinsText">
+                <text>我的金币</text>
+            </view>
+        </view>
+    </view>
+    <view class="No1Block" wx:if="{{index==0}}" wx:for="{{ranking_data}}" wx:key="index">
+        <view class="imgBlock">
+            <view class="No1LeftBlock">
+                <view class="NO1Text" wx:if="{{item.flag==true}}">NO.1 “{{item.nickname==null?'尼古拉':item.nickname}}”</view>
+                <view class="coinTextBlock">
+                    <icon class="coin"></icon>
+                    <text class="NO1CoinText" decode="true" wx:if="{{item.flag==true}}">&nbsp;{{item.gold_coin_count}}</text>
+                </view>
+                <view class="NO1Line">
+                    <view style="height: 2rpx; width:60rpx; background: #6D4D12; border-radius: 0px 0px 0px 0px;"></view>
+                </view>
+            </view>
+            <view class="No1RightBlock">
+                <view class="rightImgBlock">
+                    <image class="rightImg" src="{{item.head_portrait}}" wx:if="{{item.head_portrait!==null&&item.flag==true}}"></image>
+                    <image class="rightImg" src="../../static/img/default_head_portrait.svg" wx:if="{{item.head_portrait==null&&item.flag==true}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="content">
+    <view class="rankBlocks" wx:if="{{index!==0}}" wx:for="{{ranking_data}}" wx:key="index">
+        <view class="firstImgBlock">
+            <image class="firstImg" src="../../static/img/second.svg" wx:if="{{index==1&&item.flag==false}}"></image>
+            <image class="firstImg" src="../../static/img/third.svg" wx:if="{{index==2&&item.flag==false}}"></image>
+            <view class="firstImg" wx:if="{{index!==1&&index!==2&&item.flag==false}}">{{index+1}}</view>
+        </view>
+        <view class="headImgBlock">
+            <image class="headImgs" src="../../static/img/default_head_portrait.svg" wx:if="{{item.head_portrait==null&&item.flag==false}}"></image>
+            <image class="headImgs" src="{{item.head_portrait}}" wx:if="{{item.head_portrait!==null&&item.flag==false}}"></image>
+        </view>
+        <view class="name" wx:if="{{item.flag==false}}">
+            <text>{{item.nickname==null?'尼古拉用户':item.nickname}}</text>
+        </view>
+        <view class="coinNumber" wx:if="{{item.flag==false}}">
+            <view class="coinBlock">
+                <icon class="coin"></icon>
+            </view>
+            <view class="coinText">
+                <text>{{item.gold_coin_count==null?'0':item.gold_coin_count}}</text>
+            </view>
+        </view>
+    </view>
+</view>

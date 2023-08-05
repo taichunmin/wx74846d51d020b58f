@@ -1,0 +1,52 @@
+<view class="topLine"></view>
+<view class="block">
+    <view class="title">收货人</view>
+    <view class="input-block">
+        <input bindinput="userNameInput" class="input" maxlength="20" placeholder="请输入收货人" type="text" value="{{consignee}}"></input>
+        <icon bindtap="clearUserName" class="input-del" size="15" type="clear" wx:if="{{clearUserName==true}}"></icon>
+    </view>
+</view>
+<view class="block">
+    <view class="title">电话号码</view>
+    <view class="input-block">
+        <input bindinput="userPhone" class="input" maxlength="11" placeholder="请输入手机号码" type="number" value="{{receiving_phone}}"></input>
+        <icon bindtap="clearPhoneNumber" class="input-del" size="15" type="clear" wx:if="{{clearPhoneNumber==true}}"></icon>
+    </view>
+</view>
+<view class="block">
+    <view class="title">收货地址</view>
+    <view class="ship-to-address-block ship-to-address">
+        <textarea bindinput="userAddressInput" class="ship-to-address-input" maxlength="100" placeholder="请输入收货地址" value="{{address}}"></textarea>
+        <icon bindtap="clearAddress" class="intelligent-filling" size="15" type="clear" wx:if="{{clearAddress==true}}"></icon>
+    </view>
+</view>
+<view class="topLine line"></view>
+<view class="block">
+    <view class="title">智能填写</view>
+    <view class="intelligent-filling-block">
+        <view class="text-icon-block">
+            <textarea bindinput="bindTextAreaBlur" class="intelligent-filling-input" cursorSpacing="100" maxlength="100" placeholder="粘贴地址信息，自动拆分收货人，电话号码和地址" value="{{textAreaValue}}"></textarea>
+            <icon bindtap="clearIntelligentFilling" class="intelligent-filling" size="15" style="padding-right: 5rpx;" type="clear" wx:if="{{clearIntelligentFilling==true}}"></icon>
+        </view>
+        <view class="distinguish-block">
+            <van-button bindtap="distinguish" customStyle="width:auto;height: 40rpx;font-size:24rpx;border-radius:20px 20px 20px 20px;background:#F5A200;border:1px solid #F5A200;color:#ffffff;font-weight:400;margin-right: 24rpx;opacity: 1;" type="primary">识别</van-button>
+        </view>
+    </view>
+</view>
+<view class="block">
+    <view class="switch-container">
+        <view class="switch-left-text">设为默认地址</view>
+        <view class="switch">
+            <van-switch activeColor="#08c264" bind:change="turnOnDefaultAddress" checked="{{defalutAddress}}" title=""></van-switch>
+        </view>
+    </view>
+</view>
+<view class="delete-save-btn-block">
+    <view class="delete-btn-block" wx:if="{{mode=='addressEdit'}}">
+        <button bindtap="deleteAddress" class="delete-btn btn-public-style">删除地址</button>
+    </view>
+    <view class="save-btn-block">
+        <button bindtap="saveShippingaddress" class="save-btn btn-public-style" disabled="{{!canSave}}">保存</button>
+    </view>
+</view>
+<van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>

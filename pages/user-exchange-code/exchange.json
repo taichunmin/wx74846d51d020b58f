@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "van-field": "../../miniprogram_npm/@vant/weapp/field/index",
+        "exchange_code": "../../components/exchange_code/index"
+    },
+    "navigationBarTitleText": "兑换VIP"
+}

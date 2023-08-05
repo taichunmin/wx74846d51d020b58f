@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "van-dialog": "../../miniprogram_npm/@vant/weapp/dialog/index",
+        "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+        "van-switch": "../../miniprogram_npm/@vant/weapp/switch/index"
+    },
+    "navigationBarTitleText": "卡包分享记录"
+}

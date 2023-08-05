@@ -1,0 +1,18 @@
+<view>
+    <view class="content">
+        <view style="margin-top:132rpx;">
+            <view>
+                <icon class="icon-success"></icon>
+            </view>
+            <view class="search">支付成功</view>
+        </view>
+    </view>
+    <view class="doubleBtn">
+        <view class="leftBtn">
+            <button bindtap="onContinueToBrowse" style="width:100%;font-size:30rpx;border-radius:20px 20px 20px 20px;background: rgba(255, 255, 255, 0.9);border:1px solid #f5a200;color:#f5a200;font-weight:500;">继续逛逛</button>
+        </view>
+        <view class="rightBtn">
+            <button bindtap="onViewOrder" style="width:100%;font-size:30rpx;border-radius:20px 20px 20px 20px;padding:3rpx 0rpx 3rpx 0rpx;background:#F5A200;color:#fff;font-weight:500;border:#f5a200;">查看订单</button>
+        </view>
+    </view>
+</view>

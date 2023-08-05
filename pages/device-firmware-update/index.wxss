@@ -1,0 +1,122 @@
+.page-base-container,page {
+    height: 100%;
+    width: 100%;
+}
+
+.page-base-container {
+    box-sizing: border-box;
+    padding-top: 26%;
+}
+
+.page-fw-base-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.img-deivce-fw-updatable {
+    background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIG9wYWNpdHk9Ii4xIiBjeD0iNzUiIGN5PSI3NSIgcj0iNzUiIGZpbGw9IiNGNUEyMDAiLz48Y2lyY2xlIG9wYWNpdHk9Ii4xIiBjeD0iNzQuOTYyIiBjeT0iNzQuOTYyIiBmaWxsPSIjRjVBMjAwIiByPSIzNy40NjIiLz48cGF0aCBkPSJNOTIuOTIyIDYzLjkzNmExLjQwNyAxLjQwNyAwIDAgMC0xLjgxNy44MWwtLjcxNiAxLjg2NWMtMi44NzUtNS40MjctOC41NTktOC45ODYtMTQuODg5LTguOTg2LTcuNjIgMC0xNC4zMTYgNS4xNDUtMTYuMjg2IDEyLjUxMi0uMi43NS4yNDUgMS41MjEuOTk1IDEuNzIxYTEuNDAyIDEuNDAyIDAgMCAwIDEuNzIyLS45OTVjMS42NDItNi4xMzggNy4yMjItMTAuNDI1IDEzLjU2OS0xMC40MjUgNS4zMjcgMCAxMC4xMDMgMy4wMjYgMTIuNDc1IDcuNjI0bC0yLjMyLS44OWExLjQwNiAxLjQwNiAwIDEgMC0xLjAwOCAyLjYyNmw1LjI1MiAyLjAxNWMuMDIuMDA4LjA0Mi4wMDUuMDY0LjAxMi4wNzguMDI4LjE2Mi4wMzIuMjQ1LjA0Ni4wNjUuMDA5LjEzLjAzNi4xOTUuMDM2bC4wMTMtLjAwMS4wMTIuMDAxYy4xMiAwIC4yNDItLjAxNi4zNjQtLjA0OS4wNC0uMDEuMDY4LS4wMzkuMTA2LS4wNTIuMTA2LS4wNC4yMS0uMDg2LjMwNS0uMTUxLjA5OS0uMDY2LjE3OC0uMTQ4LjI1Ni0uMjM2LjAxOS0uMDIyLjAzOC0uMDQyLjA1Ni0uMDY1LjA4NC0uMTA2LjE0OC0uMjE5LjE5OC0uMzQ1bC4wMDMtLjAwNSAyLjAxNi01LjI1YTEuNDA4IDEuNDA4IDAgMCAwLS44MS0xLjgxOFptLTIuMTMxIDEzLjIwNmExLjQgMS40IDAgMCAwLTEuNzIxLjk5NWMtMS42NDMgNi4xMzgtNy4yMjIgMTAuNDI1LTEzLjU3IDEwLjQyNS01LjMyNyAwLTEwLjEwMy0zLjAyNi0xMi40NzUtNy42MjRsMi4zMi44OWExLjQwNiAxLjQwNiAwIDEgMCAxLjAwOC0yLjYyNmwtNS4yNTEtMi4wMTVjLS4wNjQtLjAyNS0uMTMtLjAxOS0uMTk1LS4wMzRhMS4zMDYgMS4zMDYgMCAwIDAtLjI0NS0uMDQxIDEuMzM4IDEuMzM4IDAgMCAwLS4yNzMuMDE4Yy0uMDYuMDA4LS4xMi0uMDA1LS4xOC4wMTItLjA0Mi4wMTEtLjA3Mi4wNC0uMTEyLjA1NS0uMDU4LjAyMy0uMTA5LjA1Mi0uMTYzLjA4MmExLjM2NyAxLjM2NyAwIDAgMC0uMzMuMjNsLS4wNC4wNDhjLS4xMi4xMjktLjIxMi4yNzItLjI3Ni40MzVsLS4wMDIuMDA0LTIuMDE3IDUuMjVhMS40MDYgMS40MDYgMCAxIDAgMi42MjYgMS4wMDhsLjcxNi0xLjg2NWMyLjg3NSA1LjQyNyA4LjU1OSA4Ljk4NiAxNC44ODkgOC45ODYgNy42MiAwIDE0LjMxNi01LjE0NSAxNi4yODYtMTIuNTEyYTEuNDA0IDEuNDA0IDAgMCAwLS45OTUtMS43MjFaIiBmaWxsPSIjRjVBMjAwIi8+PC9zdmc+");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 300rpx;
+    width: 300rpx;
+}
+
+.deivce-fw-status-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 28rpx;
+    width: 100%;
+}
+
+.txt-device-fw-status {
+    color: #333;
+    font-size: 30rpx;
+    font-weight: 700;
+    text-align: center;
+}
+
+.txt-device-fw-version {
+    color: #666;
+    font-size: 26rpx;
+    font-weight: 500;
+    line-height: 26rpx;
+    margin-top: 20rpx;
+}
+
+.btn-start-fw-update {
+    background: #f5a200;
+    border-radius: 40rpx;
+    color: #fff;
+    font-size: 30rpx;
+    font-weight: 500;
+    line-height: 26rpx;
+    margin-top: 58rpx;
+    opacity: 1;
+    padding: 24rpx 100rpx;
+}
+
+button::after {
+    border: none;
+}
+
+.btn-start-fw-update-hover {
+    background: #d48e00;
+}
+
+.container-progress {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40rpx;
+    width: 480rpx;
+}
+
+.progress-bar-box {
+    background: #ebedf0;
+    border-radius: 20rpx;
+    height: 8rpx;
+}
+
+.progress-bar-in {
+    background: #f5a200;
+    border-radius: 20rpx;
+    height: 8rpx;
+    transition: all 2s ease 0s;
+    width: 1rpx;
+}
+
+.fw-update-note-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-top: 128rpx;
+    padding-left: 80rpx;
+    width: 100%;
+}
+
+.fw-update-note-title {
+    color: #333;
+    font-size: 28rpx;
+    font-weight: 700;
+    line-height: 28rpx;
+}
+
+.fw-update-note-item-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+    width: 100%;
+}
+
+.fw-update-note-item {
+    color: #757875;
+    font-size: 28rpx;
+    font-weight: 400;
+    line-height: 28rpx;
+    margin-top: 16rpx;
+}

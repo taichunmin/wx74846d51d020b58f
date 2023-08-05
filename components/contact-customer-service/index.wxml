@@ -1,0 +1,5 @@
+<view class="customerBlock" wx:if="{{customerImg=='ios'}}">
+    <button openType="contact" plain="true">
+        <image class="customerImg" src="../../static/img/contactCustomerService.png"></image>
+    </button>
+</view>

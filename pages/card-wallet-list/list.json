@@ -1,0 +1,18 @@
+{
+    "usingComponents": {
+        "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+        "van-icon": "../../miniprogram_npm/@vant/weapp/icon/index",
+        "van-dialog": "../../miniprogram_npm/@vant/weapp/dialog/index",
+        "van-field": "../../miniprogram_npm/@vant/weapp/field/index",
+        "devicebar": "/components/device-tab-bar/device",
+        "master": "../../components/switch-master-mode/master",
+        "tabbar": "../../components/custom-tab-bar/index",
+        "card-item": "../../components/card-wallet-item/item",
+        "card-search": "/components/card-wallet-search/index",
+        "no-card": "/components/no-card/index",
+        "add-card": "/components/dialog-add-card/index"
+    },
+    "navigationBarTitleText": "卡包",
+    "navigationStyle": "custom",
+    "disableScroll": true
+}

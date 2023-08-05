@@ -1,0 +1,38 @@
+<view class="container">
+    <view class="section-brick">
+        <view class="brick-list">
+            <view bindtap="onChangeToDetail" class="{{item.login_display=='true'&&showLoginView==false?'brick-item-not-logged-in':'brick-item'}}" data-id="{{index}}" wx:if="{{item.show=='true'}}" wx:for="{{goods_data}}" wx:key="index">
+                <view class="item-image-wrapper">
+                    <lazy-image ImgBlockHeight="{{173}}" ImgBlockWidth="{{173}}" mode="aspectFill" src="{{item.rotationChartImg[0]}}"></lazy-image>
+                </view>
+                <view class="item-goods-info">
+                    <view class="item-title">{{item.goods_name}}</view>
+                    <view class="item-transport" wx:if="{{item.payment_method!='goldCoin'}}">
+                        <view class="free-shipping">{{item.goods_transport=='true'?'包邮':'不包邮'}}</view>
+                        <view class="deduction" wx:if="{{item.payment_method!='cash'}}">
+                            <icon class="coin"></icon>
+                            <view class="gold-coin-deduction">金币抵扣</view>
+                        </view>
+                    </view>
+                    <view class="item-transport" wx:else>
+                        <view class="goldCoinExchange">
+                            <text class="goldCoinExchange-text">金币兑换</text>
+                        </view>
+                    </view>
+                    <view class="item-price-wrapper" wx:if="{{item.payment_method!='goldCoin'}}">
+                        <text class="money-symbol">￥</text>
+                        <text class="price">{{item.goods_price}}</text>
+                    </view>
+                    <view class="item-price-wrapper gold-coin-info" wx:else>
+                        <view style="margin-top: 5rpx;">
+                            <icon class="coin"></icon>
+                        </view>
+                        <view>
+                            <text class="price" style="margin-left: 10rpx;">{{item.commodity_classification[0]['needGoldCoinCount']}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

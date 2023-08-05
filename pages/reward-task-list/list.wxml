@@ -1,0 +1,98 @@
+<view>
+    <view class="topLine"></view>
+    <view class="topBlock">
+        <view class="myCoin">
+            <text class="myCoinText">我的金币</text>
+        </view>
+        <view class="coinNumberBlock">
+            <view class="coinBlock">
+                <icon class="coin"></icon>
+            </view>
+            <view class="numberBlock">
+                <text>{{gold_coin_count}}</text>
+            </view>
+        </view>
+        <view class="detailedBlock">
+            <view class="detailed-block-right">
+                <view bindtap="gold_coin_details" class="rightArrowBlock">金币明细</view>
+                <text class="detailed-block-right-line">|</text>
+                <view bindtap="task_record" class="detailed">
+                    <text>任务记录</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="outside-block" style="padding: 25rpx 0rpx 25rpx 0rpx;">
+        <view class="firstBlock" wx:for="{{list}}" wx:key="index">
+            <view class="imgBlock">
+                <icon class="{{item.icon}}"></icon>
+            </view>
+            <view class="textBlock">
+                <view class="name" wx:if="{{index!==3}}">
+                    <text>{{item.text1}}（{{item.number}}/{{item.number1}}）</text>
+                </view>
+                <view class="name" wx:if="{{index==3}}">
+                    <text>{{item.text1}}（{{item.number}}）</text>
+                </view>
+                <view class="code">
+                    <text>{{item.text2}}</text>
+                </view>
+            </view>
+            <view class="btn" wx:if="{{index==0}}">
+                <van-button bindtap="signIn" customStyle="width:68px;height:26px;background:#ffffff;border-radius:20px 20px 20px 20px;border: 1px solid #F5A200;color:#f5a200;" size="small" type="info">去签到</van-button>
+            </view>
+            <view class="btn" wx:if="{{index!==0&&item.btnText=='去完成'}}">
+                <van-button bindtap="{{item.bindTap}}" customStyle="width:68px;height:26px;background:#ffffff;border-radius:20px 20px 20px 20px;border: 1px solid #F5A200;color:#f5a200;" disabled="{{prohibition}}" size="small" type="info">{{item.btnText}}</van-button>
+            </view>
+            <view class="btns" wx:if="{{index!==0&&item.btnText=='完成'}}">
+                <view class="btnTextBlock">
+                    <icon class="success"></icon>
+                    <text class="btnText">完成</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="outside-block" style="padding-top: 28rpx;padding-bottom: 0rpx;">
+        <view class="second-block">
+            <view class="second-title">
+                <icon class="video-logo"></icon>
+                <view class="second-title-text">视频任务</view>
+            </view>
+            <view class="con">
+                <view class="flex" wx:for="{{list1}}" wx:key="list1">
+                    <view class="left"></view>
+                    <view class="right">
+                        <view class="circle">{{index+1}}</view>
+                        <view class="r_box">
+                            <view class="item-title">{{item.title}}<text wx:if="{{index==0}}">（{{item.number}}/{{item.number1}}）</text>
+                            </view>
+                            <view class="item-describle">{{item.describle}}</view>
+                        </view>
+                        <view class="right-btn">
+                            <van-button bindtap="{{item.bindTap}}" customStyle="width:68px;height:26px;background:#ffffff;margin-top:25rpx;border-radius:20px 20px 20px 20px;border: 1px solid #F5A200;color:#f5a200;" disabled="{{prohibition}}" size="small" style="{{item.disabled=='true'?'opacity:0.2':'opacity:1'}}" type="info">{{index==1&&item.btnText=='完成'?'去完成':index==0&&item.btnText=='完成'?'去完成':'去完成'}}</van-button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="rule">
+                <view class="rule-title-block">
+                    <icon class="rule-line"></icon>
+                    <view class="rule-title-text">任务规则</view>
+                </view>
+                <view class="rule-content">
+                    <view class="rule-content-text">在指定平台发布短视频或介绍复卡机使用的分享的文章。原创高质量视频或文章奖励50-100金币，有浏览量奖励，上不封顶。非原创奖励20金币。标题请包含“迷你复卡机”（此入口仅用于提交首发，请勿提交浏览量）。</view>
+                </view>
+            </view>
+            <view class="rule" style="margin-bottom: 30rpx;">
+                <view class="rule-title-block">
+                    <icon class="rule-line"></icon>
+                    <view class="rule-title-text">说明</view>
+                </view>
+                <view class="rule-content" style="margin-bottom: 25rpx;">
+                    <view class="rule-content-text">如果多次提交重复任务，系统自动封闭入口20天。</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>

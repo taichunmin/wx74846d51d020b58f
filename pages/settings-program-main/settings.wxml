@@ -1,0 +1,119 @@
+<view>
+    <view bindtap="sheetShow" class="settings-item-base-container" style="margin-top:14rpx;">
+        <view class="settings-item-row-container">
+            <view class="settings-item-left-title">卡片数据保存位置</view>
+            <view class="settings-item-right-container">
+                <text>{{item_name}}</text>
+                <icon class="icon-right-arrow"></icon>
+            </view>
+        </view>
+    </view>
+    <view bindtap="turnOnSaveKeyStore" class="settings-item-base-container" style="margin-top:14rpx;">
+        <view class="settings-item-row-container">
+            <view class="settings-item-left-title">密钥库保存位置</view>
+            <view class="settings-item-right-container">
+                <text>{{CacheItemName}}</text>
+                <icon class="icon-right-arrow"></icon>
+            </view>
+        </view>
+    </view>
+    <view bindtap="firmwareUpdate" class="settings-item-base-container" style="margin-top:14rpx;">
+        <view class="settings-item-row-container">
+            <view class="settings-item-left-title">固件更新</view>
+            <view class="settings-item-right-container">
+                <icon class="icon-right-arrow"></icon>
+            </view>
+        </view>
+    </view>
+    <view class="settings-item-base-container" style="margin-top:14rpx;">
+        <view class="settings-item-row-container">
+            <view class="settings-item-left-title">默认专家模式</view>
+            <view class="settings-item-right-container">
+                <van-switch activeColor="#08c264" bind:change="turnOnExpertMode" checked="{{defaultExpertMode}}" title=""></van-switch>
+            </view>
+        </view>
+    </view>
+    <view class="settings-item-base-container" style="margin-top:14rpx;">
+        <view class="settings-item-row-container">
+            <view class="settings-item-left-title">写卡自动锁UFUID标签</view>
+            <view class="settings-item-right-container">
+                <van-switch activeColor="#08c264" bind:change="onLockUFUIDEnableChange" checked="{{lockUFUIDEnable}}" title=""></van-switch>
+            </view>
+        </view>
+        <view class="settings-item-row-container">
+            <view class="upContent">
+                <view class="item">用途：开启后写卡时自动锁UFUID标签</view>
+                <view class="item">注意：关闭后在专家模式可手工锁</view>
+            </view>
+        </view>
+    </view>
+    <view class="settings-item-base-container" style="margin-top:14rpx;">
+        <view class="settings-item-row-container">
+            <view class="settings-item-left-title">写卡自动识别并写入GDM标签</view>
+            <view class="settings-item-right-container">
+                <van-switch activeColor="#08c264" bind:change="onDetectGDMTagEnableChange" checked="{{detectGDMTag}}" title=""></van-switch>
+            </view>
+        </view>
+        <view class="settings-item-row-container">
+            <view class="upContent">
+                <view class="item">用途：开启后写卡时检测并自动写GDM滚动码标签</view>
+                <view class="item">注意：开启此功能后写副厂标签会小概率写卡失败</view>
+            </view>
+        </view>
+    </view>
+    <view class="settings-item-base-container" style="margin-top:14rpx;">
+        <view class="settings-item-row-container">
+            <view class="settings-item-left-title" style="color:black;">写卡自动识别并写入71B(亲邻88)标签</view>
+            <view class="settings-item-right-container">
+                <van-switch activeColor="#08c264" bind:change="onWriteQinLin88TagEnableChange" checked="{{writeQinLin88Tag}}" title=""></van-switch>
+            </view>
+        </view>
+        <view class="settings-item-row-container">
+            <view class="upContent">
+                <view class="item">用途：解决写亲邻88复制卡报错的问题</view>
+                <view class="item">注意：开启此功能后总是跳过写入17扇区</view>
+            </view>
+        </view>
+        <block wx:if="{{writeQinLin88Tag}}">
+            <view class="settings-item-row-container" style="margin-top: 20rpx;">
+                <view class="settings-item-left-title">智能写入16扇区</view>
+                <view class="settings-item-right-container">
+                    <van-switch activeColor="#08c264" bind:change="onWrite71BTagAutoWrite16Sector" checked="{{autoWrite71BTag16Sector}}" title=""></van-switch>
+                </view>
+            </view>
+            <view class="settings-item-row-container">
+                <view class="upContent">
+                    <view class="item">用途：解决写小黑卡、小橙卡提示容量不正确的问题</view>
+                    <view class="item">注意：开启此功能后原卡16扇区数据为空时跳过写入</view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="settings-item-base-container" style="margin-top:14rpx;">
+        <view class="settings-item-row-container">
+            <view class="settings-item-left-title">连接时不检查系统蓝牙与定位的开启</view>
+            <view class="settings-item-right-container">
+                <van-switch activeColor="#08c264" bind:change="onBluetoothAndGPSNoCheckEnableChange" checked="{{noCheckBLEAndGPS}}" title=""></van-switch>
+            </view>
+        </view>
+        <view class="settings-item-row-container">
+            <view class="upContent">
+                <view class="item">用途：开启后程序不会检测系统蓝牙是否开启，增加对部分平板电脑的兼容性</view>
+                <view class="item">注意：开启后在搜索连接时不再提醒开启蓝牙</view>
+            </view>
+        </view>
+    </view>
+    <van-action-sheet actions="{{actions}}" round="{{false}}" show="{{show}}">
+        <view class="sheet_title">
+            <text>{{sheet_title}}</text>
+        </view>
+        <view bindtap="getradio" data-id="{{index}}" wx:for="{{sheet}}" wx:key="index">
+            <view class="location">{{item.text}}</view>
+        </view>
+        <view class="emptyBlock"></view>
+        <view bindtap="cancel" class="cancel">
+            <text>取消</text>
+        </view>
+    </van-action-sheet>
+</view>
+<van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>

@@ -1,0 +1,34 @@
+<view class="container-page-base">
+    <view class="icon-share-create-success"></view>
+    <text class="txt-share-create-success">创建分享成功</text>
+    <view class="container-share-info">
+        <view class="txt-share-dump-name">{{dumpName}}</view>
+        <view class="txt-share-dump-info">
+            <view style="width: 110rpx;">访问方式</view>: <text style="margin-left: 10rpx;">
+                <block wx:if="{{accessCode.length==0}}">无访问码</block>
+                <block wx:else>有访问码（{{accessCode}}）</block>
+            </text>
+        </view>
+        <view class="txt-share-dump-info">
+            <view style="width: 110rpx;">有效期</view>: <text style="margin-left: 10rpx;">{{expireDay}}天</text>
+        </view>
+    </view>
+    <view class="container-share-action">
+        <view class="container-share-to-who">
+            <view class="line-share-to-who"></view>
+            <view class="txt-share-to">分享至</view>
+            <view class="line-share-to-who"></view>
+        </view>
+        <view class="container-share-btn-group">
+            <button class="container-share-btn-item" openType="share">
+                <view class="img-share-btn-wechat"></view>
+                <view class="txt-share-btn">微信好友</view>
+            </button>
+            <view bindtap="onUserShareToLinkChipBoardClick" class="container-share-btn-item" style="margin-left: 128rpx;">
+                <view class="img-share-btn-link"></view>
+                <view class="txt-share-btn">复制链接</view>
+            </view>
+        </view>
+    </view>
+    <van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>
+</view>

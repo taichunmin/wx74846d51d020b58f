@@ -1,0 +1,50 @@
+<view class="topLine"></view>
+<view class="content">
+    <view class="my-coins public-style">
+        <view class="my-coins-text-block">
+            <icon class="coin"></icon>
+            <view class="my-coins-text">我的金币</view>
+        </view>
+        <view class="my-coins-count">{{gold_coin_count}}</view>
+    </view>
+    <view class="my-coins-input public-style">
+        <view class="my-coins-input-first">
+            <view class="my-coins-text-block">
+                <icon class="coin"></icon>
+                <view class="my-coins-text">金币</view>
+            </view>
+            <view class="my-coins-count">
+                <input bindinput="onInputCoins" class="input-coins" maxlength="4" placeholder="请输入金币数量" placeholderClass="input-placeholder" type="number" value="{{inputCoinsCount}}"></input>
+            </view>
+        </view>
+        <view class="middle-line"></view>
+        <view class="my-coins-input-first coupon-count-block">
+            <view class="my-coins-text-block">
+                <icon class="coupon"></icon>
+                <view class="my-coins-text">代金券</view>
+            </view>
+            <view class="my-coins-count coupon-count">{{couponValue}}</view>
+        </view>
+    </view>
+    <view class="rule">
+        <view class="rule-title-block">
+            <icon class="rule-line"></icon>
+            <view class="rule-title-text">使用规则：</view>
+        </view>
+        <view class="rule-content">
+            <view class="rule-content-text">1.官方TB店拍下商品，付款前使用代金券抵扣总金额；</view>
+            <view class="rule-content-text">2.代金券仅用于卡贴与小程序VIP购买使用；</view>
+            <view class="rule-content-text">3.代金券使用有效期: 自兑换之日起，一个月内有效，逾期作废；</view>
+            <view class="rule-content-text">4.代金券不兑换现金，不设找赎，不提供发票；</view>
+            <view class="rule-content-text">5.如有疑问，可联系店铺客服；</view>
+            <view class="rule-content-text">6.代金券功能最终解释权归深圳尼古拉斯高端设备研发有限公司所有；</view>
+        </view>
+    </view>
+</view>
+<view bindtap="onConfirmRedemption" class="redemption-btn-block">
+    <view class="{{disableStatus=='true'?'redemption-btn disable':'redemption-btn'}}">
+        <view class="redemption-btn-text">确定兑换</view>
+    </view>
+</view>
+<successful-pop-up bind:closeOverlay="closeOverlay" mode="voucher" overlay_show="{{overlay_show}}" reward="{{reward}}" title="兑换成功"></successful-pop-up>
+<van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>

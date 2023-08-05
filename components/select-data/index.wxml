@@ -1,0 +1,5 @@
+<van-popup bind:close="onClose" position="bottom" show="{{showPopup}}">
+    <view>
+        <van-picker bind:change="onChange" bindtap="confirm" cancelButtonText="取消" columns="{{data}}" confirmButtonText="确认" showToolbar="true"></van-picker>
+    </view>
+</van-popup>

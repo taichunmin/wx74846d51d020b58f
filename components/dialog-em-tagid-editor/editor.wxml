@@ -1,0 +1,19 @@
+<van-popup bind:close="onClose" customStyle="width: 88%; border-radius: 24rpx; background: #1A1D26;" duration="100" show="{{show}}">
+    <view style="display: flex; flex-direction: column; width: 100%;">
+        <view class="container-title">
+            <text class="txt-title-main" style="font-size: large;">ID卡号编辑器</text>
+            <view class="container-input">
+                <text class="txt-title-input">卡号(16进制)</text>
+                <input bindinput="onUserInput10H" class="input-center-data" maxlength="10" showConfirmBar="{{false}}" type="text" value="{{tagIdHex}}"></input>
+            </view>
+            <view class="container-input">
+                <text class="txt-title-input">卡号(10进制)</text>
+                <input bindinput="onUserInput8H10D" class="input-center-data" maxlength="10" placeholder="一般印在卡上" showConfirmBar="{{false}}" type="number" value="{{tagId8H10D}}"></input>
+            </view>
+        </view>
+        <view class="container-button">
+            <view bindtap="onCancel" class="btn-base btn-cancel" hoverClass="btn-bottom-hover" hoverStartTime="0" hoverStayTime="50"> 取消 </view>
+            <view bindtap="onConfrim" class="btn-base btn-confirm" hoverClass="btn-bottom-hover" hoverStartTime="0" hoverStayTime="50"> 确认 </view>
+        </view>
+    </view>
+</van-popup>

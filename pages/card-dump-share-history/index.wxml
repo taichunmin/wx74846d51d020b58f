@@ -1,0 +1,55 @@
+<view class="container-page-base">
+    <view class="topLine"></view>
+    <view class="container-share-list" wx:if="{{dumpList.length>0}}">
+        <view class="container-wallet-item-base" data-id="{{index}}" wx:for="{{dumpList}}" wx:key="index">
+            <view class="card-info">
+                <view class="container-wallet-item-left" style="background: {{item.color}};">
+                    <text class="txt-wallet-item-left-type">{{item.type}}</text>
+                </view>
+                <view class="container-wallet-item-right">
+                    <view class="txt-wallet-item-right-name">{{item.name}}</view>
+                    <view class="txt-wallet-item-right-type">访问方式：{{item.password==''?'无访问码':'有访问码'+'（'+item.password+'）'}}</view>
+                    <view class="txt-wallet-item-right-type">有效时间：{{item.term_of_validity=='已过期'?'已过期':item.term_of_validity+'天'}}</view>
+                </view>
+            </view>
+            <view class="container-shared-btns">
+                <view bindtap="onUserDeleteShareItemClick" class="btn-shared-btn-base" data-id="{{index}}">取消分享</view>
+                <view class="middle-line">|</view>
+                <view bindtap="onUserSendToFirendClick" class="btn-shared-btn-base {{item.term_of_validity=='已过期'?'cancel-shared-disabled':''}}" data-id="{{index}}">发送给好友</view>
+            </view>
+        </view>
+    </view>
+    <view class="noneCard" wx:if="{{dumpList.length<=0}}">
+        <image class="noneCardImg" src="../../static/img/noneCard.png"></image>
+        <view class="noneCardText">
+            <text>暂无卡片分享记录</text>
+        </view>
+    </view>
+    <van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>
+    <van-popup round position="bottom" show="{{true}}" wx:if="{{showShareDialog}}">
+        <view class="container-share-panel">
+            <view class="container-share-action">
+                <view class="container-share-to-who">
+                    <view class="line-share-to-who"></view>
+                    <view class="txt-share-to">分享至</view>
+                    <view class="line-share-to-who"></view>
+                </view>
+                <view class="container-share-btn-group">
+                    <button bindtap="onUserShareToFriendClick" class="container-share-btn-item" openType="share">
+                        <view class="img-share-btn-wechat"></view>
+                        <view class="txt-share-btn">微信好友</view>
+                    </button>
+                    <view bindtap="onUserShareToLinkChipBoardClick" class="container-share-btn-item">
+                        <view class="img-share-btn-link"></view>
+                        <view class="txt-share-btn">复制链接</view>
+                    </view>
+                </view>
+            </view>
+            <view class="container-append-access-code" wx:if="{{item.password!=''}}">
+                <view class="txt-share-auto-append-ac">分享链接自动填充访问码</view>
+                <van-switch activeColor="#F5A200" bind:change="onUserSwitchAutoAppendAC" inactiveColor="#838B99" checked="{{appendAC}}" size="40rpx"></van-switch>
+            </view>
+            <view bindtap="onUserCloseShareDialog" class="btn-share-cancel">取消</view>
+        </view>
+    </van-popup>
+</view>

@@ -1,0 +1,13 @@
+{
+    "usingComponents": {
+        "devicebar": "/components/device-tab-bar/device",
+        "master": "../../components/switch-master-mode/master",
+        "tabbar": "../../components/custom-tab-bar/index",
+        "card-item": "../../components/card-wallet-item/item",
+        "card-search": "/components/card-wallet-search/index",
+        "no-card": "/components/no-card/index"
+    },
+    "navigationBarTitleText": "卡包",
+    "navigationStyle": "custom",
+    "disableScroll": true
+}

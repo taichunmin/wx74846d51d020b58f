@@ -1,0 +1,77 @@
+<view class="container-base-view">
+    <view class="container-layout-function">
+        <icon class="icon-function-config"></icon>
+        <view class="txt-function-title">通信配置参数</view>
+    </view>
+    <view class="container-config-param-base">
+        <view bindtap="onConfigEnableChange" class="container-config-item" data-key="{{config.key}}" wx:for="{{configEnable}}" wx:for-item="config" wx:key="index">
+            <text class="txt-config-title">{{config.title}}</text>
+            <van-switch activeColor="#08c264" checked="{{config.enable}}" size="40rpx"></van-switch>
+        </view>
+        <view class="container-config-item" wx:if="{{config.enable}}" wx:for="{{configInput}}" wx:for-item="config" wx:key="index">
+            <text class="txt-config-title">{{config.title}}</text>
+            <input bindinput="onConfigValueInput" class="input-config-value" data-key="{{config.key}}" maxlength="{{config.maxlength}}" type="number" value="{{config.value}}"></input>
+        </view>
+    </view>
+    <view class="container-layout-function">
+        <icon class="icon-function-response"></icon>
+        <view class="txt-function-title">卡片应答数据</view>
+        <view class="container-auto-clear">
+            <text>清屏阈值</text>
+            <input bindinput="onAutoClearDataRecvMax" class="input-auto-clear-count" maxlength="4" type="number" value="{{autoClearMaxValue}}"></input>
+        </view>
+        <view bindtap="onClearListClickCall" class="btn-clear-recv-list" hoverClass="btn-clear-recv-list-hover" hoverStartTime="0" hoverStayTime="10">清屏</view>
+    </view>
+    <scroll-view class="container-tag-response-base" scrollTop="{{scrollTop}}" scrollY="{{true}}">
+        <view id="viewResponseDataList">
+            <view class="container-response-item" wx:for="{{responseData}}" wx:for-item="resp" wx:key="index">
+                <text class="txt-response-item">{{resp.date}}</text>
+                <text class="txt-response-item">{{resp.result}}</text>
+                <text class="txt-response-item" style="font-size: 30rpx; width: 100%;" userSelect="{{true}}">{{resp.data}}</text>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="container-layout-function">
+        <icon class="icon-function-transmit"></icon>
+        <view class="txt-function-title">HEX编辑发送</view>
+    </view>
+    <view class="container-tag-transmit-base">
+        <view class="container-tag-transmit-top-input" style="{{inputPosition.inputData?inputPosition.inputData:''}}">
+            <input adjustPosition="{{false}}" bindblur="onInputWidgetBlurCall" bindfocus="onInputWidgetFocusCall" bindinput="onHexTagDataInput" class="input-tag-transmit-data" data-id="inputData" placeholder="仅支持HEX，长度在64个字节内。" value="{{hexDataSendValue}}"></input>
+        </view>
+        <view class="container-tag-transmit-bottom-btn">
+            <view class="container-tag-transmit-funtion">
+                <view bindtap="onConfigAutoSendEnableChange" class="container-config-item">
+                    <text class="txt-config-title">循环发送</text>
+                    <van-switch activeColor="#08c264" checked="{{autoSendConfig.enable}}" size="40rpx"></van-switch>
+                </view>
+                <view class="container-config-item" style="{{inputPosition.inputCount?inputPosition.inputCount:''}}">
+                    <text class="txt-config-title">循环次数</text>
+                    <input adjustPosition="{{false}}" bindblur="onInputWidgetBlurCall" bindfocus="onInputWidgetFocusCall" bindinput="onConfigAutoSendValueInput" class="input-config-value" data-id="inputCount" data-key="max" maxlength="{{4}}" type="number" value="{{autoSendConfig.max}}"></input>
+                </view>
+                <view class="container-config-item" style="{{inputPosition.inputDelay?inputPosition.inputDelay:''}}">
+                    <text class="txt-config-title">间隔(ms)</text>
+                    <input adjustPosition="{{false}}" bindblur="onInputWidgetBlurCall" bindfocus="onInputWidgetFocusCall" bindinput="onConfigAutoSendValueInput" class="input-config-value" data-id="inputDelay" data-key="delay" maxlength="{{4}}" type="number" value="{{autoSendConfig.delay}}"></input>
+                </view>
+            </view>
+            <view class="container-tag-transmit-funtion">
+                <view bindtap="onSendDataClickCall" class="container-tag-transmit-btn" hoverClass="btn-transmit-2-tag-hover" hoverStartTime="0" hoverStayTime="100">
+                    <view class="icon-function-transmit btn-transmit-2-tag" wx:if="{{!sending}}"></view>
+                    <van-loading vertical type="spinner" wx:if="{{sending}}">
+                        <text wx:if="{{autoSendConfig.enable}}">{{autoSendConfig.count}}</text>
+                    </van-loading>
+                </view>
+            </view>
+            <view class="container-tag-transmit-funtion">
+                <view class="container-tag-transmit-cmd-btns">
+                    <view bindtap="btnDevUnfinish" class="btn-transmit-cmd-fun" hoverClass="btn-transmit-cmd-fun-hover" hoverStartTime="0" hoverStayTime="100">保存</view>
+                    <view bindtap="btnDevUnfinish" class="btn-transmit-cmd-fun" hoverClass="btn-transmit-cmd-fun-hover" hoverStartTime="0" hoverStayTime="100">加载</view>
+                    <view bindtap="btnDevUnfinish" class="btn-transmit-cmd-fun" hoverClass="btn-transmit-cmd-fun-hover" hoverStartTime="0" hoverStayTime="100"> 指令组合 <icon class="icon-cmd-list-expand"></icon>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="view-mask" wx:if="{{showViewMask}}"></view>
+    <backitp bindback="onUserBack" canback="{{false}}" id="backIntercept"></backitp>
+</view>

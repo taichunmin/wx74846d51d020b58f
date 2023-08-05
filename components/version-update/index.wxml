@@ -1,0 +1,14 @@
+<van-overlay bindtap="onClickHide" show="{{showWindow}}" zIndex="9999">
+    <view class="wrapper">
+        <view class="upBlock">
+            <view class="title">版本更新</view>
+            <view class="upContent">
+                <view class="item" wx:for="{{upContent}}" wx:key="index">{{index+1}}. {{item.content}}</view>
+            </view>
+            <view class="upBtn">
+                <button class="noProhibit">立即体验</button>
+            </view>
+            <view bindtap="upCheck" class="upCheck">查看更多日志</view>
+        </view>
+    </view>
+</van-overlay>

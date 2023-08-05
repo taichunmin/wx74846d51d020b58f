@@ -1,0 +1,83 @@
+.container-animation {
+    align-items: center;
+    bottom: -250rpx;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transform: scale(.5);
+    width: 100%;
+}
+
+.container-animation :nth-child(n+2) {
+    bottom: 340rpx;
+    position: relative;
+}
+
+.arrow {
+    animation: breathing 3s 2s infinite both;
+    background-image: linear-gradient(rgba(245,162,0,.49) 30%,transparent);
+    background-repeat: no-repeat;
+    clip-path: polygon(50% 0,0 100%,100% 100%);
+    height: 200rpx;
+    width: 400rpx;
+}
+
+@-webkit-keyframes breathing {
+    0% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    60% {
+        opacity: .2;
+    }
+
+    70% {
+        opacity: .5;
+    }
+
+    80% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes breathing {
+    0% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    60% {
+        opacity: .2;
+    }
+
+    70% {
+        opacity: .5;
+    }
+
+    80% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+        "contact-customer-service": "/components/contact-customer-service/index"
+    },
+    "navigationBarTitleText": "会员权益",
+    "navigationBarBackgroundColor": "#ffd18c"
+}

@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "successful-pop-up": "../../components/successful-pop-up/index",
+        "van-dialog": "../../miniprogram_npm/@vant/weapp/dialog/index"
+    },
+    "navigationBarTitleText": "兑换代金券"
+}

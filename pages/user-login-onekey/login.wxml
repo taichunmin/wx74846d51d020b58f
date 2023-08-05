@@ -1,0 +1,26 @@
+<view>
+    <view class="loginContent">
+        <view class="logo">
+            <image class="logoImg" src="../../static/img/login_logo.png"></image>
+        </view>
+        <view class="container-login-button">
+            <button bindgetphonenumber="getPhoneNumber" bindtouchstart="checkPermission" class="btn-login-onekey" disabled="{{!canLogin}}" hoverClass="btn-login-onekey-hover" openType="getPhoneNumber" wx:if="{{loginMethod==0}}">微信一键登录</button>
+            <view style="display: flex; flex-direction: column; width: 100%; align-items: center;" wx:if="{{loginMethod==1}}">
+                <text class="txt-phone-mask" wx:if="{{thisPhoneOneKeyLoginMask}}">{{thisPhoneOneKeyLoginMask}}</text>
+                <van-loading size="24px" wx:else></van-loading>
+                <text class="txt-this-phone-login-provider">由运营商提供此认证服务</text>
+                <button bindphoneoneclicklogin="onPhoneOneClickLogin" bindtouchstart="checkPermission" class="btn-login-onekey" disabled="{{!canLogin||!thisPhoneOneKeyLoginMask}}" hoverClass="btn-login-onekey-hover" openType="phoneOneClickLogin" style="margin-top: 140rpx;">本机号码一键登录</button>
+            </view>
+            <button bindtap="onOtherPhoneLogin" bindtouchstart="checkPermission" class="btn-login-other-phone" disabled="{{!canLogin}}">其他手机号登录</button>
+        </view>
+        <view class="agree">
+            <view class="viewRead">
+                <checkbox-group bindchange="onCheckChange">
+                    <checkbox checked="{{false}}" class="radio" value="{{0}}"></checkbox>
+                    <text class="read" decode="true">&nbsp;阅读并同意法律声明及</text>
+                    <text bindtap="onUserClickReadPrivacyPolicy" class="privacy">《隐私政策》</text>
+                </checkbox-group>
+            </view>
+        </view>
+    </view>
+</view>

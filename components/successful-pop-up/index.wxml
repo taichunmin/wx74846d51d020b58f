@@ -1,0 +1,37 @@
+<van-overlay bindtap="onClickHide" show="{{overlay_show}}" zIndex="9999">
+    <view class="wrapper">
+        <view class="upBlock">
+            <view class="titleBlock">
+                <view class="left-icon-block">
+                    <icon class="overlay-left-icon"></icon>
+                </view>
+                <view class="title">
+                    <view class="titleText">{{title}}</view>
+                </view>
+                <view class="right-icon-block">
+                    <icon class="overlay-right-icon"></icon>
+                </view>
+            </view>
+            <view class="overlay-content-text-block">
+                <view class="{{mode=='sign-in'?'sign-in-color':'voucher-color'}}" wx:if="{{mode=='sign-in'}}">
+                    <text>+</text>
+                    <text style="margin-left: 5rpx;">{{reward}}</text>
+                </view>
+                <view class="{{mode=='sign-in'?'sign-in-color':'voucher-color'}}" wx:if="{{mode=='voucher'}}">
+                    <text>恭喜您获得</text>
+                    <text style="margin-left: 10rpx;margin-left: 10rpx;color: #f5a200;font-family: Oswald-Medium, Oswald;">￥{{reward/10}}</text>
+                    <text style="margin-left: 10rpx;">代金券</text>
+                </view>
+                <view class="voucher-text" wx:if="{{mode=='voucher'}}">
+                    <text>使用了{{reward}}金币</text>
+                </view>
+            </view>
+            <view class="overlay-content-icon-block">
+                <icon class="{{mode=='sign-in'?'coin':'coupon'}}"></icon>
+            </view>
+            <view class="overlay-btn">
+                <button bindtap="closeOverlay" class="{{mode=='voucher'?'public-style voucher-btn':'public-style sign-in-btn'}}">好的</button>
+            </view>
+        </view>
+    </view>
+</van-overlay>

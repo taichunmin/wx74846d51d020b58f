@@ -1,0 +1,12 @@
+<view style="width: 100%; display: flex; justify-content: center;">
+    <view style="position: relative;">
+        <view style="position: absolute; ">
+            <slot></slot>
+        </view>
+        <image mode="heightFix" src="{{imgUrl}}" style="height: 300rpx;"></image>
+        <view class="container-animation" wx:if="{{showArrow}}">
+            <view class="arrow"></view>
+            <view class="arrow"></view>
+        </view>
+    </view>
+</view>

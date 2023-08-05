@@ -1,0 +1,65 @@
+.topLine {
+    background: rgba(0,0,0,.1);
+    height: 2rpx;
+    width: 100%;
+}
+
+page {
+    height: 100%;
+    width: 100%;
+}
+
+.container-page-base {
+    background: #f9f9f9;
+    height: 100%;
+}
+
+.container-goods-list,.container-page-base {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-goods-list {
+    margin-top: 98rpx;
+}
+
+.tips-img-block {
+    margin-top: 220rpx;
+    text-align: center;
+    width: 100%;
+}
+
+.tips-text-block {
+    color: #a8a8a8;
+    font-size: 30rpx;
+    margin-top: 80rpx;
+    text-align: center;
+    width: 100%;
+}
+
+.tips-img {
+    height: 200rpx;
+    width: 200rpx;
+}
+
+.to-login-btn-block {
+    margin-top: 32rpx;
+    text-align: center;
+}
+
+.to-login-btn {
+    align-items: center;
+    background: #f5a200;
+    border: 1px solid #f5a200;
+    border-radius: 40rpx;
+    color: #fff;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    width: 45%;
+}
+
+button::after {
+    border: none;
+}

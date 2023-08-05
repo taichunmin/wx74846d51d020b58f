@@ -1,0 +1,24 @@
+<view>
+    <view class="topLine"></view>
+    <view class="empty"></view>
+    <van-cell isLink bindtap="openPopup" size="large" title="原创视频列表" titleStyle="color: #646566" value="{{chooseData}}" valueClass="text-color"></van-cell>
+    <view class="empty"></view>
+    <van-cell isLink bindtap="openPopupRewards" size="large" title="播放量达到" titleStyle="color: #646566" value="{{chooseRewardsData}}" valueClass="text-color"></van-cell>
+    <view class="empty"></view>
+    <view class="upImgBlock">
+        <view>
+            <text class="upImgText">上传图片</text>
+            <text class="upImgRemain">上传播放量截图<text>{{imgLength}}/1</text>
+            </text>
+        </view>
+        <view class="upImg">
+            <van-uploader accept="image" bind:after-read="afterRead" bind:delete="deleteImage" class="van_uploader" fileList="{{fileList}}" maxCount="1" multiple="true"></van-uploader>
+        </view>
+    </view>
+    <view class="rewards-total">合计奖励：<text class="total">{{total==''?'0':total}}</text>
+    </view>
+    <view style="position:absolute;margin-top:266rpx;margin-bottom:100rpx;width:100%;height:100rpx;text-align:center;">
+        <van-button bindtap="submit" customStyle="width:90%;height: 40px;font-size:30rpx;border-radius:20px 20px 20px 20px;background:#F5A200;border:1px solid #F5A200;color:#fff;font-weight:500;" disabled="{{!canSubmit}}" type="primary">提交</van-button>
+    </view>
+    <select-data bind:close="closePopup" bind:select="selectData" data="{{seleceData}}" mode="{{mode}}" showPopup="{{showView}}"></select-data>
+</view>

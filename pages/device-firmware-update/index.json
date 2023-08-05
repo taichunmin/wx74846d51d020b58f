@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "van-loading": "../../miniprogram_npm/@vant/weapp/loading/index",
+        "backitp": "/components/back-intercept/back",
+        "device-shape-img": "../../components/device-shape-img-auto/index"
+    },
+    "navigationBarTitleText": "固件更新"
+}

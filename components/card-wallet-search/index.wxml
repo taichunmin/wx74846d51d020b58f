@@ -1,0 +1,16 @@
+<view class="container-custom-toolbar" style="height:{{custom_height}}px;">
+    <view class="container-toolbar-title" style="height: {{menubuttonHeight}}px; margin-top: {{menuButtonToTop}}px;">{{position}}</view>
+    <view class="container-search-block " style="width: {{serach_width}}px; height: {{menubuttonHeight}}px; margin-top: {{menuButtonToTop}}px;margin-right: {{search_to_menu_right}}px;">
+        <view class="input_search_bar">
+            <view class="input_search_bar_form">
+                <view class="input_search_bar_box">
+                    <icon class="searchIcon"></icon>
+                    <input bindinput="inputTyping" class="input_search_bar_input" maxlength="12" placeholder="{{holderText}}" style="height: {{menubuttonHeight}}px;" type="text" value="{{inputVal}}"></input>
+                    <view bindtap="clearInput" class="order_icon_clear" wx:if="{{inputVal.length>0&&changeBtn==false}}">
+                        <icon size="18" type="clear"></icon>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

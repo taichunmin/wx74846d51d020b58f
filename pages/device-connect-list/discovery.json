@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "backitp": "/components/back-intercept/back",
+        "send-writetag-chance": "/components/send-writetag-chance/index"
+    },
+    "navigationBarTitleText": "搜索设备"
+}

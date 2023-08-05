@@ -1,0 +1,136 @@
+<view class="container-base-view">
+    <view class="head-heights" wx:if="{{phone&&permanentVip!==''}}">
+        <view class="custom"></view>
+        <view class="forver-black-bg-block" style="top:{{navHeight}}px;margin-top: 100rpx;">
+            <view class="forver-vip-black-block-bg">
+                <view class="person-vip">
+                    <view class="vip-head-portrait">
+                        <image class="default-img vip-default-img" src="../../static/img/default_head_portrait.svg" wx:if="{{imgUrl==''}}"></image>
+                        <image bindtap="jumpPersonalCenter" class="userinfo-avatar userinfo-avatars" src="{{imgUrl}}" wx:if="{{imgUrl!==''}}"></image>
+                    </view>
+                    <view class="vip-phone">
+                        <view>{{phone}}</view>
+                        <icon class="forver-vip-icon"></icon>
+                    </view>
+                    <view bindtap="jumpPersonalCenter" class="vip-right-icon">
+                        <icon class="iconArrow"></icon>
+                    </view>
+                </view>
+                <view class="person-gold-coin">
+                    <view>金币：{{gold_coin_count}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="head-height" wx:else>
+        <view class="custom"></view>
+        <view>
+            <view class="userinfo">
+                <view style="position: absolute;">
+                    <image bindtap="jumpLogin" class="default-img" src="../../static/img/default_head_portrait.svg" wx:if="{{imgUrl==''||!phone}}"></image>
+                    <image bindtap="jumpPersonalCenter" class="userinfo-avatar" src="{{imgUrl}}" wx:else></image>
+                </view>
+                <view>
+                    <image bindtap="bindViewTap" class="userinfo-avatar" mode="cover"></image>
+                </view>
+                <view>
+                    <text class="phoneNumber" wx:if="{{phone}}">{{phone}}</text>
+                    <view bindtap="jumpLogin" class="loginRegister" wx:if="{{!phone}}">登录/注册</view>
+                    <view class="membershipType" wx:if="{{phone}}">
+                        <view wx:if="{{expirationTime=='会员已过期'}}">
+                            <image src="../../static/img/ordinaryMember.png" style="width:128rpx;height:40rpx;"></image>
+                        </view>
+                        <view wx:else>
+                            <image class="doMember" src="../../static/img/distinguishedMember.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="personCenter" class="headArrow" wx:if="{{phone}}">
+                    <icon class="headIcon"></icon>
+                </view>
+            </view>
+            <view class="coinsNumber">
+                <view class="coins">
+                    <view>
+                        <text class="leftNumber" wx:if="{{phone}}">{{gold_coin_count==''?0:gold_coin_count}}</text>
+                        <text class="leftNumber" wx:else>-</text>
+                    </view>
+                    <view>
+                        <text class="coinsText">金币</text>
+                    </view>
+                </view>
+                <view class="remainingTimes">
+                    <view wx:if="{{phone}}">
+                        <view bindtap="purchase" class="purchase">购买</view>
+                        <view>
+                            <text bindtap="purchase" class="rightNumber">{{remainingTimes}}</text>
+                        </view>
+                        <view>
+                            <text class="remainText">次数</text>
+                        </view>
+                    </view>
+                    <view wx:else>
+                        <view>
+                            <text class="rightNumber">-</text>
+                        </view>
+                        <view>
+                            <text class="remainText">次数</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="blackBlock">
+            <view class="leftBlock">
+                <view class="leftBlockImg">
+                    <image class="vipMember" src="../../static/img/vipMember.png"></image>
+                </view>
+                <view class="date">
+                    <text wx:if="{{expirationTime=='会员已过期'||!phone}}">{{vipText=='了解更多'?'vip享受权益':'开通vip享受权益'}}</text>
+                    <text wx:if="{{expirationTime!=='会员已过期'&&phone}}">{{permanentVip==''?vip_end_date+'到期':permanentVip}}</text>
+                </view>
+            </view>
+            <view bindtap="renewNow" class="renewNow">
+                <van-button customStyle="width:80px;height:30px;font-size:12px;border-radius:20px 20px 20px 20px;background:#eedbb4;color:#3a3d57;font-weight:500;border:none;" type="default">{{expirationTime=='会员已过期'&&phone?vipText:expirationTime!=='会员已过期'&&phone?'立即续费':expirationTime!=='会员已过期'&&!phone?'了解更多':'了解更多'}}</van-button>
+            </view>
+        </view>
+    </view>
+    <view class="container-content-item">
+        <view style="background:#ffffff;" wx:for="{{colList}}" wx:key="index">
+            <view class="block" wx:for="{{item}}" wx:key="index">
+                <view bindtap="{{item.bindTap}}" class="line">
+                    <view class="icon">
+                        <icon class="{{item.iconTitle}}"></icon>
+                    </view>
+                    <view class="right">
+                        <view class="title">
+                            <text>{{item.title}}</text>
+                        </view>
+                        <view class="bubbling">
+                            <view class="{{item.buddling==''?'bubblingTextNo':'bubblingText'}}">{{item.buddling}}</view>
+                        </view>
+                        <view class="rightIcon">
+                            <icon class="iconArrow"></icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="block-content" wx:if="{{link_data!==''}}">
+                    <block wx:for="{{item.content}}" wx:key="index">
+                        <view class="content-left">{{item.link}}</view>
+                        <view class="content-right">
+                            <van-button bindtap="copyLink" customStyle="width:100%;height: 38rpx;font-size:22rpx;border-radius:20px 20px 20px 20px;background:#ffffff;border:1px solid #f5a200;color:#f5a200;" type="primary">{{item.btn}}</van-button>
+                        </view>
+                    </block>
+                </view>
+            </view>
+            <view class="none"></view>
+        </view>
+        <view style="text-align: center; background: transparent; font-size: 22rpx; color: #999;">
+            <view>{{miniProgramVersion}}</view>
+            <view style="padding: 8rpx;">---- 这是我的底线~ ----</view>
+        </view>
+    </view>
+    <van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>
+    <contact-customer-service></contact-customer-service>
+    <tabbar selected="3"></tabbar>
+</view>

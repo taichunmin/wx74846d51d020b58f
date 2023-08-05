@@ -1,0 +1,81 @@
+<view>
+    <view class="topLine"></view>
+    <view class="outsideBlock">
+        <view class="block">
+            <view class="line">
+                <view class="right">
+                    <view class="title">
+                        <text>头像</text>
+                    </view>
+                    <view class="rightIcon" wx:if="{{imgUrl==''}}">
+                        <image bindtap="chose_photo" class="headPortrait" src="../../static/img/default_head_portrait.svg" wx:if="{{imgUrl==''}}"></image>
+                    </view>
+                    <view class="rightIcon" wx:if="{{imgUrl!==''}}">
+                        <image bindtap="chose_photo" class="headPortraits" src="{{imgUrl}}"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="none"></view>
+    <view bindtap="edit" class="outsideBlocks">
+        <view class="block">
+            <view class="lines">
+                <view class="right">
+                    <view class="title">
+                        <text>昵称</text>
+                    </view>
+                    <view class="rightIcons" style="margin-right: 38rpx;">
+                        <view class="phoneNumber">
+                            <text class="rightText">{{nickname==''?'请添加昵称':nickname}}</text>
+                        </view>
+                        <view class="iconBlock">
+                            <icon class="iconArrow"></icon>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="none"></view>
+    <view class="outsideBlocks">
+        <view class="block">
+            <view class="lines">
+                <view class="right">
+                    <view class="title">
+                        <text>手机号码</text>
+                    </view>
+                    <view class="rightIcons" style="margin-right: 28rpx;">
+                        <view class="phoneNumber">
+                            <text class="rightText">{{hide_phone}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="contaniner" wx:if="{{show_phone}}">
+        <view bindtap="logOut" class="btn">
+            <van-button customStyle="width:320rpx;height: 80rpx;background: rgba(245, 162, 0, 0.1);border-radius: 20px 20px 20px 20px;font-size:30rpx;font-weight:500;color:#f5a200;opacity:1;border:none;">退出登录</van-button>
+        </view>
+    </view>
+    <view class="text" wx:else>
+        <view bindtap="logIn" class="btn">
+            <van-button customStyle="width:320rpx;height: 80rpx;background: rgba(245, 162, 0, 0.1);border-radius: 20px 20px 20px 20px;font-size:30rpx;font-weight:500;color:#f5a200;opacity:1;border:none;">请先登录</van-button>
+        </view>
+    </view>
+    <view wx:if="{{dialog_show==true}}">
+        <view class="container-dialog-mask"></view>
+        <view class="container-dialog-content">
+            <view class="txt-title">修改昵称</view>
+            <view class="container-center-input">
+                <input bindinput="onCardNameInput" class="input-dump-name" cursorSpacing="140" maxlength="12" placeholder="{{nickname==''?'请输入名称':nickname}}" placeholderClass="phClass" style="{{themeMap.input}}" value="{{input_value}}"></input>
+                <icon bindtap="clearTap" class="imgBlock" wx:if="{{isClearShow==true}}"></icon>
+            </view>
+            <view class="container-bottom-btns">
+                <view bindtap="onSaveCancel" class="btn-cancel">取消</view>
+                <view bindtap="onSaveDumpClick" class="btn-confirm">保存</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,89 @@
+.topLine {
+    background: rgba(0,0,0,.1);
+    height: 2rpx;
+    width: 100%;
+}
+
+page {
+    background: #f9f9f9;
+}
+
+.wrap {
+    height: auto;
+    width: 100%;
+}
+
+.block {
+    background: #fff;
+    height: auto;
+    margin: 0 auto 20rpx;
+    padding-bottom: 34rpx;
+    padding-top: 60rpx;
+    width: 97%;
+}
+
+.firstBlock {
+    display: flex;
+    flex-direction: row;
+    height: 40rpx;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.version {
+    color: #333;
+    flex: 0.75;
+    font-size: 34rpx;
+    font-weight: 700;
+    justify-content: flex-start;
+    letter-spacing: 2rpx;
+    margin-left: 23rpx;
+}
+
+.update,.version {
+    align-items: center;
+    display: flex;
+}
+
+.update {
+    color: #999;
+    flex: 0.25;
+    font-size: 26rpx;
+    justify-content: center;
+}
+
+.item {
+    flex-direction: row;
+    height: auto;
+    margin-top: 24rpx;
+    width: 100%;
+}
+
+.item,.pointBlock {
+    display: flex;
+}
+
+.pointBlock {
+    align-items: center;
+    flex: 0.01;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.point {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlPkBmb250LWZhY2V7Zm9udC1mYW1pbHk6ZmVlZGJhY2staWNvbmZvbnQ7c3JjOnVybCgvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmMj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt3b2ZmMiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmY/dD0xNjMwMDMzNzU5OTQ0KSBmb3JtYXQoJnF1b3Q7d29mZiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt0cnVldHlwZSZxdW90Oyl9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUxMiA2MjRhMTEyIDExMiAwIDEgMCAwLTIyNCAxMTIgMTEyIDAgMCAwIDAgMjI0eiIgZmlsbD0iIzY2NiIvPjwvc3ZnPg==");
+    background-size: 50rpx 50rpx;
+    height: 50rpx;
+    width: 50rpx;
+}
+
+.text {
+    color: #666;
+    display: flex;
+    flex: 0.99;
+    flex-direction: column;
+    font-size: 30rpx;
+    justify-content: flex-start;
+    margin-top: 8rpx;
+    word-break: break-all;
+}

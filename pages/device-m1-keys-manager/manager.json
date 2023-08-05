@@ -1,0 +1,13 @@
+{
+    "usingComponents": {
+        "van-switch": "../../miniprogram_npm/@vant/weapp/switch/index",
+        "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+        "van-action-sheet": "../../miniprogram_npm/@vant/weapp/action-sheet/index",
+        "message-dark": "../../components/dialog-msg-box-dark/dialog",
+        "keys-list": "../../components/keys-list-view/view"
+    },
+    "navigationBarTitleText": "密码管理",
+    "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1A1D22"
+}

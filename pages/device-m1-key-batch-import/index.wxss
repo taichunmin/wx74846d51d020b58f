@@ -1,0 +1,86 @@
+page {
+    background: #131418;
+}
+
+.wrap {
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+}
+
+.top {
+    flex: 1;
+    flex-direction: row;
+    height: 90%;
+    margin-top: 64rpx;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+}
+
+#left-icon-block,.top {
+    display: flex;
+}
+
+#left-icon-block {
+    flex: 0.15;
+    flex-direction: column;
+    height: min-content;
+}
+
+#left-icon-block,#textarea-block {
+    align-items: center;
+}
+
+#textarea-block {
+    display: flex;
+    flex: 0.85;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.icon-outside-block {
+    line-height: 50rpx;
+}
+
+.right {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PHBhdGggZD0iTTAgNTcuNzU0QzAgMjUuOTA3IDI1LjkwNyAwIDU3Ljc1NCAwaDkwOC40OTJDOTk4LjA5MyAwIDEwMjQgMjUuOTA3IDEwMjQgNTcuNzU0djkwOC40OTJBNTcuNzU0IDU3Ljc1NCAwIDAgMSA5NjYuMjQ2IDEwMjRINTcuNzU0QTU3Ljc1NCA1Ny43NTQgMCAwIDEgMCA5NjYuMjQ2VjU3Ljc1NHoiIGZpbGw9IiNGRkYiIGZpbGwtb3BhY2l0eT0iLjIiLz48cGF0aCBkPSJNODM4LjE0NCAyNzEuMTU1YTUxLjcxMiA1MS43MTIgMCAwIDEgMCA3My4xMTRMNDQwLjAxMyA3NDIuNjA1YTUxLjcxMiA1MS43MTIgMCAwIDEtNzMuMjE2IDBMMTg1Ljg1NiA1NjEuMzU3YTUxLjcxMiA1MS43MTIgMCAwIDEgNzMuMTE0LTczLjExNGwxNDQuMzg0IDE0NC4zODRMNzY1LjAzIDI3MS4wNTNhNTEuNzEyIDUxLjcxMiAwIDAgMSA3My4xMTQgMHoiIGZpbGw9IiMwN0MxNjAiLz48L3N2Zz4=");
+    background-size: 30rpx 30rpx;
+}
+
+.error,.right {
+    height: 30rpx;
+    width: 30rpx;
+}
+
+.error {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PHBhdGggZD0ibTYxNy45MzMgNTE2LjA5NiAyNzEuOTc0IDI3Mi4wMjYtMTAxLjc4NSAxMDEuNzg1LTI3Mi4wMjYtMjcxLjk3NC0yNzEuOTc0IDI3MS45NzRMMTQyLjIzNCA3ODguMDdsMjcyLjAyNS0yNzEuOTc0TDEzOS4yMTMgMjQxLjA1IDI0MS4xIDEzOS4xNjJsMjc0Ljk5NSAyNzUuMDk3IDI3NS4wNDYtMjc1LjA0Nkw4OTIuOTggMjQwLjk5OCA2MTcuOTMzIDUxNi4wNDV2LjA1MXoiIGZpbGw9IiNGNTYzMTEiLz48L3N2Zz4=");
+    background-size: 30rpx 30rpx;
+}
+
+.text-area {
+    border-radius: 12rpx 12rpx 0rpx 0rpx;
+    color: #f5f5f5;
+    display: flex;
+    font-size: 28rpx;
+    line-height: 50rpx;
+    margin: 0rpx 24rpx;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 130rpx;
+    text-align: right;
+    width: 100%;
+}
+
+.btn-block {
+    bottom: 100rpx;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+.data-block {
+    margin: 10rpx 0rpx 0rpx 10rpx;
+}

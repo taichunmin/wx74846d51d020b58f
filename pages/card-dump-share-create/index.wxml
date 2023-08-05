@@ -1,0 +1,38 @@
+<view class="wrap">
+    <view class="access-mode">访问方式</view>
+    <view class="choose">
+        <van-radio-group bind:change="onChange" value="{{radio}}">
+            <view class="open-block">
+                <view class="no-password">无访问码</view>
+                <view class="no-password-radio">
+                    <van-radio name="1"></van-radio>
+                </view>
+            </view>
+            <view class="container-line"></view>
+            <view class="open-block">
+                <view class="no-password">有访问码</view>
+                <view class="no-password-radio">
+                    <van-radio name="2"></van-radio>
+                </view>
+            </view>
+            <view class="open-block1" style="margin-top: 36rpx;padding-bottom: 40rpx;" wx:if="{{radio==2}}">
+                <view class="input-block">
+                    <input bindinput="onPrivateKeyInput" class="input" maxlength="4" placeholder="请输入4位访问码" placeholderStyle="color: #6E7480;" type="text" value="{{access_code}}"></input>
+                </view>
+                <view class="switch-block">
+                    <view class="switch--block-text">分享链接自动填充访问码</view>
+                    <view class="switch">
+                        <van-switch activeColor="#F5A200" bind:change="onChangeSwitch" checked="{{access_code_required}}" inactiveColor="#838B99"></van-switch>
+                    </view>
+                </view>
+            </view>
+        </van-radio-group>
+    </view>
+    <view class="date-block">
+        <view class="valid-data">有效期天</view>
+        <van-stepper bind:change="onGetDate" max="99" min="3" value="{{date_value}}"></van-stepper>
+    </view>
+    <view class="share-btn-block">
+        <button bindtap="onSubmitShare" class="share-btn">创建分享</button>
+    </view>
+</view>

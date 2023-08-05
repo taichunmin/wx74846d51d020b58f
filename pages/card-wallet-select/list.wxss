@@ -1,0 +1,85 @@
+.container-page-base {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.container-line {
+    background: #f9f9f9;
+    height: 16rpx;
+    margin-top: 6rpx;
+    width: 100%;
+}
+
+.container-dump-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    overflow: scroll;
+    width: 100%;
+}
+
+.container-dump-item {
+    padding: 30rpx;
+}
+
+page {
+    height: 100%;
+    height: calc(100% - constant(safe-area-inset-bottom));
+    height: calc(100% - env(safe-area-inset-bottom));
+    width: 100%;
+}
+
+.rightArrowImg {
+    height: 40rpx;
+    width: 40rpx;
+}
+
+.bottomBtn {
+    background: #fff;
+    flex-direction: row;
+    width: 100%;
+}
+
+.bottomBtn,.prohibit {
+    display: flex;
+}
+
+.prohibit {
+    align-items: center;
+    border-radius: 20px 20px 20px 20px;
+    font-size: 30rpx;
+    font-weight: 500;
+    height: 40px;
+    justify-content: center;
+    margin-bottom: 25rpx;
+    margin-top: 25rpx;
+    width: 40%;
+}
+
+.cancel-btn {
+    background: hsla(0,0%,100%,.9);
+    border: 1px solid #333;
+    border-radius: 40rpx 40rpx 40rpx 40rpx;
+}
+
+.open-data-btn {
+    background: #f5a200;
+    border: 1px solid #f5a200;
+    color: #fff;
+}
+
+button[disabled]:not([type]) {
+    background: #f5a200;
+    border-radius: 20px 20px 20px 20px;
+    color: #fff;
+    font-size: 30rpx;
+    height: 40px;
+    opacity: .4;
+    width: 40%;
+}
+
+button::after {
+    border: none;
+}

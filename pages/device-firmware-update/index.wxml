@@ -1,0 +1,51 @@
+<view class="page-base-container">
+    <view class="page-fw-base-container" wx:if="{{pageShow==0}}">
+        <device-shape-img></device-shape-img>
+        <view class="deivce-fw-status-container">
+            <van-loading size="48rpx" wx:if="{{showFWStatusLoading}}">查询中...</van-loading>
+            <text class="txt-device-fw-status" wx:else>{{fwStatusMsg}}</text>
+        </view>
+        <text class="txt-device-fw-version">版本{{codeString}}</text>
+    </view>
+    <view class="page-fw-base-container" wx:if="{{pageShow==1}}">
+        <view class="img-deivce-fw-updatable"></view>
+        <view class="deivce-fw-status-container">
+            <text class="txt-device-fw-status">发现新版本</text>
+            <button bindtap="onStartUpdateBtnCall" class="btn-start-fw-update" hoverClass="btn-start-fw-update-hover">立即更新</button>
+        </view>
+    </view>
+    <view class="page-fw-base-container" wx:if="{{pageShow==2}}">
+        <view class="img-deivce-fw-updatable"></view>
+        <view class="deivce-fw-status-container">
+            <text class="txt-device-fw-status">{{updatingMsg}}</text>
+            <view class="container-progress">
+                <view class="progress-bar-box">
+                    <view class="progress-bar-in" style="width:{{progress+'%'}};"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="page-fw-base-container" wx:if="{{pageShow==3}}">
+        <view class="img-deivce-fw-updatable"></view>
+        <view class="deivce-fw-status-container">
+            <text class="txt-device-fw-status"> {{updateFailMsg}} </text>
+            <button bindtap="onRestartUpdateBtnCall" class="btn-start-fw-update" hoverClass="btn-start-fw-update-hover" wx:if="{{canRetry}}">重试</button>
+        </view>
+    </view>
+    <view class="page-fw-base-container" wx:if="{{pageShow==4}}">
+        <view class="img-deivce-fw-updatable"></view>
+        <view class="deivce-fw-status-container">
+            <text class="txt-device-fw-status">更新成功，请重启小程序以体验最新版本</text>
+            <button bindtap="onRestartMiniProgramCall" class="btn-start-fw-update" hoverClass="btn-start-fw-update-hover">退出小程序</button>
+        </view>
+    </view>
+    <view class="page-fw-base-container" wx:if="{{pageShow!=0}}">
+        <view class="fw-update-note-container">
+            <text class="fw-update-note-title">更新说明 {{latestVerStr}}</text>
+            <view class="fw-update-note-item-container">
+                <text class="fw-update-note-item" wx:for="{{updateNotes}}" wx:for-item="note" wx:key="index">{{index+1}}. {{note}}</text>
+            </view>
+        </view>
+    </view>
+    <backitp bindback="onUserBack" canback="{{false}}" id="backIntercept"></backitp>
+</view>

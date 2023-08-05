@@ -1,0 +1,48 @@
+<view class="main-container">
+    <view class="top-warn-message-container" wx:if="{{showFWWran}}"> 固件版本低于V1.2，部分秘钥将不会用于读卡 </view>
+    <view class="top-tab-container" style="{{showFWWran?'':'margin-top: 40rpx;'}}">
+        <view bindtap="onTabClick" class="top-tab-item {{pageShow==index?'top-tab-item-choose':''}}" data-id="{{index}}" wx:for="{{pageList}}" wx:for-item="name" wx:key="index">
+            <text class="top-tab-title">{{name}}</text>
+        </view>
+    </view>
+    <view class="keys-base-main-container">
+        <view class="keys-base-tab-page-container">
+            <view class="keys-base-info-container">
+                <view class="keys-base-info-title">
+                    <text>密码数量：<text class="colorText">{{keysHexList.length}}</text>
+                    </text>
+                    <text decode="true"> &nbsp; | &nbsp; </text> 预计耗时：<text>
+                        <text class="colorText">{{keysCheckTime>0?keysCheckTime:keysCheckTime==0?'小于1':'？'}}</text>分钟</text>
+                </view>
+                <view class="keys-reading-use-enable">
+                    <van-switch activeColor="#08c264" bind:change="onKeyEnableChange" checked="{{keyEnable}}" size="24px" title=""></van-switch>
+                </view>
+            </view>
+            <view class="keys-table-head"></view>
+            <keys-list bind:delete="onUserDeleteKey" bind:edit="onUserEditKey" heads="{{keysTableHead}}" keys="{{keysHexList}}" style="flex: 1; height: 0rpx;"></keys-list>
+        </view>
+    </view>
+    <view class="bottom-button-container">
+        <view class="{{page_index==1?'clear-btn':'bottom-button-item'}}" wx:if="{{page_index==1}}">
+            <button bindtap="onClearUserKeyCall" class="bottom-button-clear">清空数据</button>
+        </view>
+        <view class="bottom-button-item right-btn-block" wx:if="{{page_index==1}}">
+            <view>
+                <button bindtap="onUserAddKey" class="bottom-button-add">添加密码</button>
+            </view>
+            <view class="middle-line">|</view>
+            <view>
+                <button bindtap="onUserFreeEditing" class="bottom-button-add">自由编辑</button>
+            </view>
+        </view>
+        <view class="{{page_index==1?'clear-btn':'bottom-button-item'}}" style="display: flex; flex-direction: row;" wx:if="{{page_index==2}}">
+            <button bindtap="onClearHistoryKeyCall" class="bottom-button-clear">清空数据</button>
+        </view>
+    </view>
+    <van-popup closeable round bind:close="onCancelEditHistoryKeyCall" closeIcon="/static/img/close.svg" customClass="right-keys-history-cell" position="bottom" show="{{showHistoryContent}}">
+        <text class="right-keys-history-title">秘钥列表（卡号{{tagUID}}）</text>
+        <keys-list bind:delete="onDeleteHistoryKey" bind:edit="onEditHistoryKey" heads="{{['序号','KEY']}}" keys="{{keyHistoryList}}" style="flex: 1; height: 0rpx; background: #131418;"></keys-list>
+    </van-popup>
+    <message-dark bind:cancel="{{messageBox.cancelCall}}" bind:close="{{messageBox.closeCall}}" bind:confirm="{{messageBox.confirmCall}}" cancelText="{{messageBox.cancelText}}" confrimText="{{messageBox.confirmText}}" content="{{messageBox.content}}" maxlength="{{messageBox.maxlength}}" mode="{{messageBox.mode}}" placeholder="{{messageBox.placeholder}}" show="{{messageBox.show}}" title="{{messageBox.title}}" value="{{messageBox.value}}"></message-dark>
+    <van-action-sheet actions="{{actions}}" bind:cancel="onClose" bind:select="onSelect" cancelText="取消" show="{{action_sheet_show}}"></van-action-sheet>
+</view>

@@ -1,0 +1,32 @@
+.noneCard {
+    height: auto;
+    text-align: center;
+    width: 100%;
+}
+
+.noneCardImg {
+    height: 288rpx;
+    width: 300rpx;
+}
+
+.noneCardText {
+    color: #a8a8a8;
+    font-size: 30rpx;
+    font-weight: 500;
+}
+
+.addCard {
+    align-items: center;
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    margin-top: 50rpx;
+    width: 100%;
+}
+
+.addBtn {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlPkBmb250LWZhY2V7Zm9udC1mYW1pbHk6ZmVlZGJhY2staWNvbmZvbnQ7c3JjOnVybCgvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmMj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt3b2ZmMiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmY/dD0xNjMwMDMzNzU5OTQ0KSBmb3JtYXQoJnF1b3Q7d29mZiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt0cnVldHlwZSZxdW90Oyl9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTYxNC40IDEwMi40YTEwMi40IDEwMi40IDAgMCAwLTIwNC44IDB2MzA3LjJIMTAyLjRhMTAyLjQgMTAyLjQgMCAwIDAgMCAyMDQuOGgzMDcuMnYzMDcuMmExMDIuNCAxMDIuNCAwIDAgMCAyMDQuOCAwVjYxNC40aDMwNy4yYTEwMi40IDEwMi40IDAgMCAwIDAtMjA0LjhINjE0LjRWMTAyLjR6IiBmaWxsPSIjRkZGIi8+PC9zdmc+");
+    background-size: 24rpx 24rpx;
+    height: 24rpx;
+    width: 24rpx;
+}

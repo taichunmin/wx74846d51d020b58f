@@ -1,0 +1,22 @@
+<view>
+    <view class="topLine"></view>
+    <view class="content">
+        <view class="block" wx:for="{{gold_coin_details_data}}" wx:key="index">
+            <view class="left-block">
+                <view class="title">{{item.title}}</view>
+                <view class="time">{{item.commit_time}}</view>
+            </view>
+            <view class="right-block">
+                <view class="public" style="color: {{item.color}}">
+                    <text>{{item.gold_coin_count}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="noData" wx:if="{{gold_coin_details_data==''}}">
+        <view class="noDataImgBlock">
+            <image class="noDataImg" src="../../static/img/noFeedbackRecord.png"></image>
+        </view>
+        <view class="noDataText">暂无金币历史</view>
+    </view>
+</view>

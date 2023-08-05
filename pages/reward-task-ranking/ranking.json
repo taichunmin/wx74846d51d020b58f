@@ -1,0 +1,8 @@
+{
+    "usingComponents": {},
+    "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "金币排行榜"
+}

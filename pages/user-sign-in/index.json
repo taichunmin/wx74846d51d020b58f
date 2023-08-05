@@ -1,0 +1,12 @@
+{
+    "usingComponents": {
+        "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+        "input-in": "../../components/dialog-tag-input-in/index",
+        "successful-pop-up": "../../components/successful-pop-up/index"
+    },
+    "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "签到"
+}

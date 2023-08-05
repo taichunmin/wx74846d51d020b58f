@@ -1,0 +1,112 @@
+<view style="background: white; height: 100%;">
+    <view>
+        <devicebar showcontent="{{true}}">
+            <human-voice audioSrc="{{voiceData}}" style="margin-top: -40rpx;"></human-voice>
+        </devicebar>
+    </view>
+    <block wx:if="{{pageStatus==0}}">
+        <view class="content">
+            <view style="width:323.5714rpx;height:496rpx;margin:0 auto;">
+                <view style="width:323.5714rpx;height: 450rpx;text-align:center;float:left;position: absolute;">
+                    <device-shape-img showArrow="true"></device-shape-img>
+                </view>
+            </view>
+            <view class="search">准备读卡</view>
+            <view class="tipsText">
+                <text>请确保卡片或钥匙扣稳定贴于读卡器</text>
+            </view>
+        </view>
+        <view>
+            <problem-help></problem-help>
+        </view>
+    </block>
+    <block wx:if="{{pageStatus==1}}">
+        <view class="progress">
+            <view class="progress-bar-box">
+                <view class="progress-bar-in" style="width:{{progress+'%'}};">
+                    <image src="/static/img/writeCardLogo.svg" style="width: 22%; height: 22%; padding: 20rpx;"></image>
+                </view>
+            </view>
+        </view>
+        <view class="cardReadText">
+            <view class="readCardTime" wx:if="{{decryptShow==false}}">
+                <view style="width:520rpx;margin:0 auto;height:50rpx;">
+                    <view style="float:left;">正在读卡</view>
+                    <view style="float:left;width:100rpx;text-align:left;">{{progress}}%</view>
+                    <view style="float:left;">
+                        <text wx:if="{{decryptShow==false}}">...大约需要3秒</text>
+                    </view>
+                </view>
+            </view>
+            <view class="readCardTime" wx:if="{{decryptShow==true}}">
+                <view style="width:250rpx;height:50rpx;margin:0 auto;">
+                    <view style="float:left;">正在读卡</view>
+                    <view style="float:left;">{{progress}}%</view>
+                </view>
+            </view>
+            <view class="remain" wx:if="{{decryptShow==true}}">
+                <view class="remainBlock">
+                    <text>读卡期间请勿移动卡片</text>
+                </view>
+                <view style="width:100%;height:50rpx;">
+                    <view style="margin:0 auto;width:64%;height:50rpx;">
+                        <view style="float:left;line-height:50rpx;width:55rpx;margin-left:4.5%;">正在</view>
+                        <view style="float:left;line-height:50rpx;width:130rpx;margin-left:0rpx;height:50rpx;text-align:left;">{{decrypt}}</view>
+                        <view style="float:left;line-height:50rpx;width:70rpx;height:50rpx;">{{step}}/{{max}}</view>
+                        <view style="float:left;line-height:50rpx;text-align:left;">大约需要</view>
+                        <view style="float:left;line-height:50rpx;width:100rpx;margin-left:0rpx;text-align:left;">{{time_msg}}秒</view>
+                    </view>
+                </view>
+                <view style="width:100%;" wx:if="{{showHardTips}}">
+                    <view style="line-height:50rpx; width:64%; margin:auto; text-align: center;">高难度CPU卡，耗时较久，请耐心等待</view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{pageStatus==2}}">
+        <view class="content">
+            <view style="margin-top:132rpx;">
+                <view>
+                    <icon class="fail"></icon>
+                </view>
+                <view class="success">读卡成功</view>
+                <view class="ic-info" wx:if="{{card_type=='IC卡'}}">
+                    <view class="ic-info-left">
+                        <view class="ic-info-top ic-info-top-text">类型：</view>
+                        <view class="ic-info-top ic-info-top-text">卡号：</view>
+                        <view class="ic-info-top ic-info-top-text" wx:if="{{sak!==''}}">SAK：</view>
+                        <view class="ic-info-top ic-info-top-text" wx:if="{{atqa!==''}}">ATQA：</view>
+                    </view>
+                    <view class="ic-info-right">
+                        <view class="ic-info-top-text ic-info-top-text-left">{{card_type}}</view>
+                        <view class="ic-info-top-text ic-info-top-text-left">{{uid_hex}}</view>
+                        <view class="ic-info-top-text ic-info-top-text-left">{{sak}}</view>
+                        <view class="ic-info-top-text ic-info-top-text-left">{{atqa}}</view>
+                    </view>
+                </view>
+                <view class="ic-info" wx:if="{{card_type=='ID卡'}}">
+                    <view class="ic-info-left">
+                        <view class="ic-info-top id-info-top-text">类型：</view>
+                        <view class="ic-info-top id-info-top-text">卡号(16进制)：</view>
+                        <view class="ic-info-top id-info-top-text">卡号(10进制)：</view>
+                    </view>
+                    <view class="ic-info-right">
+                        <view class="ic-info-top-text ic-info-top-text-left">{{card_type}}</view>
+                        <view class="ic-info-top-text ic-info-top-text-left">{{uid_hex}}</view>
+                        <view class="ic-info-top-text ic-info-top-text-left">{{uid_10d}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="doubleBtn">
+            <view class="leftBtn">
+                <button bindtap="onSaveDumpToCardWallet" class="{{dumpSaved?'prohibit':'noProhibit'}}">保存到卡包</button>
+            </view>
+            <view class="rightBtn">
+                <button bindtap="gotoWriteCard" style="width:100%;font-size:30rpx;border-radius:20px 20px 20px 20px;padding:3rpx 0rpx 3rpx 0rpx;background:#F5A200;color:#fff;font-weight:500;">前往写卡</button>
+            </view>
+        </view>
+    </block>
+    <backitp bindback="onUserBack" canback="{{canExit}}" id="backIntercept"></backitp>
+    <save-data bind:cancel="onUserCancelDumpSave" bind:confirm="onUserConfirmDumpSave" placeholder="请输入数据名称" show="{{showDumpSaveDialog}}" theme="light" title="保存数据" type="save-nick"></save-data>
+</view>

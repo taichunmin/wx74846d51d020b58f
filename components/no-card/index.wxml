@@ -1,0 +1,15 @@
+<view class="noneCard">
+    <image class="noneCardImg" src="../../static/img/noneCard.png"></image>
+    <view class="noneCardText" wx:if="{{mode==1}}">
+        <text>暂无卡片</text>
+    </view>
+    <view class="noneCardText" wx:if="{{mode==0}}">
+        <text>{{cardType=='IC'?'暂无IC卡':'暂无ID卡'}}</text>
+    </view>
+</view>
+<view bindtap="addCard" class="addCard" wx:if="{{addCard!==''}}">
+    <button style="height: 80rpx; font-size: 30rpx; border-radius: 40rpx; background: #F5A200; border: 2rpx solid #F5A200; padding-left: 20rpx; padding-right: 20rpx;">
+        <icon class="addBtn"></icon>
+        <text style="margin-left: 10rpx; color: #fff; font-size: 26rpx; font-weight: 500;">添加卡片</text>
+    </button>
+</view>

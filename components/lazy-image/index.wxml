@@ -1,0 +1,11 @@
+<view class="lazy-image-wrap">
+    <view style="position: relative; width: 100%;height: 100%;" wx:if="{{show}}">
+        <image binderror="imageError" bindload="imageLoad" class="lazy-image {{imageShow?'show':''}}" showMenuByLongpress="{{showMenuByLongpress}}" src="{{src}}" style="width: 100%;height: 100%;" wx:if="{{src!=''}}"></image>
+    </view>
+    <view class="lazy-image-loading" wx:else>
+        <view class="iconfont icon-image"></view>
+    </view>
+    <view class="lazy-image-loading" wx:if="{{imageErrShow}}">
+        <view class="iconfont icon-image-err"></view>
+    </view>
+</view>

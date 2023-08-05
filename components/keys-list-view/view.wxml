@@ -1,0 +1,20 @@
+<view class="keys-base-main-container">
+    <view class="keys-table-row ">
+        <text class="keys-table-head-text" wx:for="{{heads}}" wx:for-item="head" wx:key="index">{{head}}</text>
+        <text class="keys-table-head-text">操作</text>
+    </view>
+    <view class="keys-base-data-container">
+        <view class="keys-table-row keys-table-data-odd-style" wx:for="{{keys}}" wx:for-item="items" wx:key="index">
+            <text class="keys-table-head-text" wx:for="{{items}}" wx:key="index">{{item}}</text>
+            <view class="keys-table-data">
+                <view bindtap="onUserEditKey" class="keys-opera-button" data-index="{{index}}" hoverClass="right-button-item-hover" hoverStartTime="10" hoverStayTime="100">
+                    <icon class="icon-item-edit"></icon>
+                </view>
+                <view class="keys-opera-button-line"></view>
+                <view bindtap="onUserDeleteKey" class="keys-opera-button" data-index="{{index}}" hoverClass="right-button-item-hover" hoverStartTime="10" hoverStayTime="100">
+                    <icon class="icon-item-delete"></icon>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

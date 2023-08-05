@@ -1,0 +1,27 @@
+<view>
+    <view class="topLine"></view>
+    <van-cell-group border="{{false}}">
+        <van-field bind:change="username" customStyle="margin-top:15rpx;padding-bottom:35rpx;border: none;" errorMessage="{{usernameError}}" errorMessageAlign="right" inputAlign="right" label="姓名" value="{{username}}" placeholder="我的名字" size="large"></van-field>
+        <van-field bind:change="contactInformation" customStyle="margin-top:15rpx;padding-bottom:35rpx;" inputAlign="right" label="联系方式" maxlength="11" placeholder="请输入" size="large" type="number" value="{{contactInformation}}"></van-field>
+        <van-cell isLink bindtap="platformNameOpenPopup" size="large" title="平台名称" titleStyle="color: #646566" value="{{platform_name_chooseData}}" valueClass="text-color"></van-cell>
+        <van-field bind:change="platformAccount" customStyle="margin-top:15rpx;padding-bottom:35rpx;" inputAlign="right" label="平台账号" value="{{platformAccount}}" placeholder="请输入" size="large" type="text"></van-field>
+        <van-field bind:change="videoTitle" customStyle="margin-top:15rpx;padding-bottom:35rpx;" errorMessage="{{videoTitleError}}" errorMessageAlign="right" inputAlign="right" label="视频标题" value="{{videoTitle}}" placeholder="请输入" size="large"></van-field>
+    </van-cell-group>
+    <view class="empty"></view>
+    <van-cell isLink bindtap="openPopup" size="large" title="视频发布类型" titleStyle="color: #646566" value="{{chooseData}}" valueClass="text-color"></van-cell>
+    <view class="empty"></view>
+    <view class="upImgBlock">
+        <view>
+            <text class="upImgText">上传图片</text>
+            <text class="upImgRemain">上传视频播放页截图<text>{{imgLength}}/4</text>
+            </text>
+        </view>
+        <view class="upImg">
+            <van-uploader accept="image" bind:after-read="afterRead" bind:delete="deleteImage" class="van_uploader" fileList="{{fileList}}" maxCount="4" multiple="true"></van-uploader>
+        </view>
+    </view>
+    <view style="position:absolute;margin-top:266rpx;margin-bottom:100rpx;width:100%;height:100rpx;text-align:center;">
+        <van-button bindtap="submit" customStyle="width:90%;height: 40px;font-size:30rpx;border-radius:20px 20px 20px 20px;background:#F5A200;border:1px solid #F5A200;color:#fff;font-weight:500;" disabled="{{!canSubmit}}" type="primary">提交</van-button>
+    </view>
+    <select-data bind:close="closePopup" bind:select="selectData" data="{{show_data}}" showPopup="{{showView}}"></select-data>
+</view>

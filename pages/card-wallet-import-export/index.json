@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+        "save-data": "../../components/dialog-tag-nick-editor/editor"
+    },
+    "navigationBarTitleText": "电脑批量管理"
+}

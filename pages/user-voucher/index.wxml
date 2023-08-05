@@ -1,0 +1,40 @@
+<view>
+    <view class="topLine"></view>
+    <view class="title-btn-block">
+        <view bindtap="onTabClick" class="public-style {{pageShow==index?'to-be-used':''}}" data-id="{{index}}" wx:for="{{pageList}}" wx:for-item="name" wx:key="index">{{name}}</view>
+    </view>
+    <view class="warp" wx:if="{{display_data.length>0}}">
+        <view class="{{pageShow==0?'coupon-block coupon-block-normal-color':'coupon-block coupon-block-expire-color'}}" wx:for="{{display_data}}" wx:key="index">
+            <view class="coupon-block-top">
+                <view class="coupon-block-top-title">
+                    <view class="voucher-text">消费代金券</view>
+                    <view class="date">有效期：{{item.expiration_time}}</view>
+                </view>
+                <view class="{{pageShow==0?'coupon-block-top-value-public coupon-block-top-value-normal':'coupon-block-top-value-public coupon-block-top-value-expire'}}">
+                    <view class="money" style="line-height: 35rpx;">￥</view>
+                    <view class="money" style="font-size: 84rpx;line-height: 80rpx;">
+                        <text>{{item.voucher_value}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="coupon-block-bottom">
+                <view bindtap="copyCode" class="{{pageShow==0?'coupon-block-bottom-btn-public coupon-block-bottom-btn-normal':pageShow==1?'coupon-block-bottom-btn-public coupon-block-bottom-btn-used':'coupon-block-bottom-btn-public coupon-block-bottom-btn-expire'}}" data-id="{{index}}">{{pageShow==0?'复制券码':pageShow==1?'已使用':'已过期'}}</view>
+            </view>
+        </view>
+        <view class="tip" wx:if="{{pageShow==1||pageShow==2}}">仅展示最近三个月内的记录</view>
+    </view>
+    <view class="none-voucher" wx:else>
+        <view>
+            <image src="../../static/img/noneCard.png" style="width: 100px;height: 100px;"></image>
+        </view>
+        <view>
+            <text class="none-voucher-text">暂无{{pageShow==0?'待使用':pageShow==1?'已使用':'已过期'}}的代金券</text>
+        </view>
+    </view>
+    <view bindtap="onRedemptionVoucher" class="redemption-btn-block">
+        <view class="redemption-btn">
+            <icon class="coupon-icon"></icon>
+            <view class="redemption-btn-text">兑换代金券</view>
+        </view>
+    </view>
+</view>

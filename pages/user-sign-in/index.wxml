@@ -1,0 +1,50 @@
+<view class="custom" style="height: {{navigation_bar_height+118}}px;">
+    <view class="container-custom-toolbar">
+        <view bindtap="onBack" class="back" style="height: {{menubuttonHeight}}px; margin-top: {{menuButtonToTop}}px;">
+            <icon class="back-icon"></icon>
+        </view>
+        <view class="container-search-block" style="width: 86%;height: {{menubuttonHeight}}px; margin-top: {{menuButtonToTop}}px;">签到</view>
+    </view>
+    <view class="calendar-block" style="margin-top: 70rpx;">
+        <view class="img-block">
+            <image class="calendar-img" src="https://static.nikola-lab.cn/we-chat-app/sign_in_bg.png"></image>
+        </view>
+    </view>
+</view>
+<view class="content">
+    <view class="block-center my-coin">我的金币</view>
+    <view class="block-center coin-number">{{gold_coin_count}}</view>
+    <view class="block-center sign-in-count-block">连续签到<text class="sign-in-count">{{getContinuousTime}}</text>天</view>
+    <view class="date-block">
+        <view class="first-block">
+            <view class="{{item.signIn==true?'date-item date-item-sign-in':'date-item date-item-no-sign-in'}}" wx:for="{{day_block1}}" wx:key="index">
+                <view class="bonus-points">+{{item.number}}</view>
+                <icon class="{{item.signIn==true?'coin-icon':'coin-icon-grey'}}"></icon>
+                <view class="days">{{item.days}}</view>
+            </view>
+        </view>
+        <view class="first-block" style="margin-top: 14rpx;">
+            <view class="{{item.signIn==true?'date-item date-item-sign-in':'date-item date-item-no-sign-in'}}" wx:for="{{day_block2}}" wx:key="index">
+                <view class="bonus-points">+{{item.number}}</view>
+                <icon class="{{item.signIn==true?'coin-icon':'coin-icon-grey'}}"></icon>
+                <view class="days">{{item.days}}</view>
+            </view>
+            <view class="{{item.signIn==true?'date-item1 date-item-sign-in':'date-item1 date-item-no-sign-in'}}" wx:for="{{day_block3}}" wx:key="index">
+                <view class="bonus-points">+{{item.number}}</view>
+                <icon class="{{item.signIn==true?'coin-icon':'coin-icon-grey'}}"></icon>
+                <view class="days">{{item.days}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="sign-btn-block">
+        <button bindtap="signIn" class="sign-btn" disabled="{{!sign_in}}">{{sign_in==true?'签到领金币':'已签到'}}</button>
+    </view>
+</view>
+<view class="text-tips-block">
+    <view class="rule">
+        <icon class="line"></icon>
+        <view class="rule-title">签到规则</view>
+    </view>
+    <view class="text-tips">签到第1天送5金币，连续签到第2天送6金币，以此类推，连续签到第7天可获得额外奖励。第8天签到则重新开始计算，视为第1天签到；若签到中断则重新计算；</view>
+</view>
+<successful-pop-up bind:closeOverlay="closeOverlay" mode="sign-in" overlay_show="{{overlay_show}}" reward="{{reward}}" title="签到成功"></successful-pop-up>

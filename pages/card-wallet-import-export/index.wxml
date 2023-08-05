@@ -1,0 +1,21 @@
+<view>
+    <view class="content">
+        <view class="remain-text">密码</view>
+        <view class="password-block">
+            <view class="input-block">
+                <input class="input" disabled="true" type="text" value="{{password}}"></input>
+            </view>
+            <view class="edit-password-block">
+                <van-button bindtap="edit" customStyle="width:100%;height: 38rpx;font-size:22rpx;border-radius:20px 20px 20px 20px;background:#ffffff;border:1px solid #999999;color:#666666;" type="primary">修改密码</van-button>
+            </view>
+        </view>
+    </view>
+    <view class="middle-content">
+        <view class="link-title">复制此链接打开浏览器输入密码</view>
+        <view class="link">{{link}}</view>
+    </view>
+    <view class="btn">
+        <van-button bindtap="copyLink" customStyle="width:100%;height: 40px;font-size:30rpx;border-radius:20px 20px 20px 20px;background:#F5A200;border:1px solid #F5A200;color:#fff;font-weight:500;padding: 0rpx 100rpx 0rpx 100rpx;" type="primary">复制链接</van-button>
+    </view>
+    <save-data bind:cancel="onUserCancelNameEdit" bind:confirm="onUserConfirmNameEdit" placeholder="请输入需要修改的密码" show="{{nameEditor.showNameEditor}}" theme="light" title="修改密码" type="other" value="{{nameEditor.defaultName}}"></save-data>
+</view>

@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "devicebar": "/components/device-tab-bar/device",
+        "human-voice": "../../components/human-voice/index"
+    }
+}

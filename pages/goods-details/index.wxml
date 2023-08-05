@@ -1,0 +1,180 @@
+<view class="nav-bar" style="margin-top:{{navBarHeight}}px;">
+    <view bindtap="back" class="back" style="top: {{menuButtonHeight}}px;">
+        <icon class="back-icon"></icon>
+    </view>
+    <view>
+        <swiper autoplay="true" class="slide-image" interval="2000">
+            <swiper-item wx:for="{{goods_data.rotationChartImg}}" wx:key="index">
+                <lazy-image src="{{item}}"></lazy-image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="title-block">
+        <view class="goods-title">{{goods_data.goods_describe}}</view>
+        <view class="goods-sold">
+            <view class="line">|</view>
+            <view class="sold">已售</view>
+            <view class="sold-count">{{goods_data.sold_count>1000?'999+':goods_data.sold_count}}</view>
+        </view>
+    </view>
+    <view class="delivery-time">{{goods_data.delivery_time}}</view>
+    <view class="chooseAndAddress public-style" style="padding: 30rpx 0rpx;" wx:if="{{showLoginView||imgArr.length>1}}">
+        <view class="choose-block">
+            <view class="choose-item-text" wx:if="{{imgArr.length>1}}">已选：{{select_category[0].category_name}}</view>
+            <view bindtap="openCategoryBox" class="choose-item-block" wx:if="{{imgArr.length>1}}">
+                <view class="choose-item-img-block">
+                    <view class="choose-item-img" wx:for="{{imgArr}}" wx:key="index">
+                        <lazy-image src="{{item}}"></lazy-image>
+                    </view>
+                </view>
+                <view class="iconArrow-block">
+                    <icon class="iconArrow"></icon>
+                </view>
+            </view>
+            <block wx:if="{{showLoginView}}">
+                <view class="middle-line" style="margin-top: 30rpx;margin-bottom: 20rpx;" wx:if="{{(goods_type=='goldCoinAndCash'||goods_type=='cash')&&imgArr.length>1||select_category[0].category_name=='苹果OTG供电插头'||select_category[0].category_name=='安卓OTG供电插头'}}"></view>
+                <view class="address-info" wx:if="{{goods_type=='goldCoinAndCash'||goods_type=='cash'||showAddress==true}}">
+                    <view class="address-title">
+                        <icon class="address-icon"></icon>
+                        <view>收货地址</view>
+                    </view>
+                    <view class="{{addressData==null?'address-public-style address-block':'address-block'}}">
+                        <block wx:if="{{addressData==null}}">
+                            <view class="address-left">
+                                <view class="address">去添加地址</view>
+                            </view>
+                            <view class="address-right">
+                                <icon bindtap="addAddress" class="add"></icon>
+                            </view>
+                        </block>
+                        <block wx:else>
+                            <view bindtap="onSelect" class="address-left">
+                                <view class="consignee">{{addressData.consignee}}</view>
+                                <view class="address">{{addressData.address}}</view>
+                            </view>
+                            <view bindtap="onSelect" class="address-right">
+                                <icon class="iconArrow"></icon>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="chooseAndAddress public-style" style="padding-bottom: 30rpx;" wx:if="{{goods_type=='goldCoinAndCash'&&showLoginView}}">
+        <view bindtap="onChoosePayMethod" class="choose-block" data-id="{{index}}" wx:for="{{cashAndGoldCoinsData}}" wx:key="index">
+            <view class="pay_menthod-item" wx:if="{{index==0||index==1}}">
+                <view class="address-block">
+                    <view class="address-left">
+                        <view class="consignee">{{item.pay_method}}</view>
+                        <view class="cash">{{item.cash}}</view>
+                    </view>
+                    <view class="address-right">
+                        <radio checked="{{item.checked}}" class="radio" color="#f5a200"></radio>
+                    </view>
+                </view>
+            </view>
+            <view class="pay_menthod-item" wx:if="{{index==2}}">
+                <view class="address-block">
+                    <view class="address-left">
+                        <view class="consignee">{{item.pay_method}}</view>
+                        <view>
+                            <input bindinput="onUserInputGoldCoin" class="userInputGoldCoin" maxlength="10" placeholder="{{userInputGoldCoin==0?'请输入想抵扣的金币数量':userInputGoldCoin}}" placeholderClass="placeholder-style" type="number" value="{{userInputGoldCoin==0?'':userInputGoldCoin}}"></input>
+                        </view>
+                    </view>
+                    <view class="address-right">
+                        <radio checked="{{item.checked}}" class="radio" color="#f5a200"></radio>
+                    </view>
+                </view>
+            </view>
+            <view class="middle-line" wx:if="{{index==0||index==1||index==2}}"></view>
+            <view class="remain-text" wx:if="{{userInputGoldCoin&&index==2}}">抵扣{{userInputGoldCoin*purchase_count/10}}元还需付款{{item.actualPayment}}</view>
+        </view>
+    </view>
+    <view class="purchase-quantity public-style" wx:if="{{(goods_type=='goldCoinAndCash'||goods_type=='cash')&&showLoginView==true}}">
+        <view class="purchase-quantity-text">数量</view>
+        <view class="purchase-quantity-count">
+            <van-stepper bind:change="onGetCount" bind:overlimit="onPurchaseLimit" integer="true" max="{{select_category[0].purchase_limit_count==0?'10000000000':select_category[0].purchase_limit_count}}" min="1" value="{{purchase_count}}"></van-stepper>
+        </view>
+    </view>
+    <view class="goods-details-title">
+        <view class="horizontal-line"></view>
+        <view class="product-details">商品详情</view>
+        <view class="horizontal-line"></view>
+    </view>
+    <view style="display: flex; flex-direction: column;" wx:for="{{goods_data.detailsImg}}" wx:key="index">
+        <image lazyLoad="true" mode="widthFix" src="{{item}}" style="width: 100%; margin-bottom: -2rpx;"></image>
+    </view>
+</view>
+<view class="bottom-btn">
+    <view class="bottom-btn-left">
+        <view class="total-block" wx:if="{{goods_type=='cash'||goods_type=='goldCoinAndCash'}}">
+            <text class="total-text">金额合计：</text>
+            <text class="total">￥{{select_category[0]['price']}}</text>
+        </view>
+        <view class="total-block" wx:if="{{goods_type=='goldCoin'||goods_type=='goldCoinAndCash'}}">
+            <text class="total-text">金币合计：</text>
+            <text class="total">{{needGoldCoin=='前台计算'?0:needGoldCoin}}</text>
+        </view>
+    </view>
+    <button bindtap="submit" class="buyNow">{{goods_type=='goldCoin'?'立即兑换':'立即购买'}}</button>
+</view>
+<van-action-sheet show="{{categoryBox}}">
+    <view class="category-box">
+        <view class="box-top">
+            <view class="box-top-left">
+                <view class="box-top-left-img-block">
+                    <image bindtap="previewImage" class="box-top-left-img" src="{{select_category[0].img_url}}" wx:if="{{select_category[0].img_url}}"></image>
+                </view>
+                <view class="box-top-left-title-block">
+                    <view class="selected" wx:if="{{select_category&&select_category[0].category_name!==''}}">已选</view>
+                    <view class="box-top-left-title">{{select_category[0].category_name}}</view>
+                </view>
+            </view>
+            <view bindtap="closeCategoryBox" class="box-top-right">
+                <icon class="box-top-right-icon"></icon>
+            </view>
+        </view>
+        <view class="box-line"></view>
+        <view class="box-category-block">
+            <view class="box-category-title">分类（{{goods_data.commodity_classification.length}}）</view>
+            <view class="box-category">
+                <view bindtap="categorySelect" class="{{item.stock==0?'box-category-item box-category-item-sold-out':item.checked==false?'box-category-item':'box-category-item box-category-item2'}}" data-id="{{index}}" wx:for="{{goods_data.commodity_classification}}" wx:key="index">
+                    <view class="box-category-item-left">{{item.classification_name}}</view>
+                    <view class="box-category-item-right" wx:if="{{item.stock==0}}">缺货</view>
+                </view>
+            </view>
+        </view>
+        <view>
+            <button bindtap="closeCategoryBox" class="buyNow define">确定</button>
+        </view>
+    </view>
+</van-action-sheet>
+<van-overlay bindtap="onClickHide" show="{{overlayShow}}" zIndex="9999">
+    <view class="wrapper">
+        <view class="upBlock">
+            <view class="titleBlock">
+                <view class="overlay-title" wx:if="{{exchange_status=='fail'}}">
+                    <icon class="fail-icon"></icon>
+                    <view class="overlay-titleText">兑换失败</view>
+                </view>
+                <view class="head-img-block" wx:if="{{exchange_status=='success'}}">
+                    <image class="head-img" src="https://rcopy.nikola-lab.cn/server2/thinkphp/public/public/upload/weixin/goinMall/exchange_success.png"></image>
+                </view>
+                <view class="right-icon-block">
+                    <icon class="overlay-right-icon"></icon>
+                </view>
+            </view>
+            <view class="overlay-content" wx:if="{{exchange_status=='fail'}}">您的金币不足，快去获取更多金币吧</view>
+            <view class="overlay-content" wx:if="{{exchange_status=='success'&&goods_name_frequency!=''}}">恭喜您获得<text class="color-text">{{goods_name_frequency.number}}</text>
+                <text>{{goods_name_frequency.text}}</text>
+            </view>
+            <view class="overlay-content" wx:if="{{exchange_status=='success'&&monthly_card!=''}}">恭喜您获得<text class="color-text">{{monthly_card}}</text>
+            </view>
+            <view class="overlay-btn">
+                <button bindtap="closeOverlay" class="noProhibit">我知道了</button>
+            </view>
+        </view>
+    </view>
+</van-overlay>
+<van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>

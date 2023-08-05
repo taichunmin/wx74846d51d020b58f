@@ -1,0 +1,63 @@
+.topLine {
+    background: rgba(0,0,0,.1);
+    height: 2rpx;
+    width: 100%;
+}
+
+.container {
+    background: #fff;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+}
+
+.empty-block {
+    background: #fff;
+    height: 12rpx;
+}
+
+.input_search_bar {
+    height: 64rpx;
+    width: 100%;
+}
+
+.within-block {
+    align-items: center;
+    background: #f8faf9;
+    border-radius: 10rpx 10rpx 10rpx 10rpx;
+    flex-direction: row;
+    height: 100%;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.search-icon-block,.within-block {
+    display: flex;
+}
+
+.search-icon-block {
+    flex: 0.1;
+    justify-content: center;
+}
+
+.search-input-block {
+    display: flex;
+    flex: 0.8;
+}
+
+.clear-icon-block {
+    flex: 0.1;
+}
+
+.clear-icon-block,.searchIcon {
+    display: flex;
+}
+
+.searchIcon {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlPkBmb250LWZhY2V7Zm9udC1mYW1pbHk6ZmVlZGJhY2staWNvbmZvbnQ7c3JjOnVybCgvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmMj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt3b2ZmMiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmY/dD0xNjMwMDMzNzU5OTQ0KSBmb3JtYXQoJnF1b3Q7d29mZiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt0cnVldHlwZSZxdW90Oyl9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTkwOC44IDgyNS42IDgxOS4yIDczNmM1MS4yLTcwLjQgNzYuOC0xNDcuMiA3Ni44LTI0My4yIDAtMjI0LTE3OS4yLTQwMy4yLTQwMy4yLTQwMy4yUzg5LjYgMjY4LjggODkuNiA0OTIuOCAyNjguOCA4OTYgNDkyLjggODk2YzEwMi40IDAgMTk4LjQtMzguNCAyNjguOC0xMDIuNGw4OS42IDg5LjZjNi40IDYuNCAxOS4yIDEyLjggMzIgMTIuOHMxOS4yLTYuNCAzMi0xMi44YzEyLjgtMTkuMiAxMi44LTQ0LjgtNi40LTU3LjZ6bS00MTYtMTIuOGMtMTc5LjIgMC0zMjAtMTQwLjgtMzIwLTMyMHMxNDAuOC0zMjAgMzIwLTMyMCAzMjAgMTQwLjggMzIwIDMyMGMwIDE3Mi44LTE0Ny4yIDMyMC0zMjAgMzIweiIgZmlsbD0iIzk5OSIvPjwvc3ZnPg==");
+    background-size: 32rpx 32rpx;
+    height: 32rpx;
+    margin-left: 14rpx;
+    width: 32rpx;
+}

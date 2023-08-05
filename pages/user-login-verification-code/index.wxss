@@ -1,0 +1,135 @@
+.custom {
+    background: linear-gradient(180deg,#f5a200,#f5a200 52%,#f8faf9);
+    height: 350rpx;
+    opacity: .2;
+    width: 100%;
+}
+
+.content {
+    height: auto;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.login-title {
+    color: #333;
+    font-size: 48rpx;
+    font-weight: 700;
+    margin-top: 92rpx;
+    padding-left: 36rpx;
+}
+
+.login-input-info {
+    margin-top: 140rpx;
+    padding: 0rpx 34rpx 0rpx 36rpx;
+}
+
+.horizon {
+    margin-top: 25rpx;
+}
+
+.horizon,.horizon-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.horizon-input {
+    align-items: center;
+    flex: 0.9;
+}
+
+.input {
+    color: #333;
+    font-size: 30rpx;
+}
+
+.input-phone-block {
+    flex: 0.95;
+}
+
+.icon-clear-phone-block {
+    flex: 0.05;
+}
+
+.input-block {
+    flex: 0.8;
+}
+
+.icon-clear-block {
+    flex: 0.2;
+    justify-content: center;
+}
+
+.horizon-right,.icon-clear-block {
+    display: flex;
+}
+
+.horizon-right {
+    flex: 0.1;
+    justify-content: flex-end;
+}
+
+.line {
+    background-color: #edecf2;
+    height: 3rpx;
+    margin-top: 10rpx;
+    width: 100%;
+}
+
+.icon-ValidCode {
+    height: 40px;
+    width: 80px;
+}
+
+.getCode {
+    border: 2rpx solid #f5a200;
+    border-radius: 40rpx;
+    color: #f5a200;
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    width: 78px;
+}
+
+.login-btn-block {
+    height: 80rpx;
+    margin: 380rpx auto 0;
+    width: 88%;
+}
+
+.login-btn {
+    background: #f5a200;
+    border-radius: 40rpx;
+    color: #fff;
+    font-size: 30rpx;
+    text-align: center;
+}
+
+.btn-login-cancel {
+    background: hsla(0,0%,100%,.9);
+    border: 1px solid #333;
+    border-radius: 20px 20px 20px 20px;
+    color: #333;
+    font-size: 30rpx;
+    margin-top: 26rpx;
+    width: 100%;
+}
+
+button::after {
+    border: none;
+}
+
+.placeholder-style {
+    font-size: 28rpx;
+}
+
+button[disabled]:not([type]) {
+    background: #f5a200;
+    border-radius: 20px 20px 20px 20px;
+    color: #fff;
+    font-size: 30rpx;
+    height: 80rpx;
+    opacity: .4;
+}

@@ -1,0 +1,14 @@
+{
+    "component": true,
+    "usingComponents": {
+        "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+        "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+        "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+        "van-image": "../../miniprogram_npm/@vant/weapp/image/index",
+        "van-action-sheet": "../../miniprogram_npm/@vant/weapp/action-sheet/index",
+        "devicebar": "/components/device-tab-bar/device",
+        "dialog-buy-service": "/components/dialog-buy-service/index",
+        "device-shape-img": "../../components/device-shape-img-auto/index"
+    },
+    "navigationBarTitleText": "写卡"
+}

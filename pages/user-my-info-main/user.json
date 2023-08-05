@@ -1,0 +1,14 @@
+{
+    "usingComponents": {
+        "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+        "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+        "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+        "van-icon": "../../miniprogram_npm/@vant/weapp/icon/index",
+        "contact-customer-service": "/components/contact-customer-service/index",
+        "tabbar": "/components/custom-tab-bar/index",
+        "van-dialog": "../../miniprogram_npm/@vant/weapp/dialog/index"
+    },
+    "navigationBarTitleText": "我的",
+    "navigationStyle": "custom",
+    "disableScroll": true
+}

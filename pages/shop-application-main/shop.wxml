@@ -1,0 +1,9 @@
+<view class="container-page-base">
+    <view class="container-search">
+        <goods-search bind:clear="onClearSearch" bind:inputTyping="onUserSearch"></goods-search>
+    </view>
+    <view class="container-goods-list">
+        <brick-box goods_data="{{goods_data}}" showLoginView="{{showLoginView}}"></brick-box>
+    </view>
+    <tabbar selected="1"></tabbar>
+</view>

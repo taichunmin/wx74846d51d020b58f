@@ -1,0 +1,57 @@
+<view class="top-tab-container">
+    <view bindtap="onTabClick" class="top-tab-item {{pageShow==index?'top-tab-item-choose':''}}" data-id="{{index}}" wx:for="{{pageList}}" wx:for-item="name" wx:key="index">
+        <text class="top-tab-title">{{name}}</text>
+    </view>
+</view>
+<view class="content-block">
+    <view class="goods-content" wx:for="{{showData}}" wx:key="index">
+        <view class="order-info">
+            <view class="order-number">订单编号：{{item.item_order_number}}</view>
+            <view class="order-status order-status-accomplish" wx:if="{{item.orderStatusShow==true}}">{{item.order_status=='cancel'||item.order_status=='manualCancellation'?'已取消':item.order_payment_status=='false'?'待支付':item.order_payment_status=='true'&&item.order_status=='true'?'已完成':''}}</view>
+            <view class="order-status order-status-no-pay" wx:if="{{item.goodsToBeReceivedShow==true}}">待收货</view>
+            <view class="order-status" wx:if="{{item.order_status=='success'}}">
+                <icon class="icon-success"></icon>
+            </view>
+        </view>
+        <view bindtap="onGoodsClick" class="goods-info-top" data-id="{{index}}">
+            <view class="goods-info-left">
+                <lazy-image src="{{item.classification_img}}"></lazy-image>
+            </view>
+            <view class="goods-info-right">
+                <view class="goods-title">{{item.goods_name}}</view>
+                <view class="goods-selected">
+                    <view class="goods-category goods-public-style">已选：{{item.classification_name}}</view>
+                    <view class="goods-count goods-public-style">共{{item.purchase_count}}件</view>
+                </view>
+            </view>
+        </view>
+        <view class="line"></view>
+        <view class="amount-of-money">
+            <view class="gold-coin-count public-style">
+                <text wx:if="{{item.goldCoinShow==true}}">金币合计：</text>
+                <text class="money-text" wx:if="{{item.goldCoinShow==true}}">{{item.deduct_gold_coins==null?item.goods_need_gold_coins:item.deduct_gold_coins}}</text>
+            </view>
+            <view class="money-count public-style" wx:if="{{item.moneyShow==true}}">
+                <text>金额合计：</text>
+                <text class="money-text">￥{{item.price_after_discount}}</text>
+            </view>
+        </view>
+        <view class="confirm-receipt">
+            <view class="order-wait">
+                <view wx:if="{{item.orderRemainingTimeShow==true}}">
+                    <view wx:for="{{item.time}}" wx:key="index">
+                        <text></text> 等待支付 剩<text class="time-remaining">{{item.min}}</text>分<text class="time-remaining">{{item.sec}}</text>秒自动关闭</view>
+                </view>
+            </view>
+            <view class="bottom-btn" wx:if="{{item.goToPayShow==true||item.confirmReceiptShow==true}}">
+                <view>
+                    <button bindtap="goToPay" class="btn-public-style to-pay" data-id="{{index}}" wx:if="{{item.goToPayShow==true}}">去支付</button>
+                </view>
+                <view>
+                    <button bindtap="confirmReceipt" class="btn-public-style confirm-receipt-btn" data-id="{{index}}" wx:if="{{item.confirmReceiptShow==true}}">确认收货</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="remain-text">仅展示最近一年的订单</view>

@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "lazy-image": "/components/lazy-image/index"
+    },
+    "navigationBarTitleText": "我的订单"
+}

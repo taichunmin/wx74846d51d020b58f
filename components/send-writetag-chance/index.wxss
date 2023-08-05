@@ -1,0 +1,21 @@
+.frame {
+    background: rgba(0,0,0,.4);
+    height: 100%;
+    top: 0rpx;
+}
+
+.frame,.modalBlock {
+    position: absolute;
+    width: 100%;
+}
+
+.modalBlock {
+    height: 50%;
+    margin-top: 50%;
+    text-align: center;
+}
+
+.modalImg {
+    height: 90%;
+    width: 80%;
+}

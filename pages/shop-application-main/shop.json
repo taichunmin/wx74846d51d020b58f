@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "brick-box": "../../components/brick-box/index",
+        "tabbar": "../../components/custom-tab-bar/index",
+        "goods-search": "/components/goods-search/index"
+    },
+    "navigationBarTitleText": "商城"
+}

@@ -1,0 +1,5 @@
+<view class="frame" wx:if="{{sendVip==false}}">
+    <view class="modalBlock">
+        <image bindtap="onClose" class="modalImg" src="https://static.nikola-lab.cn/we-chat-app/sendVip.png"></image>
+    </view>
+</view>

@@ -1,0 +1,91 @@
+.input_search_bar {
+    background: #f8faf9;
+    height: 100%;
+    width: 100%;
+}
+
+.input_search_bar .input_search_bar_form {
+    -webkit-box-flex: 1;
+    background: var(--viewBackgroundColor);
+    border-radius: 15rpx;
+    flex: auto;
+    position: relative;
+}
+
+.input_search_bar .input_search_bar_form .input_search_bar_box {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 60rpx;
+    width: 100%;
+    z-index: 1;
+}
+
+.input_search_bar .input_search_bar_form .input_search_bar_box .input_search_bar_input {
+    display: flex;
+    flex: 1;
+    font-size: 30rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    padding-left: 13rpx;
+}
+
+.input_search_bar .input_search_bar_form .input_search_bar_box .order_icon_clear {
+    display: flex;
+    margin-right: -40rpx;
+}
+
+.input_search_bar .input_search {
+    color: #f5a200;
+    font-weight: 500;
+}
+
+.input_search_bar .input_cancel,.input_search_bar .input_search {
+    font-size: 30rpx;
+    line-height: 28rpx;
+    margin-top: 12rpx;
+    white-space: nowrap;
+}
+
+.input_search_bar .input_cancel {
+    color: #666;
+    margin-left: 12rpx;
+}
+
+.searchIcon {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlPkBmb250LWZhY2V7Zm9udC1mYW1pbHk6ZmVlZGJhY2staWNvbmZvbnQ7c3JjOnVybCgvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmMj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt3b2ZmMiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmY/dD0xNjMwMDMzNzU5OTQ0KSBmb3JtYXQoJnF1b3Q7d29mZiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt0cnVldHlwZSZxdW90Oyl9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTkwOC44IDgyNS42IDgxOS4yIDczNmM1MS4yLTcwLjQgNzYuOC0xNDcuMiA3Ni44LTI0My4yIDAtMjI0LTE3OS4yLTQwMy4yLTQwMy4yLTQwMy4yUzg5LjYgMjY4LjggODkuNiA0OTIuOCAyNjguOCA4OTYgNDkyLjggODk2YzEwMi40IDAgMTk4LjQtMzguNCAyNjguOC0xMDIuNGw4OS42IDg5LjZjNi40IDYuNCAxOS4yIDEyLjggMzIgMTIuOHMxOS4yLTYuNCAzMi0xMi44YzEyLjgtMTkuMiAxMi44LTQ0LjgtNi40LTU3LjZ6bS00MTYtMTIuOGMtMTc5LjIgMC0zMjAtMTQwLjgtMzIwLTMyMHMxNDAuOC0zMjAgMzIwLTMyMCAzMjAgMTQwLjggMzIwIDMyMGMwIDE3Mi44LTE0Ny4yIDMyMC0zMjAgMzIweiIgZmlsbD0iIzk5OSIvPjwvc3ZnPg==");
+    background-size: 32rpx 32rpx;
+    display: flex;
+    height: 32rpx;
+    margin-left: 14rpx;
+    width: 32rpx;
+}
+
+.container-custom-toolbar {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    width: 100%;
+}
+
+.container-toolbar-title {
+    color: #000;
+    font-size: 34rpx;
+    font-weight: 500;
+    margin-right: -20rpx;
+    min-width: 156rpx;
+    padding-left: 30rpx;
+    padding-top: -10rpx;
+}
+
+.container-search-block,.container-toolbar-title {
+    align-items: center;
+    display: flex;
+}
+
+.container-search-block {
+    margin-left: 28rpx;
+    margin-right: 28rpx;
+}

@@ -1,0 +1,12 @@
+<view bindtap="onDumpItemClick" class="container-wallet-item-base">
+    <view class="container-wallet-item-left" style="background: {{color}};">
+        <text class="txt-wallet-item-left-type">{{type}}</text>
+    </view>
+    <view class="container-wallet-item-right">
+        <view class="txt-wallet-item-right-name">{{nick}}</view>
+        <view class="txt-wallet-item-right-type">{{type}}卡</view>
+    </view>
+    <view class="container-wallet-item-slot">
+        <slot></slot>
+    </view>
+</view>

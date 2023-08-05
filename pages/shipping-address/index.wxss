@@ -1,0 +1,151 @@
+.topLine {
+    background: rgba(0,0,0,.1);
+    height: 2rpx;
+    width: 100%;
+}
+
+.wrap {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.top-block {
+    height: 86%;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.bottom-block {
+    margin-top: 50rpx;
+    width: 100%;
+}
+
+.outside-block {
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.inside-block,.outside-block {
+    display: flex;
+}
+
+.inside-block {
+    flex: 1;
+    flex-direction: row;
+}
+
+.inside-block-no-choose {
+    padding: 34rpx 28rpx 28rpx 40rpx;
+}
+
+.inside-block-choose {
+    padding: 34rpx 28rpx 28rpx 20rpx;
+}
+
+.line {
+    background: #f9f9f9;
+    height: 16rpx;
+    width: 100%;
+}
+
+.radio-block {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.rightArrowImg {
+    transform: scale(.8);
+}
+
+.left-block {
+    flex: 0.9;
+    flex-direction: column;
+}
+
+.info-block,.left-block {
+    display: flex;
+}
+
+.info-block {
+    align-items: center;
+}
+
+.name {
+    color: #333;
+    font-size: 30rpx;
+    font-weight: 700;
+}
+
+.phone {
+    color: #666;
+    font-size: 26rpx;
+    margin-left: 20rpx;
+}
+
+.default-text {
+    background: #f5a200;
+    color: #fff;
+    font-size: 18rpx;
+    margin-left: 14rpx;
+    padding: 3rpx 5rpx;
+}
+
+.address {
+    color: #999;
+    font-size: 26rpx;
+    margin-top: 24rpx;
+}
+
+.right-block {
+    align-items: center;
+    display: flex;
+    flex: 0.1;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.edit {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCI+PGRlZnM+PHN0eWxlPkBmb250LWZhY2V7Zm9udC1mYW1pbHk6ZmVlZGJhY2staWNvbmZvbnQ7c3JjOnVybCgvL2F0LmFsaWNkbi5jb20vdC9mb250XzEwMzExNThfdTY5dzh5aHhkdS53b2ZmMj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt3b2ZmMiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LndvZmY/dD0xNjMwMDMzNzU5OTQ0KSBmb3JtYXQoJnF1b3Q7d29mZiZxdW90OyksdXJsKC8vYXQuYWxpY2RuLmNvbS90L2ZvbnRfMTAzMTE1OF91Njl3OHloeGR1LnR0Zj90PTE2MzAwMzM3NTk5NDQpIGZvcm1hdCgmcXVvdDt0cnVldHlwZSZxdW90Oyl9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTk1MC45NTUgMTg3LjY0OGE1NS40NjcgNTUuNDY3IDAgMCAwLTc4LjQyMiAwbC0zMjIuNzMgMzIzLjQ5OWE1NS40NjcgNTUuNDY3IDAgMSAwIDc4LjUwNiA3OC40MjFMOTUxLjA0IDI2Ni4xNTVhNTUuNDY3IDU1LjQ2NyAwIDAgMCAwLTc4LjUwN3pNNTQ1LjYyIDMxMi42NjFIMjQ1Ljc2djUzOS43MzRoNTMyLjIyNFY2MTIuNjA4YTU1LjQ2NyA1NS40NjcgMCAxIDEgMTEwLjkzMyAwdjI4Ni43MmE2NCA2NCAwIDAgMS02NCA2NEgxOTguOTEyYTY0IDY0IDAgMCAxLTY0LTY0di02MzMuNmE2NCA2NCAwIDAgMSA2NC02NGgzNDYuNjI0YTU1LjQ2NyA1NS40NjcgMCAwIDEgMCAxMTAuOTMzeiIgZmlsbD0iIzgzOEI5OSIvPjwvc3ZnPg==");
+    background-size: 30rpx 30rpx;
+    height: 30rpx;
+    width: 30rpx;
+}
+
+.add-address-btn {
+    background: #f5a200;
+    border-radius: 40rpx 40rpx 40rpx 40rpx;
+    color: #fff;
+    font-size: 30rpx;
+    height: 80rpx;
+    width: 80%;
+}
+
+button::after {
+    border: none;
+}
+
+.none-address-block {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 86%;
+    justify-content: center;
+    width: 100%;
+}
+
+.address-icon {
+    background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PHBhdGggZD0iTTUxMiA1Ni4zMmMtMzUzLjI4IDAtNTI3LjM2IDQxNC43Mi0yODEuNiA2NTUuMzZsMjUwLjg4IDI0MC42NGMxNS4zNiAxNS4zNiA0Ni4wOCAxNS4zNiA2MS40NCAwTDc5My42IDcxMS42OEMxMDM5LjM2IDQ3MS4wNCA4NjUuMjggNTYuMzIgNTEyIDU2LjMyem0yMjAuMTYgNTk5LjA0TDUxMiA4NjUuMjggMjkxLjg0IDY1MC4yNGMtMTk0LjU2LTE4NC4zMi01Ni4zMi01MTIgMjIwLjE2LTUxMnM0MTQuNzIgMzI3LjY4IDIyMC4xNiA1MTcuMTJ6IiBmaWxsPSIjOGE4YThhIi8+PHBhdGggZD0iTTUxMiAyNzYuNDhjLTg3LjA0IDAtMTUzLjYgNjYuNTYtMTUzLjYgMTUzLjZzNjYuNTYgMTUzLjYgMTUzLjYgMTUzLjYgMTUzLjYtNjYuNTYgMTUzLjYtMTUzLjZjMC04MS45Mi02Ni41Ni0xNTMuNi0xNTMuNi0xNTMuNnptMCAyMzAuNGMtNDAuOTYgMC03Ni44LTM1Ljg0LTc2LjgtNzYuOHMzNS44NC03Ni44IDc2LjgtNzYuOCA3Ni44IDM1Ljg0IDc2LjggNzYuOC0zNS44NCA3Ni44LTc2LjggNzYuOHoiIGZpbGw9IiM4YThhOGEiLz48L3N2Zz4=");
+    background-size: 156rpx 180rpx;
+    height: 180rpx;
+    width: 156rpx;
+}
+
+.none-address-text {
+    color: #a8a8a8;
+    font-size: 30rpx;
+    font-weight: 500;
+    margin-top: 34rpx;
+}

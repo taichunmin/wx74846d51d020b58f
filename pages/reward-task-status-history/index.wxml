@@ -1,0 +1,33 @@
+<view>
+    <view class="topLine"></view>
+    <view class="content">
+        <view class="block" wx:for="{{task_record_data}}" wx:key="index">
+            <view class="first-block">
+                <view class="left-block">
+                    <view class="outside-block">
+                        <view class="title">{{item.task_title}}</view>
+                        <view class="time">{{item.commit_time}}</view>
+                    </view>
+                </view>
+                <view class="right-block">
+                    <view class="under_review" wx:if="{{item.examine=='false'&&item.review_comments==null}}">
+                        <text>审核中</text>
+                    </view>
+                    <view class="completed" wx:if="{{item.examine=='true'}}">
+                        <text>已完成</text>
+                    </view>
+                    <view class="no-pass" wx:if="{{item.review_comments!==null}}">
+                        <text>审核不通过</text>
+                    </view>
+                </view>
+            </view>
+            <view class="remain" wx:if="{{item.review_comments!==null}}">{{item.review_comments}}</view>
+        </view>
+        <view class="noData" wx:if="{{task_record_data==''}}">
+            <view class="noDataImgBlock">
+                <image class="noDataImg" src="../../static/img/noFeedbackRecord.png"></image>
+            </view>
+            <view class="noDataText">暂无任务记录</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,12 @@
+<view class="topLine"></view>
+<view class="content">
+    <view bindtap="clearTap" class="imgBlock">
+        <image class="{{isClearShow?'clearImgShow':'clearImgHide'}}" src="../../static/img/clear.png" style="width:28rpx;height:28rpx;"></image>
+    </view>
+    <view class="searchHeader">
+        <input bindinput="inputListener" class="input" maxlength="12" placeholder="请输入全英文兑换码" type="text" value="{{inputValue}}"></input>
+    </view>
+    <view class="btn">
+        <van-button bindtap="redeemNow" customStyle="width:40%;height: 40px;font-size:30rpx;border-radius:20px 20px 20px 20px;background:#F5A200;border:1px solid #F5A200;color:#fff;font-weight:500;" type="primary">立即兑换</van-button>
+    </view>
+</view>

@@ -1,0 +1,14 @@
+<view class="top">
+    <view id="left-icon-block">
+        <view class="icon-outside-block" wx:for="{{view_data}}" wx:key="index">
+            <icon class="{{item.status==true?'right':'error'}}" wx:if="{{item.status!==''}}"></icon>
+            <icon class="{{item.status==''?'':''}}" wx:if="{{item.status==''}}"></icon>
+        </view>
+    </view>
+    <view id="textarea-block" style="height:{{height}}">
+        <textarea bindinput="userAddressInput" class="text-area" maxlength="-1" name="" placeholder="{{placeholder}}" style="height: {{height}}" value="{{text_value}}"></textarea>
+    </view>
+</view>
+<view class="btn-block">
+    <van-button bindtap="importPassword" customStyle="width:80%;height: 80rpx;font-size:30rpx;border-radius:40rpx 40rpx 40rpx 40rpx;background:#F5A200;border:2rpx solid #F5A200;color:#fff;font-weight:500;" type="primary">保存</van-button>
+</view>

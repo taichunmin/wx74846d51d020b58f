@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "van-button": "../../miniprogram_npm/@vant/weapp/button/index"
+    },
+    "navigationBarTitleText": "自由编辑",
+    "navigationBarBackgroundColor": "#1A1D22",
+    "navigationBarTextStyle": "white"
+}

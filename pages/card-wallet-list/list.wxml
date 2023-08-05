@@ -1,0 +1,111 @@
+<view class="container-page-base">
+    <card-search bind:clear="onClearSearch" bind:inputTyping="onUserSearch"></card-search>
+    <devicebar showcontent="{{true}}"></devicebar>
+    <view style="margin-top: 16rpx;">
+        <block wx:if="{{showFunctionButton}}">
+            <view bindtap="{{item.click}}" class="container-fucntion-item-base" data-id="{{key}}" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100" wx:for="{{btnFunctionList}}" wx:for-index="key" wx:key="key">
+                <icon class="{{item.icon}}"></icon>
+                <view class="container-function-item-right-title">
+                    <view class="txt-function-item-main-title">{{item.titleMain}}</view>
+                    <view class="txt-function-item-sub-title">{{item.titleSub}}</view>
+                </view>
+            </view>
+        </block>
+        <view bindtap="onUserSwitchFunctionBtnsStatusClick" style="width: 100%; padding: 5rpx;">
+            <view class="{{showFunctionButton?'btn-list-close-icon':'btn-list-open-icon'}}" style="margin-left: auto; margin-right: auto; margin-top: 10rpx; margin-bottom: 10rpx;"></view>
+        </view>
+    </view>
+    <view class="container-line"></view>
+    <view bindtouchend="onOverviewMPDumpToDeviceViewTouchEnd" catchtouchmove="onOverviewMPDumpToDeviceViewMove" style="display: flex; flex-direction: row; height: 100%; overflow: scroll;">
+        <scroll-view class="container-dump-list" scrollY="{{!overviewMPDumpToDevice.show}}" style="flex: 1;" wx:if="{{dumpSearchFound||dumpList!=''}}">
+            <view bindlongpress="onUserCardDumpItemLongPress" class="container-dump-item" data-id="{{key}}" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100" wx:if="{{item.show}}" wx:for="{{dumpList}}" wx:for-index="key" wx:key="key">
+                <card-item bind:click="onDumpItemClick" color="{{item.color}}" nick="{{item.nick}}" type="{{item.type}}" uuid="{{item.uuid}}">
+                    <image src="../../static/img/rightArrow.png" style="width: 40rpx; height: 40rpx;"></image>
+                </card-item>
+            </view>
+        </scroll-view>
+        <view style="margin-top: 100rpx; flex: 1;" wx:if="{{!dumpSearchFound&&dumpList==''}}">
+            <no-card addCard="{{noData}}" bind:addCard="addCard" mode="1"></no-card>
+        </view>
+        <scroll-view scrollY style="width: auto; flex: 1; border-left: rgba(196, 196, 196, 0.2) solid 1rpx;" wx:if="{{chameleonTagSlot.show}}">
+            <block wx:for="{{chameleonTagSlot.group}}" wx:for-index="key" wx:key="key">
+                <view style="padding: 32rpx;">
+                    <view data-id="{{key}}">
+                        <view style="display: flex; flex-direction: row; align-items: center;">
+                            <view style="width: 16rpx; height: 16rpx; border-radius: 16rpx; margin-right: 24rpx; background: #f5a200"></view>
+                            <view class="txt-tag-slot-item-right-name">{{item.tag_hf}}</view>
+                        </view>
+                        <view style="border-top: rgba(0, 0, 0, 0.08) solid 0.5rpx; margin-top: 16rpx; margin-bottom: 16rpx;"></view>
+                        <view style="display: flex; flex-direction: row; align-items: center;">
+                            <view style="width: 16rpx; height: 16rpx; border-radius: 16rpx; margin-right: 24rpx; background: #008EF5;"></view>
+                            <view class="txt-tag-slot-item-right-name">{{item.tag_lf}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="line-chameleon-slot-item"></view>
+            </block>
+        </scroll-view>
+    </view>
+    <view class="container-mp-dump-to-device-overview" style="left: {{overviewMPDumpToDevice.x}}px; top: {{overviewMPDumpToDevice.y}}px;" wx:if="{{overviewMPDumpToDevice.show}}">
+        <text style="font-size: 28rpx; color: #fff;">这是卡包名</text>
+    </view>
+    <van-popup customStyle="width: 80%; height: 70%; border-radius: 16rpx; display: flex; flex-direction: column;" show="{{true}}" wx:if="{{dumpImport.show}}">
+        <view class="container-dump-import-title">
+            <block wx:if="{{dumpImport.mode=='list'}}">DUMP导入候选列表</block>
+            <block wx:if="{{dumpImport.mode=='edit'}}">编辑DUMP数据信息</block>
+        </view>
+        <view class="container-dump-import-center" style="display: {{dumpImport.mode=='list'?'block':'none'}};">
+            <view bindtap="onDumpImportCustomTagInfo" data-id="{{key}}" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100" style="margin: 10rpx 30rpx; padding: 10rpx; border-bottom: 1rpx solid rgba(117, 120, 117, 0.1); display: flex; flex-direction: row;" wx:for="{{dumpImport.listConfig.importList}}" wx:for-index="key" wx:key="key">
+                <view style="display: flex; justify-content: center; align-items: center;">
+                    <van-icon color="green" name="success" wx:if="{{item.status=='success'}}"></van-icon>
+                    <van-icon color="red" name="cross" wx:if="{{item.status=='error'}}"></van-icon>
+                    <van-icon color="#F5A200" name="fail" wx:if="{{item.status=='custom'}}"></van-icon>
+                </view>
+                <view style="display: flex; flex-direction: column; margin-left: 24rpx;">
+                    <view style="font-size: 30rpx; font-weight: 400; color: rgba(51, 51, 51, 1);">{{item.name}}</view>
+                    <view style="font-size: 26rpx; color: rgba(117, 120, 117, 1);">
+                        <block wx:if="{{item.status=='success'||item.status=='error'}}">{{item.errmsg}}</block>
+                        <text style="text-decoration: underline;" wx:if="{{item.status=='custom'}}">点击手动处理</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="container-dump-import-center" style="display: {{dumpImport.mode=='edit'?'block':'none'}};">
+            <view style="font-size: 28rpx; font-weight: 400; color: #333; margin-left: 30rpx; margin-top: 60rpx;">块0: {{dumpImport.editConfig.blk0}}</view>
+            <view class="container-import-info-input-item">
+                <text style="margin-right: 18rpx;">卡号</text>
+                <input bindinput="onDumpImportTagParamsInput" data-key="uidInput" maxlength="{{dumpImport.editConfig.uidSize*2}}" placeholder="请输入卡号" style="flex: 5;" value="{{dumpImport.editConfig.uidInput}}"></input>
+                <view bindtap="onUserSelectTagUIDSizeClick">
+                    <text>{{dumpImport.editConfig.uidSize}}字节</text>
+                    <van-icon name="arrow-down" style="margin-left: 10rpx;"></van-icon>
+                </view>
+            </view>
+            <view class="container-import-info-input-item">
+                <text style="margin-right: 18rpx;">SAK</text>
+                <input bindinput="onDumpImportTagParamsInput" data-key="sakInput" maxlength="2" placeholder="请输入SAK" style="flex: 5;" value="{{dumpImport.editConfig.sakInput}}"></input>
+            </view>
+            <view class="container-import-info-input-item">
+                <text style="margin-right: 18rpx;">ATQA</text>
+                <input bindinput="onDumpImportTagParamsInput" data-key="atqaInput" maxlength="4" placeholder="请输入ATQA" style="flex: 5;" value="{{dumpImport.editConfig.atqaInput}}"></input>
+            </view>
+        </view>
+        <view class="container-dump-import-btns">
+            <view bindtap="onUserImportDumpConfirm" class="btn-data-dump-import btn-data-dump-confirm" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100" wx:if="{{dumpImport.mode=='list'}}">确认导入</view>
+            <view bindtap="onUserEditDumpInfoCancel" class="btn-data-dump-import btn-data-dump-cancel" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100" wx:if="{{dumpImport.mode=='edit'}}">取消编辑</view>
+            <view bindtap="onUserEditDumpInfoConfirm" class="btn-data-dump-import btn-data-dump-confirm" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100" wx:if="{{dumpImport.mode=='edit'}}">确认编辑</view>
+        </view>
+    </van-popup>
+    <van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>
+    <van-popup confirmButtonColor="#F5A200" customStyle="width: 80%; border-radius: 16rpx; display: flex; flex-direction: column;" show="{{true}}" wx:if="{{showAccessCodeInputDialog}}">
+        <view style="font-size: 30rpx; font-weight: bold; color: #333; text-align: center; margin-top: 30rpx;">此数据非开放分享状态</view>
+        <view style="display: flex; flex-direction: row; padding: 40rpx; margin-top: 30rpx;">
+            <van-field bind:input="onUserInputAccessCode" border="{{false}}" errorMessage="{{errorRequestDumpShareMsg}}" maxlength="4" placeholder="请输入访问码" style="margin-left: 20rpx;" value="{{accessCode}}"></van-field>
+        </view>
+        <view class="container-dump-import-btns">
+            <view bindtap="onUserCancelInputAccessCode" class="btn-data-dump-import btn-data-dump-cancel" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100">取消导入</view>
+            <view bindtap="onUserConfirmInputAccessCode" class="btn-data-dump-import btn-data-dump-confirm" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100">导入</view>
+        </view>
+    </van-popup>
+    <add-card bind:cancel="bottomBtnCancel" bind:confirm="bottomBtnConfirm" showDailog="{{showModal}}"></add-card>
+    <tabbar selected="2"></tabbar>
+</view>

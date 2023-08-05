@@ -1,0 +1,18 @@
+<view class="container-page-base">
+    <card-search bind:clear="onClearSearch" bind:inputTyping="onUserSearch"></card-search>
+    <view class="container-line"></view>
+    <view class="container-dump-list" style="display: {{dumpList==''||dumpSearchFound==false?'none':''}};" wx:if="{{dumpSearchFound||dumpList!=''}}">
+        <view class="container-dump-item" wx:if="{{item.show}}" wx:for="{{dumpList}}" wx:for-index="key" wx:key="key">
+            <card-item bind:click="onDumpSelected" color="{{item.color}}" data-id="{{key}}" nick="{{item.nick}}" type="{{item.type}}" uuid="{{item.uuid}}">
+                <radio checked="{{item.checked}}" class="rightArrowImg"></radio>
+            </card-item>
+        </view>
+    </view>
+    <view style="margin-top: 232rpx;flex: 1;" wx:if="{{!dumpSearchFound||dumpList==''}}">
+        <no-card bind:addCard="addCard" cardType="{{type}}" mode="0"></no-card>
+    </view>
+    <view class="bottomBtn">
+        <button bindtap="turnBack" class="cancel-btn prohibit">取消选择</button>
+        <button bindtap="onOpenData" class="prohibit open-data-btn" disabled="{{!radioChecked}}">打开数据</button>
+    </view>
+</view>

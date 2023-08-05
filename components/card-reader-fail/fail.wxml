@@ -1,0 +1,60 @@
+<view class="contaniner-fail-main">
+    <view>
+        <devicebar showcontent="{{true}}">
+            <human-voice audioSrc="{{voiceData}}" style="margin-top: -40rpx;"></human-voice>
+        </devicebar>
+    </view>
+    <view class="container-err-main">
+        <view class="container-top-title">
+            <view>
+                <icon class="icon-fail-img"></icon>
+            </view>
+            <view>
+                <text class="txt-main-title">{{title}}</text>
+            </view>
+            <view class="container-tag-info-main" wx:if="{{tagInfo}}">
+                <view class="container-tag-info">
+                    <text class="txt-tag-info">卡号 : {{tagInfo.uid}}</text>
+                    <text class="txt-tag-info">类型 : {{tagInfo.type}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="container-error-content">
+            <view>
+                <view class="txt-fail-title">
+                    <text>错误代码</text>
+                </view>
+                <view class="txt-fail-msg">
+                    <text>{{code}}</text>
+                </view>
+            </view>
+            <view wx:if="{{codes.length>0}}">
+                <view class="txt-fail-title">
+                    <text>扩展错误代码</text>
+                </view>
+                <view class="txt-fail-msg">
+                    <block wx:for="{{codes}}" wx:key="index">
+                        <text>{{item}}</text>
+                        <text wx:if="{{index<codes.length-1}}">，</text>
+                    </block>
+                </view>
+            </view>
+            <view>
+                <view class="txt-fail-title">
+                    <text>失败原因</text>
+                </view>
+                <view class="txt-fail-msg">
+                    <text>{{reason}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="container-retry-btn">
+        <button bindtap="onUserClickEmptyCard" class="btn-retry-opera empty-card" wx:if="{{code=='0x2a'}}">清空卡</button>
+        <button bindtap="onUserRetryClickCallback" class="btn-retry-opera retry">重试</button>
+    </view>
+    <view class="container-help-question">
+        <text bindtap="gotoUserHelp">遇到问题?</text>
+        <icon class="icon-right-double-arrow"></icon>
+    </view>
+</view>
