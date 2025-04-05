@@ -1067,10 +1067,6 @@
     font-display:auto;font-family:vant-icon;font-style:normal;font-weight:400;src:url(https://at.alicdn.com/t/font_2553510_iv4v8nulyz.woff2?t=1649083952952) format("woff2"),url(https://at.alicdn.com/t/font_2553510_iv4v8nulyz.woff?t=1649083952952) format("woff"),url(https://at.alicdn.com/t/font_2553510_iv4v8nulyz.ttf?t=1649083952952) format("truetype");
 }
 
-.van-icon--custom {
-    position: relative;
-}
-
 .van-icon--image {
     height: 1em;
     width: 1em;

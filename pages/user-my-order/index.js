@@ -1,4 +1,4 @@
-var e = require("../../8462214255C842DFE2044945663685D7.js");
+var e = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
@@ -150,36 +150,30 @@ Page({
         });
     },
     goToPay: function(a) {
+        var t = this;
         wx.showLoading();
-        var t = a.currentTarget.dataset.id, o = this.data.history_data[t].item_order_number, i = e.getPhone(), s = e.obtain();
-        wx.request({
-            url: e.getRequestUrl() + "Goldcoincash/prepayId",
-            data: {
-                phone: i,
-                token: s,
-                db_order_number: o
-            },
-            header: {
-                "content-type": "application/json"
-            },
-            success: function(a) {
-                0 != a.data.status ? wx.requestPayment({
-                    timeStamp: a.data.timeStamp,
-                    nonceStr: a.data.nonceStr,
-                    package: a.data.package,
-                    signType: "MD5",
-                    paySign: a.data.paySign,
-                    total_fee: .01,
-                    success: function(a) {
-                        wx.hideLoading({}), e.showToast("支付成功！"), that.setData({
-                            confirmOrderShow: !1
-                        });
-                    },
-                    fail: function(e) {
-                        wx.hideLoading({}), console.log(e);
-                    }
-                }) : e.showToast(a.data.msg);
-            }
+        var o = a.currentTarget.dataset.id, i = (n = this.data.history_data[o]).item_order_number, s = e.getRequestUrl() + "Goldcoincash/prepayId", n = {
+            phone: e.getPhone(),
+            token: e.obtain(),
+            db_order_number: i
+        };
+        e.requestFn(s, "post", n, function(a) {
+            0 != a.data.status ? wx.requestPayment({
+                timeStamp: a.data.timeStamp,
+                nonceStr: a.data.nonceStr,
+                package: a.data.package,
+                signType: "MD5",
+                paySign: a.data.paySign,
+                total_fee: .01,
+                success: function(a) {
+                    wx.hideLoading({}), e.showToast("支付成功！"), t.setData({
+                        confirmOrderShow: !1
+                    });
+                },
+                fail: function(e) {
+                    wx.hideLoading({}), console.log(e);
+                }
+            }) : e.showToast(a.data.msg);
         });
     },
     onLoad: function(e) {

@@ -1,4 +1,4 @@
-var t = require("8462214255C842DFE2044945663685D7.js");
+var t = require("76F8096255C842DF109E616502B6D685.js");
 
 App({
     autoProxyFN: function(t, e, o) {
@@ -11,8 +11,8 @@ App({
     },
     proxyNetworkRequestFN: function(e) {
         return function(o) {
-            "formData" in o ? ("phone" in o.formData || (o.formData.phone = t.getPhone()), "token" in o.formData || (o.formData.token = t.obtain()), 
-            "system_type" in o.formData || (o.formData.system_type = t.judgeSystemType())) : (null == o.data && (o.data = {}), 
+            return "formData" in o ? ("phone" in o.formData || (o.formData.phone = t.getPhone()), 
+            "token" in o.formData || (o.formData.token = t.obtain()), "system_type" in o.formData || (o.formData.system_type = t.judgeSystemType())) : (null == o.data && (o.data = {}), 
             -1 != o.url.indexOf("/thinkphp") && (-1 == o.url.indexOf("/loginBy") && ("phone" in o.data || (o.data.phone = t.getPhone()), 
             "token" in o.data || (o.data.token = t.obtain())), "system_type" in o.data || (o.data.system_type = t.judgeSystemType()))), 
             e(o);

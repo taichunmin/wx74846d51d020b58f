@@ -79,14 +79,12 @@ var o = 2 * Math.PI, l = -Math.PI / 2;
         setHoverColor: function() {
             var e = this, t = this.data, r = t.color, n = t.size;
             return (0, a.isObj)(r) ? this.getContext().then(function(t) {
-                if (t) {
-                    var a = t.createLinearGradient(n, 0, 0, 0);
-                    Object.keys(r).sort(function(e, t) {
-                        return parseFloat(e) - parseFloat(t);
-                    }).map(function(e) {
-                        return a.addColorStop(parseFloat(e) / 100, r[e]);
-                    }), e.hoverColor = a;
-                }
+                var a = t.createLinearGradient(n, 0, 0, 0);
+                Object.keys(r).sort(function(e, t) {
+                    return parseFloat(e) - parseFloat(t);
+                }).map(function(e) {
+                    return a.addColorStop(parseFloat(e) / 100, r[e]);
+                }), e.hoverColor = a;
             }) : (this.hoverColor = r, Promise.resolve());
         },
         presetCanvas: function(e, t, r, a, n) {
@@ -105,11 +103,9 @@ var o = 2 * Math.PI, l = -Math.PI / 2;
         drawCircle: function(e) {
             var t = this, r = this.data.size;
             this.getContext().then(function(a) {
-                if (a) {
-                    a.clearRect(0, 0, r, r), t.renderLayerCircle(a);
-                    var n, i = (n = e, Math.min(Math.max(n, 0), 100));
-                    0 !== i && t.renderHoverCircle(a, i), a.draw();
-                }
+                a.clearRect(0, 0, r, r), t.renderLayerCircle(a);
+                var n, i = (n = e, Math.min(Math.max(n, 0), 100));
+                0 !== i && t.renderHoverCircle(a, i), a.draw();
             });
         },
         reRender: function() {

@@ -5,7 +5,10 @@
         "tabbar": "../../components/custom-tab-bar/index",
         "card-item": "../../components/card-wallet-item/item",
         "card-search": "/components/card-wallet-search/index",
-        "no-card": "/components/no-card/index"
+        "no-card": "/components/no-card/index",
+        "cloud-or-local": "/components/cloud-or-local/index",
+        "folder-top": "/components/folder-top/index",
+        "folder-item": "../../components/folder-item/item"
     },
     "navigationBarTitleText": "卡包",
     "navigationStyle": "custom",

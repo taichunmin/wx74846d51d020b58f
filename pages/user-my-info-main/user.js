@@ -1,4 +1,8 @@
-var n = (0, require("../../@babel/runtime/helpers/interopRequireDefault").default)(require("@vant/weapp/dialog/dialog")), i = require("../../8462214255C842DFE2044945663685D7.js"), e = require("../../6B5F0E3755C842DF0D39663027C585D7.js");
+var n, i = (n = require("@vant/weapp/dialog/dialog")) && n.__esModule ? n : {
+    default: n
+};
+
+var e = require("../../76F8096255C842DF109E616502B6D685.js"), a = require("../../AB5D946455C842DFCD3BFC63A316D685.js");
 
 Page({
     data: {
@@ -96,13 +100,14 @@ Page({
         token: "",
         navHeight: "",
         imgUrl: "",
+        buyWriteCardChanceEnable: !0,
         miniProgramVersion: ""
     },
-    gotoPageAndLoginTips: function(e, t) {
-        i.isLogin() ? wx.navigateTo({
-            url: t
-        }) : n.default.confirm({
-            message: e,
+    gotoPageAndLoginTips: function(n, a) {
+        e.isLogin() ? wx.navigateTo({
+            url: a
+        }) : i.default.confirm({
+            message: n,
             confirmButtonText: "登录",
             cancelButtonText: "取消"
         }).then(function() {
@@ -131,7 +136,7 @@ Page({
         });
     },
     jumpLogin: function() {
-        0 == i.isLogin() ? wx.navigateTo({
+        0 == e.isLogin() ? wx.navigateTo({
             url: "/pages/user-login-onekey/login"
         }) : wx.navigateTo({
             url: "/pages/user-info-details/info"
@@ -143,7 +148,7 @@ Page({
         });
     },
     purchase: function() {
-        wx.navigateTo({
+        this.data.buyWriteCardChanceEnable && wx.navigateTo({
             url: "/pages/user-buy-writetag-chance/chance"
         });
     },
@@ -214,7 +219,7 @@ Page({
         wx.setClipboardData({
             data: this.data.link_data,
             success: function(n) {
-                i.showToast("复制链接成功");
+                e.showToast("复制链接成功");
             }
         });
     },
@@ -228,51 +233,54 @@ Page({
     },
     onShow: function() {
         var n = this;
-        i.getNavHeight(function(i) {
+        e.getNavHeight(function(i) {
             n.setData({
                 navHeight: i
             });
         }), "ios" == wx.getSystemInfoSync().platform ? n.setData({
-            vipText: "了解更多"
+            vipText: "了解更多",
+            buyWriteCardChanceEnable: !1
         }) : n.setData({
-            vipText: "立即开通"
-        }), i.judgePhoneNumber(n);
-        var t = i.obtain();
-        i.isLogin() && (n.setData({
-            show_phone: i.getPhone(),
-            phone: i.getHidePhone(),
-            token: t
-        }), i.getHeadPortrait(function(i) {
+            vipText: "立即开通",
+            buyWriteCardChanceEnable: !0
+        }), e.judgePhoneNumber(n);
+        var i = e.obtain();
+        e.isLogin() && (n.setData({
+            show_phone: e.getPhone(),
+            phone: e.getHidePhone(),
+            token: i
+        }), e.getHeadPortrait(function(i) {
             if (1 == i.data.status) {
-                var t = e.getStorageSyncHasDefault("image_cache", {});
-                Object.keys(t).length <= 0 ? (wx.setStorageSync("image_cache", i.data.data), n.setData({
+                var e = a.getStorageSyncHasDefault("image_cache", {});
+                Object.keys(e).length <= 0 ? (wx.setStorageSync("image_cache", i.data.data), n.setData({
                     imgUrl: i.data.data
                 })) : n.setData({
-                    imgUrl: t
+                    imgUrl: e
                 });
             } else n.setData({
                 imgUrl: ""
             });
-        }), i.gold_coin_count(function(i) {
+        }), e.gold_coin_count(function(i) {
             0 == i ? n.setData({
                 gold_coin_count: 0
             }) : n.setData({
                 gold_coin_count: i
             });
-        }), i.remainNumber(function(i, e, t) {
+        }), e.remainNumber(function(i) {
+            var e = i.data.data.remain_count, a = i.data.data.vip_end_date, t = i.data.data.expirationTime;
             if ("会员已过期" == t) return n.setData({
                 expirationTime: "会员已过期",
-                remainingTimes: i
+                remainingTimes: e
             }), !1;
-            var a = e.slice(0, 2);
-            a = a >= 21 ? "永久VIP" : "", n.setData({
-                remainingTimes: i,
-                vip_end_date: e,
+            var o = a.slice(0, 2);
+            o = o >= 21 ? "永久VIP" : "", n.setData({
+                remainingTimes: e,
+                vip_end_date: a,
                 expirationTime: t,
-                permanentVip: a
+                permanentVip: o
             });
-        }), i.pullPasswordAndLink(function(i) {
-            n.setData({
+        }), e.pullPasswordAndLink(function(i) {
+            "" != i && n.setData({
                 "colList[0][0].content[0].link": i[0].link,
                 link_data: i[0].link
             });

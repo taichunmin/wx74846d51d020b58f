@@ -1,4 +1,4 @@
-var e = require("../../275D798255C842DF413B1185FE3585D7.js"), n = require("../../8462214255C842DFE2044945663685D7.js"), i = require("../../A3859AB555C842DFC5E3F2B2FA5585D7.js"), t = -1;
+var e = require("../../D6EF5C7155C842DFB08934760C65D685.js"), n = require("../../76F8096255C842DF109E616502B6D685.js"), i = require("../../DFE4D8E455C842DFB982B0E32585D685.js"), t = -1;
 
 Page({
     data: {
@@ -58,7 +58,7 @@ Page({
         if (e.isLeAdapterInitialized()) {
             var c = t.currentTarget.dataset.id, o = e.getBLEDevicesFoundList()[c];
             if (e.hasDeviceConnected()) o.deviceId == e.getAddressByConnection() ? i.disconnectExistsDevice() : n.showToast("请先断开之前的连接"); else {
-                if (!n.isLogin(this)) return void n.login(this);
+                if (!n.isLogin(this)) return void n.checkToken();
                 console.log("已经登录"), wx.showLoading({
                     title: "正在连接中"
                 }), this.setConnecting(!0), i.connectAutoCheckDevice(o), console.log("当前点击第" + c + "个，设备ID是:" + o.deviceId + "，设备名是: " + o.name);

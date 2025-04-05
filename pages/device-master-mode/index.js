@@ -1,6 +1,6 @@
-var t = require("../../6B5F0E3755C842DF0D39663027C585D7.js"), a = require("../../43635B5055C842DF2505335752E585D7.js"), s = require("../../9434A3B355C842DFF252CBB492D585D7.js"), e = require("../../04AF9D0355C842DF62C9F50458A585D7.js"), i = require("../../275D798255C842DF413B1185FE3585D7.js"), o = require("../../8462214255C842DFE2044945663685D7.js"), n = require("../../8E76785255C842DFE810105557B585D7.js"), r = require("../../A3859AB555C842DFC5E3F2B2FA5585D7.js"), l = require("../../306D78F255C842DF560B10F52E4585D7.js"), h = require("../../2335D01055C842DF4553B817299585D7.js");
+var t = require("../../AB5D946455C842DFCD3BFC63A316D685.js"), a = require("../../614DB8F055C842DF072BD0F70136D685.js"), s = require("../../53CD6E9355C842DF35AB0694BD16D685.js"), e = require("../../76241F7655C842DF1042777162F5D685.js"), i = require("../../D6EF5C7155C842DFB08934760C65D685.js"), o = require("../../76F8096255C842DF109E616502B6D685.js"), n = require("../../8896821655C842DFEEF0EA119506D685.js"), r = require("../../DFE4D8E455C842DFB982B0E32585D685.js"), l = require("../../AC1F69C355C842DFCA7901C4DB75D685.js"), u = require("../../6A5B005755C842DF0C3D685076E5D685.js"), h = require("../../F1D2DB1455C842DF97B4B3130476D685.js");
 
-function u(t, a, s, e) {
+function d(t, a, s, e) {
     return {
         img: t,
         text: a,
@@ -28,6 +28,11 @@ Page({
         leftTaskStatus: {
             status: 0,
             message: "无"
+        },
+        fchkStatus: {
+            show: !1,
+            current: 0,
+            max: 0
         },
         taginfo: {},
         keyGroup: [],
@@ -82,32 +87,33 @@ Page({
         vip: "",
         gestureGuidance: !1,
         checked: !0,
-        switchStatus: !1
+        switchStatus: !1,
+        showDumpOpenSelectDialog: !1
     },
     rightButtonListForIC: {
-        btnStartRead: u("exRead", "读IC卡", !0, "onStartReadICTagClickCall"),
-        btnStartWrite: u("exWrite", "写IC卡", !1, "onStartWriteTagClickCall"),
-        btnStartWritePhoneNFC: u("bracelet", "写手机手环", !1, "onStartWritePhoneNFCCall"),
-        btnStartWriteUID: u("write-card-number", "只写卡号", !1, "onStartWriteTagUIDClickCall"),
-        btnStartWipe: u("clearMaster", "清空卡", !0, "onStartWipeTagClickCall"),
-        btnSaveDump: u("exSave", "保存数据", !1, "onSaveDumpToCardWallet"),
-        btnSaveDumpNew: u("exSaveAs", "另存数据", !1, "onSaveDumpCardWalletAs"),
-        btnOpenDump: u("exOpen", "打开数据", !0, "onOpenDumpClickCall"),
-        btnDataEqual: u("exContrast", "数据对比", !1, "onDataFindEqual"),
-        btnNewDumpForTemplate: u("exAdd", "新建数据", !0, "onICDataDumpNew"),
-        btnKeysManager: u("exCode", "密码管理", !1, "onUserClickKeysManager"),
-        btn14ARawTermial: u("14a_terminal", "14A终端", !1, "onUserClick14ARawTermial"),
-        btnLockUFUID: u("lock_ufuid", "锁UFUID", !1, "onUserClickLockUFUID"),
-        btnShareDump: u("exShare", "分享数据", !1, "onUserShareDumpClick")
+        btnStartRead: d("exRead", "读IC卡", !0, "onStartReadICTagClickCall"),
+        btnStartWrite: d("exWrite", "写IC卡", !1, "onStartWriteTagClickCall"),
+        btnStartWritePhoneNFC: d("bracelet", "写手机手环", !1, "onStartWritePhoneNFCCall"),
+        btnStartWriteUID: d("write-card-number", "只写卡号", !1, "onStartWriteTagUIDClickCall"),
+        btnStartWipe: d("clearMaster", "清空卡", !0, "onStartWipeTagClickCall"),
+        btnSaveDump: d("exSave", "保存数据", !1, "onSaveDumpToCardWallet"),
+        btnSaveDumpNew: d("exSaveAs", "另存数据", !1, "onSaveDumpCardWalletAs"),
+        btnOpenDump: d("exOpen", "打开数据", !0, "onOpenDumpClickCall"),
+        btnDataEqual: d("exContrast", "数据对比", !1, "onDataFindEqual"),
+        btnNewDumpForTemplate: d("exAdd", "新建数据", !0, "onICDataDumpNew"),
+        btnKeysManager: d("exCode", "密码管理", !1, "onUserClickKeysManager"),
+        btn14ARawTermial: d("14a_terminal", "14A终端", !1, "onUserClick14ARawTermial"),
+        btnLockUFUID: d("lock_ufuid", "锁UFUID", !1, "onUserClickLockUFUID"),
+        btnShareDump: d("exShare", "分享数据", !1, "onUserShareDumpClick")
     },
     rightButtonListForID: {
-        btnStartRead: u("read_id", "读ID卡", !0, "onStartReadIDTagClickCall"),
-        btnStartWrite: u("write_id", "写ID卡", !1, "onStartWriteTagClickCall"),
-        btnSaveDump: u("save_id", "保存卡号", !1, "onSaveDumpToCardWallet"),
-        btnSaveDumpNew: u("saveas_id", "另存卡号", !1, "onSaveDumpCardWalletAs"),
-        btnOpenDump: u("exOpen", "打开卡片", !0, "onOpenDumpClickCall"),
-        btnNewDumpForTemplate: u("add_id", "新建卡号", !0, "onIDDataDumpNew"),
-        btnShareDump: u("share_id", "分享卡号", !1, "onUserShareDumpClick")
+        btnStartRead: d("read_id", "读ID卡", !0, "onStartReadIDTagClickCall"),
+        btnStartWrite: d("write_id", "写ID卡", !1, "onStartWriteTagClickCall"),
+        btnSaveDump: d("save_id", "保存卡号", !1, "onSaveDumpToCardWallet"),
+        btnSaveDumpNew: d("saveas_id", "另存卡号", !1, "onSaveDumpCardWalletAs"),
+        btnOpenDump: d("exOpen", "打开卡片", !0, "onOpenDumpClickCall"),
+        btnNewDumpForTemplate: d("add_id", "新建卡号", !0, "onIDDataDumpNew"),
+        btnShareDump: d("share_id", "分享卡号", !1, "onUserShareDumpClick")
     },
     showPageByIndex: function(t, a) {
         this.data.pageMaps.page14443A.show && this.setDefaultKeysInfo(), null != a && null != a || (a = {});
@@ -196,6 +202,10 @@ Page({
                 e = "普通M1";
                 break;
 
+              case a.TAG_TYPE_MF1_RF08S:
+                e = "三代无漏洞";
+                break;
+
               case a.TAG_TYPE_MF1_GDM:
                 e = "GDM滚动码";
             }
@@ -240,7 +250,7 @@ Page({
             var a = [];
             t.forEach(function(t, s) {
                 var e, i;
-                if (0 == s) e = l.bytes2hex(t), i = 0; else if (h.mifare_is_trailer_blk(s)) {
+                if (0 == s) e = l.bytes2hex(t), i = 0; else if (u.mifare_is_trailer_blk(s)) {
                     var o = l.bytes2hex(t);
                     e = {
                         keya: o.slice(0, 12),
@@ -249,7 +259,7 @@ Page({
                     }, i = 2;
                 } else e = l.bytes2hex(t), i = 1;
                 a.push({
-                    sector: h.mifare_block_2_sector(s),
+                    sector: u.mifare_block_2_sector(s),
                     block: s,
                     data: e,
                     type: i
@@ -277,6 +287,7 @@ Page({
           case a.TAG_TYPE_MF1_STDHD:
           case a.TAG_TYPE_MF1_STDST:
           case a.TAG_TYPE_MF1_STDWK:
+          case a.TAG_TYPE_MF1_RF08S:
           case a.TAG_TYPE_MF1_GDM:
             this.setTagInfo(t), this.setDataInfo(a.getMifareTagDatas()), this.setKeysInfo(a.getMifareKeysMap());
             break;
@@ -321,7 +332,7 @@ Page({
         });
     },
     onConfirmDataEdit: function(t) {
-        var s = t.detail, e = h.mifare_sector_2_block(s.sector) + s.block, i = a.getMifareTagDatas();
+        var s = t.detail, e = u.mifare_sector_2_block(s.sector) + s.block, i = a.getMifareTagDatas();
         this.data.dataList.forEach(function(t) {
             if (t.block == e) {
                 var a = s.data;
@@ -357,15 +368,15 @@ Page({
             t.block == e && (s.data.firmEditor.data = t.data);
         }), s.data.firmEditor.show = !0, s.data.firmEditor.size = i, s.setData({
             firmEditor: s.data.firmEditor
-        })) : (s.data.dataEditor.sector = h.mifare_block_2_sector(e), s.data.dataEditor.block = h.mifare_secblk_2_index(e, s.data.dataEditor.sector), 
+        })) : (s.data.dataEditor.sector = u.mifare_block_2_sector(e), s.data.dataEditor.block = u.mifare_secblk_2_index(e, s.data.dataEditor.sector), 
         s.data.dataList.forEach(function(t) {
-            t.block == e && (h.mifare_is_trailer_blk(e) ? (s.data.dataEditor.mode = 1, s.data.dataEditor.data = "".concat(t.data.keya).concat(t.data.ctl).concat(t.data.keyb)) : (s.data.dataEditor.mode = 0, 
+            t.block == e && (u.mifare_is_trailer_blk(e) ? (s.data.dataEditor.mode = 1, s.data.dataEditor.data = "".concat(t.data.keya).concat(t.data.ctl).concat(t.data.keyb)) : (s.data.dataEditor.mode = 0, 
             s.data.dataEditor.data = t.data));
         }), s.data.dataEditor.show = !0, s.setData({
             dataEditor: s.data.dataEditor
         }));
     },
-    onOpenDumpClickCall: function() {
+    openDumpFromCards: function() {
         var a, s = this;
         a = 1 == this.data.pageMaps.page14443A.show ? "IC" : "ID", wx.navigateTo({
             url: "/pages/card-wallet-select/list?type=" + a,
@@ -377,6 +388,11 @@ Page({
                     }));
                 }
             }
+        });
+    },
+    onOpenDumpClickCall: function() {
+        this.data.pageMaps.pageEM410X.show ? this.openDumpFromCards() : this.setData({
+            showDumpOpenSelectDialog: !0
         });
     },
     setDumpToSavedStatus: function(t) {
@@ -422,11 +438,11 @@ Page({
     onUserSaveDataConfirm: function(a) {
         var s = this, e = a.detail.dumpName;
         if ("local" == o.cloudOrLocal()) {
-            var i = o.saveCard(e);
+            var i = o.saveCard("/", e);
             i.isok ? s.saveData(i.uuid) : o.showToast(i.message);
         } else {
             var n = t.createDumpInfoJsonFromMem();
-            o.saveDataToTheCloud(e, "", n, 1, function(t) {
+            o.saveDataToTheCloud(e, "", n, 1, "/", function(t) {
                 console.log("这里的res是" + JSON.stringify(t)), 1 == t.data.status ? s.saveData(t.data.data) : o.showToast(t.data.msg);
             });
         }
@@ -538,24 +554,41 @@ Page({
 
           case s.TASK_NAME_HARDNESTED:
             n = "计算HARD(启动中...)";
+            break;
+
+          case s.TASK_NAME_RF08S_2X1NT:
+            n = "三代无漏洞解码";
         }
         this.setMainTitle({
             status: 3,
             message: "".concat(n, " 预计 ").concat(o, "秒")
         }), this.setKeysInfo(i);
     },
-    replaceHardNestedTaskMessage: function(t) {
+    replaceTaskMessage: function(t) {
         var a = this.data.leftTaskStatus.message.replace(/\(.*\)/, "(".concat(t, ")"));
         this.data.leftTaskStatus.message = a, this.setData({
             leftTaskStatus: this.data.leftTaskStatus
         });
     },
     onMF1HardAcquireCallback: function(t) {
-        this.replaceHardNestedTaskMessage("采集".concat(t, "次"));
+        this.replaceTaskMessage("采集".concat(t, "次"));
     },
     onMF1HardQueueUpCallback: function(t) {
         var a;
-        a = 0 == t ? "正在计算" : "排队".concat(t, "位"), this.replaceHardNestedTaskMessage(a);
+        a = 0 == t ? "正在计算" : "排队".concat(t, "位"), this.replaceTaskMessage(a);
+    },
+    onMF1FCHKProgressUpdateCallback: function(t, s) {
+        a.getTagInformation().tag_type == a.TAG_TYPE_MF1_RF08S ? this.setData({
+            fchkStatus: {
+                show: !0,
+                max: s,
+                current: t
+            }
+        }) : this.setData({
+            fchkStatus: {
+                show: !1
+            }
+        });
     },
     onMF1Found: function(a) {
         var s = this;
@@ -632,7 +665,11 @@ Page({
         });
     },
     startReadICTagImpl: function() {
-        this.setDefaultKeysInfo(), this.setDataInfo(), this.presetBeforeTagRead(), t.startHFTagOneSearch(this.onICTagFound, this.onTagNoFound);
+        this.setDefaultKeysInfo(), this.setDataInfo(), this.presetBeforeTagRead(), this.setData({
+            fchkStatus: {
+                show: !1
+            }
+        }), t.startHFTagOneSearch(this.onICTagFound, this.onTagNoFound);
     },
     startReadIDTagImpl: function() {
         this.presetBeforeTagRead(), t.startLFTagOneSearch(this.onIDTagFound, this.onTagNoFound);
@@ -786,12 +823,13 @@ Page({
     },
     onStartWriteTagClickCall: function() {
         var t = this;
-        "svipcopy" == o.judgeDeviceType() ? t.startWriteTagImpl() : o.remainNumber1(function(a, s, e) {
-            0 == a && "会员已过期" == e ? t.setData({
+        "svipcopy" == o.judgeDeviceType() ? t.startWriteTagImpl() : o.remainNumber1(function(a) {
+            var s = a.data.data.remain_count, e = a.data.data.expirationTime;
+            0 == s && "会员已过期" == e ? t.setData({
                 modal: !0
             }) : "会员已过期" != e ? (t.setData({
                 vip: !0
-            }), t.startWriteTagImpl()) : 0 != a && "会员已过期" == e && (t.setData({
+            }), t.startWriteTagImpl()) : 0 != s && "会员已过期" == e && (t.setData({
                 vip: !1
             }), t.startWriteTagImpl());
         });
@@ -811,12 +849,13 @@ Page({
     },
     onStartWritePhoneNFCCall: function() {
         var t = this;
-        "svipcopy" == o.judgeDeviceType() ? t.startWritePhoneNFCImpl() : o.remainNumber1(function(a, s, e) {
-            0 == a && "会员已过期" == e ? t.setData({
+        "svipcopy" == o.judgeDeviceType() ? t.startWritePhoneNFCImpl() : o.remainNumber1(function(a) {
+            var s = a.data.data.remain_count, e = a.data.data.expirationTime;
+            0 == s && "会员已过期" == e ? t.setData({
                 modal: !0
             }) : "会员已过期" != e ? (t.setData({
                 vip: !0
-            }), t.startWriteTagImpl()) : 0 != a && "会员已过期" == e && (t.setData({
+            }), t.startWriteTagImpl()) : 0 != s && "会员已过期" == e && (t.setData({
                 vip: !1
             }), t.startWriteTagImpl());
         });
@@ -828,7 +867,7 @@ Page({
     },
     onUserCreateDataConfirm: function(a) {
         if ("local" == o.cloudOrLocal()) {
-            var s = a.detail.dumpName, e = o.newCard({
+            var s = a.detail.dumpName, e = o.newCard("/", {
                 cardName: s,
                 type: this.newDumpType
             });
@@ -839,7 +878,7 @@ Page({
                 cardName: s = a.detail.dumpName,
                 type: this.newDumpType
             };
-            o.saveDataToTheCloud(s, n, "", 2, function(a) {
+            o.saveDataToTheCloud(s, n, "", 2, "/", function(a) {
                 console.log("新建数据状态是" + JSON.stringify(a)), 1 == a.data.status && o.queryCloudData(a.data.data, function(a) {
                     t.loadJson2DataBuffer(a.data.data[0].data), i.dumpUUID = a.data.data[0].uuid, i.showDataByMemory(), 
                     i.dismissNickEdiotDialog();
@@ -958,7 +997,7 @@ Page({
         var t = {};
         t[a.TAG_TYPE_HF_14443A] = 0, t[a.TAG_TYPE_MF1_GEN1A] = 0, t[a.TAG_TYPE_MF1_MAYBE] = 0, 
         t[a.TAG_TYPE_MF1_STDHD] = 0, t[a.TAG_TYPE_MF1_STDST] = 0, t[a.TAG_TYPE_MF1_STDWK] = 0, 
-        t[a.TAG_TYPE_MF1_GDM] = 0, t[a.TAG_TYPE_LF_EM410X] = 1;
+        t[a.TAG_TYPE_MF1_RF08S] = 0, t[a.TAG_TYPE_MF1_GDM] = 0, t[a.TAG_TYPE_LF_EM410X] = 1;
         var s = t[a.getTagInformation().tag_type];
         console.log("这里的页面index是" + s), this.showPageByIndex(s, {
             showdata: !0
@@ -979,11 +1018,36 @@ Page({
             }), o.showToast("自由编辑打开失败");
         })) : o.showToast("请先读卡~") : o.showToast("请先保存数据");
     },
+    onCloseDumpSourceSelectDialog: function() {
+        this.setData({
+            showDumpOpenSelectDialog: !1
+        });
+    },
+    openDumpFromWechat: function() {
+        var a = this;
+        h.importDumpFromWechat(1, function(s) {
+            if (!(s.length <= 0)) {
+                var e = s[0];
+                console.log(e), "success" == e.status ? (t.loadJson2DataBuffer(JSON.parse(e.data)), 
+                a.dumpUUID = null, a.showDataByMemory(), a.setMainTitle({
+                    status: 4,
+                    message: e.prefix
+                }), a.setButtonEnable(a.data.rightButtonList.btnSaveDump, !0)) : "error" == e.status ? o.showToast("数据异常，或格式不兼容") : "custom" == e.status && o.showToast("该数据仅支持卡包页导入");
+            }
+        });
+    },
+    onConfirmOpenDumpFromSource: function(t) {
+        var a = t.detail.type;
+        console.log("选中的数据源类型是：".concat(a)), this.setData({
+            showDumpOpenSelectDialog: !1
+        }), "cards" == a ? this.openDumpFromCards() : "wechat" == a ? this.openDumpFromWechat() : console.error("暂未支持的dump打开数据源类型：" + a);
+    },
     onLoad: function(a) {
         if (console.log("传过来的uuid是" + JSON.stringify(a)), s.registerOnAttackKeysCbk(this.onMF1AttackCallback), 
         r.onTagErrorCallback(this.onTagErrorCallback), r.onComErrCallback(this.onBleComErrorCallback), 
         r.onTimeoutCallback(this.onBleComTimeoutCallback), i.registerOnBLEDisconnectedCallback(this.onDeviceDisconnectCallback), 
         s.setHardnestedOnAcquireCbk(this.onMF1HardAcquireCallback), s.setHardnestedOnQueueUpCbk(this.onMF1HardQueueUpCallback), 
+        null != r.getDevice() && r.getReader(!0).registerOnFCHKProgressCallback(this.onMF1FCHKProgressUpdateCallback), 
         this.dumpUUID = null, this.dumpSaved = !0, this.wipeTagMode = !1, this.isDumpSaveAs = !1, 
         this.taskStatus = 0, "uuid" in a) {
             var e = this;
@@ -1007,6 +1071,6 @@ Page({
     onUnload: function() {
         s.unregisterOnAttackKeysCbk(this.onMF1AttackCallback), i.unregisterOnBLEDisconnectedCallback(this.onDeviceDisconnectCallback), 
         r.onTagErrorCallback(null), r.onComErrCallback(null), r.onTimeoutCallback(null), 
-        s.setHardnestedOnAcquireCbk(null), s.setHardnestedOnQueueUpCbk(null);
+        s.setHardnestedOnAcquireCbk(null), s.setHardnestedOnQueueUpCbk(null), null != r.getDevice() && r.getReader(!0).unregisterOnFCHKProgressCallback(this.onMF1FCHKProgressUpdateCallback);
     }
 });

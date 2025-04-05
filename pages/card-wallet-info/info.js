@@ -1,4 +1,4 @@
-var a = require("../../6B5F0E3755C842DF0D39663027C585D7.js"), t = require("../../43635B5055C842DF2505335752E585D7.js"), e = require("../../275D798255C842DF413B1185FE3585D7.js"), i = require("../../8462214255C842DFE2044945663685D7.js"), o = require("../../306D78F255C842DF560B10F52E4585D7.js");
+var a = require("../../AB5D946455C842DFCD3BFC63A316D685.js"), t = require("../../614DB8F055C842DF072BD0F70136D685.js"), e = require("../../D6EF5C7155C842DFB08934760C65D685.js"), i = require("../../76F8096255C842DF109E616502B6D685.js"), o = require("../../AC1F69C355C842DFCA7901C4DB75D685.js");
 
 Page({
     data: {
@@ -74,8 +74,10 @@ Page({
                     var o = t.uuid;
                     a.deleteDumpFilesByID(o);
                     var n = a.getStorageSyncHasDefault("dump_nicks", {});
-                    delete n[o], wx.setStorageSync("dump_nicks", n), wx.navigateBack();
-                } else console.log("删除当前卡片信息"), i.deleteCardData(t.uuid, function(a) {
+                    delete n[o], wx.setStorageSync("dump_nicks", n);
+                    var s = a.getStorageSyncHasDefault("folderData", {});
+                    delete s[o], wx.setStorageSync("folderData", s), wx.navigateBack();
+                } else i.deleteCardData(t.uuid, function(a) {
                     1 == a.data ? (i.showToast("删除成功！"), wx.navigateBack()) : i.showToast("删除失败！");
                 });
             }

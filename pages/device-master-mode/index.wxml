@@ -24,6 +24,7 @@
                     </block>
                     <view class="left-title-main-base left-title-main-nick" wx:if="{{leftTaskStatus.status==4}}">{{leftTaskStatus.message}}</view>
                 </view>
+                <view class="left-title-sub-base left-title-main-run" wx:if="{{fchkStatus.show&&leftTaskStatus.status==3}}"> {{fchkStatus.max}}个密钥包已扫描{{fchkStatus.current}}个，请耐心等待哦~ </view>
                 <view class="container-left-tag-info">
                     <view class="container-left-info-main" style="display: {{pageMaps.page14443A.show?'flex':'none'}};">
                         <view class="container-left-tag-detail" style="visibility: {{taginfo?'visiable':'hidden'}};">
@@ -123,9 +124,10 @@
             <view bindtap="onCollapseButtonList" class="container-view-mask-right-btns" wx:if="{{isBtnsExpandStatus}}"></view>
         </view>
     </view>
+    <dialog-tag-data-source bind:close="onCloseDumpSourceSelectDialog" bind:confirm="onConfirmOpenDumpFromSource" show="{{showDumpOpenSelectDialog}}"></dialog-tag-data-source>
     <data-editor bind:cancel="onCloseDataEditor" bind:close="onCloseDataEditor" bind:confirm="onConfirmDataEdit" block="{{dataEditor.block}}" mode="{{dataEditor.mode}}" sector="{{dataEditor.sector}}" show="{{dataEditor.show}}" value="{{dataEditor.data}}"></data-editor>
     <firm-editor bind:cancel="onCloseFirmEditor" bind:close="onCloseFirmEditor" bind:confirm="onConfirmFirmEdit" show="{{firmEditor.show}}" size="{{firmEditor.size}}" value="{{firmEditor.data}}"></firm-editor>
-    <save-data bind:cancel="onUserSaveDataCancel" bind:confirm="{{nickEditor.onConfirmCall}}" placeholder="请输入数据名称" show="{{nickEditor.show}}" theme="dark" title="{{nickEditor.title}}" type="save-nick"></save-data>
+    <save-data bind:cancel="onUserSaveDataCancel" bind:confirm="{{nickEditor.onConfirmCall}}" btnCancel="取消" btnConfirm="确定" placeholder="请输入数据名称" show="{{nickEditor.show}}" theme="dark" title="{{nickEditor.title}}" type="save-nick"></save-data>
     <write-progress bind:cancel="" bind:close="" progress="{{writeProgress.progress}}" show="{{writeProgress.show}}" title="{{writeProgress.title}}"></write-progress>
     <write-result bind:cancel="onUserCloseWriteResultDialog" bind:close="onUserCloseWriteResultDialog" bind:complete="onUserCloseWriteResultDialog" bind:retry="{{writeResult.retryCall}}" show="{{writeResult.show}}" success="{{writeResult.success}}" titleMain="{{writeResult.titleMain}}" titleSub="{{writeResult.titleSub}}"></write-result>
     <message-dark bind:cancel="{{messageBox.cancelCall}}" bind:close="{{messageBox.closeCall}}" bind:confirm="{{messageBox.confirmCall}}" cancelText="{{messageBox.cancelText}}" confrimText="{{messageBox.confirmText}}" content="{{messageBox.content}}" maxlength="{{messageBox.maxlength}}" mode="{{messageBox.mode}}" placeholder="{{messageBox.placeholder}}" show="{{messageBox.show}}" title="{{messageBox.title}}" value="{{messageBox.value}}"></message-dark>

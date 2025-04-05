@@ -1,35 +1,20 @@
-var n = require("../../8462214255C842DFE2044945663685D7.js");
+var t = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
         dbData: ""
     },
-    onLoad: function(n) {},
-    onReady: function() {},
     onShow: function() {
-        if (0 == n.isLogin()) n.loginToast(); else {
-            n.checkToken(this);
-            var o = n.obtain(this), t = n.getPhone(), e = this;
-            wx.request({
-                url: n.getRequestUrl() + "Feedback/query",
-                data: {
-                    phone: t,
-                    token: o
-                },
-                header: {
-                    "content-type": "application/json"
-                },
-                success: function(n) {
-                    console.log("返回的数据是" + JSON.stringify(n)), e.setData({
-                        dbData: n.data
-                    });
-                }
+        if (0 == t.isLogin()) t.loginToast(); else {
+            var e = this, a = t.getRequestUrl() + "Feedback/query", i = {
+                phone: t.getPhone(),
+                token: t.obtain()
+            };
+            t.requestFn(a, "post", i, function(t) {
+                e.setData({
+                    dbData: t.data
+                });
             });
         }
-    },
-    onHide: function() {},
-    onUnload: function() {},
-    onPullDownRefresh: function() {},
-    onReachBottom: function() {},
-    onShareAppMessage: function() {}
+    }
 });

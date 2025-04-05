@@ -25,5 +25,5 @@
     <view class="container-bottom-button">
         <van-button bindtap="onUserGotoWriteTagCall" customStyle="width:160px;height: 40px;font-size:30rpx;border-radius:20px 20px 20px 20px;background:#F5A200;border:1px solid #F5A200;color:#fff;font-weight:500;" type="primary">前往写卡</van-button>
     </view>
-    <save-data bind:cancel="onUserCancelNameEdit" bind:confirm="onUserConfirmNameEdit" placeholder="请输入数据名称" show="{{nameEditor.showNameEditor}}" theme="light" title="保存数据" type="save-nick" value="{{nameEditor.defaultName}}"></save-data>
+    <save-data bind:cancel="onUserCancelNameEdit" bind:confirm="onUserConfirmNameEdit" btnCancel="取消" btnConfirm="确定" placeholder="请输入数据名称" show="{{nameEditor.showNameEditor}}" theme="light" title="保存数据" type="save-nick" value="{{nameEditor.defaultName}}"></save-data>
 </view>

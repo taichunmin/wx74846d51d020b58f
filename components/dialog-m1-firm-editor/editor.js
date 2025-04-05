@@ -1,4 +1,4 @@
-var t = require("../../306D78F255C842DF560B10F52E4585D7.js");
+var t = require("../../AC1F69C355C842DFCA7901C4DB75D685.js");
 
 Component({
     properties: {

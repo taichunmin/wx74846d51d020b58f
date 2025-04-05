@@ -9,7 +9,8 @@
         "message-dark": "../../components/dialog-msg-box-dark/dialog",
         "dialog-buy-service": "/components/dialog-buy-service/index",
         "em-tagid-editor": "../../components/dialog-em-tagid-editor/editor",
-        "backitp": "/components/back-intercept/back"
+        "backitp": "/components/back-intercept/back",
+        "dialog-tag-data-source": "../../components/dialog-tag-data-source/source"
     },
     "navigationBarTitleText": "专家模式",
     "backgroundTextStyle": "light",

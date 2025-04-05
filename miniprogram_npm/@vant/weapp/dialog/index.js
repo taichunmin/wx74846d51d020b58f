@@ -6,7 +6,6 @@ var t = require("../common/component"), e = require("../mixins/button"), o = req
 
 (0, t.VantComponent)({
     mixins: [ e.button ],
-    classes: [ "cancle-button-class", "confirm-button-class" ],
     props: {
         show: {
             type: Boolean,

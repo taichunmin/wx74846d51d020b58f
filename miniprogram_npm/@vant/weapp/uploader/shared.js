@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: !0
-}), exports.messageFileProps = exports.mediaProps = exports.videoProps = exports.imageProps = void 0, 
-exports.imageProps = {
+}), exports.chooseMediaProps = exports.chooseVideoProps = exports.chooseImageProps = void 0, 
+exports.chooseImageProps = {
     sizeType: {
         type: Array,
         value: [ "original", "compressed" ]
@@ -9,12 +9,8 @@ exports.imageProps = {
     capture: {
         type: Array,
         value: [ "album", "camera" ]
-    },
-    showmenu: {
-        type: Boolean,
-        value: !0
     }
-}, exports.videoProps = {
+}, exports.chooseVideoProps = {
     capture: {
         type: Array,
         value: [ "album", "camera" ]
@@ -31,7 +27,7 @@ exports.imageProps = {
         type: String,
         value: "back"
     }
-}, exports.mediaProps = {
+}, exports.chooseMediaProps = {
     capture: {
         type: Array,
         value: [ "album", "camera" ]
@@ -48,6 +44,4 @@ exports.imageProps = {
         type: String,
         value: "back"
     }
-}, exports.messageFileProps = {
-    extension: null
 };

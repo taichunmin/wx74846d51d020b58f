@@ -11,12 +11,17 @@ Object.defineProperty(exports, "__esModule", {
 
 var e = require("../common/component"), a = require("../common/validator");
 
+function i(t, e) {
+    return String(t) === String(e);
+}
+
 (0, e.VantComponent)({
     field: !0,
     classes: [ "input-class", "plus-class", "minus-class" ],
     props: {
         value: {
-            type: null
+            type: null,
+            observer: "observeValue"
         },
         integer: {
             type: Boolean,
@@ -66,11 +71,6 @@ var e = require("../common/component"), a = require("../common/validator");
     data: {
         currentValue: ""
     },
-    watch: {
-        value: function() {
-            this.observeValue();
-        }
-    },
     created: function() {
         this.setData({
             currentValue: this.format(this.data.value)
@@ -78,29 +78,27 @@ var e = require("../common/component"), a = require("../common/validator");
     },
     methods: {
         observeValue: function() {
-            var t = this.data.value;
-            this.setData({
-                currentValue: this.format(t)
+            var t = this.data, e = t.value;
+            i(e, t.currentValue) || this.setData({
+                currentValue: this.format(e)
             });
         },
         check: function() {
-            var t, e, a = this.format(this.data.currentValue);
-            t = a, e = this.data.currentValue, String(t) !== String(e) && this.setData({
-                currentValue: a
+            var t = this.format(this.data.currentValue);
+            i(t, this.data.currentValue) || this.setData({
+                currentValue: t
             });
         },
         isDisabled: function(t) {
             var e = this.data, a = e.disabled, i = e.disablePlus, n = e.disableMinus, s = e.currentValue, r = e.max, o = e.min;
-            return "plus" === t ? a || i || +s >= +r : a || n || +s <= +o;
+            return "plus" === t ? a || i || s >= r : a || n || s <= o;
         },
         onFocus: function(t) {
             this.$emit("focus", t.detail);
         },
         onBlur: function(e) {
             var a = this.format(e.detail.value);
-            this.setData({
-                currentValue: a
-            }), this.emitChange(a), this.$emit("blur", t(t({}, e.detail), {
+            this.$emit("blur", t(t({}, e.detail), {
                 value: a
             }));
         },

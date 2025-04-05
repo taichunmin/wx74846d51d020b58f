@@ -9,7 +9,6 @@ exports.VantComponent = function(s) {
     a = s, t = r, o = {
         data: "data",
         props: "properties",
-        watch: "observers",
         mixins: "behaviors",
         methods: "methods",
         beforeCreate: "created",

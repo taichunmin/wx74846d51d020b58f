@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", {
 var t = require("../common/component"), i = require("./utils"), a = require("./shared"), n = require("../common/validator");
 
 (0, t.VantComponent)({
-    props: e(e(e(e({
+    props: e(e(e({
         disabled: Boolean,
         multiple: Boolean,
         uploadText: String,
@@ -60,10 +60,6 @@ var t = require("../common/component"), i = require("./utils"), a = require("./s
             type: Boolean,
             value: !0
         },
-        videoFit: {
-            type: String,
-            value: "contain"
-        },
         imageFit: {
             type: String,
             value: "scaleToFill"
@@ -72,14 +68,14 @@ var t = require("../common/component"), i = require("./utils"), a = require("./s
             type: String,
             value: "photograph"
         }
-    }, a.imageProps), a.videoProps), a.mediaProps), a.messageFileProps),
+    }, a.chooseImageProps), a.chooseVideoProps), a.chooseMediaProps),
     data: {
         lists: [],
         isInCount: !0
     },
     methods: {
         formatFileList: function() {
-            var t = this.data, a = t.fileList, r = void 0 === a ? [] : a, o = t.maxCount, l = r.map(function(t) {
+            var t = this.data, a = t.fileList, o = void 0 === a ? [] : a, r = t.maxCount, l = o.map(function(t) {
                 return e(e({}, t), {
                     isImage: (0, i.isImageFile)(t),
                     isVideo: (0, i.isVideoFile)(t),
@@ -88,7 +84,7 @@ var t = require("../common/component"), i = require("./utils"), a = require("./s
             });
             this.setData({
                 lists: l,
-                isInCount: l.length < o
+                isInCount: l.length < r
             });
         },
         getDetail: function(e) {
@@ -98,18 +94,18 @@ var t = require("../common/component"), i = require("./utils"), a = require("./s
             };
         },
         startUpload: function() {
-            var t = this, a = this.data, n = a.maxCount, r = a.multiple, o = a.lists;
+            var t = this, a = this.data, n = a.maxCount, o = a.multiple, r = a.lists;
             a.disabled || (0, i.chooseFile)(e(e({}, this.data), {
-                maxCount: n - o.length
+                maxCount: n - r.length
             })).then(function(e) {
-                t.onBeforeRead(r ? e : e[0]);
+                t.onBeforeRead(o ? e : e[0]);
             }).catch(function(e) {
                 t.$emit("error", e);
             });
         },
         onBeforeRead: function(t) {
-            var i = this, a = this.data, r = a.beforeRead, o = a.useBeforeRead, l = !0;
-            "function" == typeof r && (l = r(t, this.getDetail())), o && (l = new Promise(function(a, n) {
+            var i = this, a = this.data, o = a.beforeRead, r = a.useBeforeRead, l = !0;
+            "function" == typeof o && (l = o(t, this.getDetail())), r && (l = new Promise(function(a, n) {
                 i.$emit("before-read", e(e({
                     file: t
                 }, i.getDetail()), {
@@ -139,15 +135,14 @@ var t = require("../common/component"), i = require("./utils"), a = require("./s
         },
         onPreviewImage: function(e) {
             if (this.data.previewFullImage) {
-                var t = e.currentTarget.dataset.index, a = this.data, n = a.lists, r = a.showmenu, o = n[t];
+                var t = e.currentTarget.dataset.index, a = this.data.lists, n = a[t];
                 wx.previewImage({
-                    urls: n.filter(function(e) {
+                    urls: a.filter(function(e) {
                         return (0, i.isImageFile)(e);
                     }).map(function(e) {
                         return e.url;
                     }),
-                    current: o.url,
-                    showmenu: r,
+                    current: n.url,
                     fail: function() {
                         wx.showToast({
                             title: "预览图片失败",
@@ -159,14 +154,14 @@ var t = require("../common/component"), i = require("./utils"), a = require("./s
         },
         onPreviewVideo: function(t) {
             if (this.data.previewFullImage) {
-                var a = t.currentTarget.dataset.index, n = this.data.lists, r = [], o = n.reduce(function(t, n, o) {
-                    return (0, i.isVideoFile)(n) ? (r.push(e(e({}, n), {
+                var a = t.currentTarget.dataset.index, n = this.data.lists, o = [], r = n.reduce(function(t, n, r) {
+                    return (0, i.isVideoFile)(n) ? (o.push(e(e({}, n), {
                         type: "video"
-                    })), o < a && t++, t) : t;
+                    })), r < a && t++, t) : t;
                 }, 0);
                 wx.previewMedia({
-                    sources: r,
-                    current: o,
+                    sources: o,
+                    current: r,
                     fail: function() {
                         wx.showToast({
                             title: "预览视频失败",

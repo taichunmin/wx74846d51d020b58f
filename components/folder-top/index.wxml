@@ -1,0 +1,20 @@
+<view class="top-icon" wx:if="{{!show_search_frame}}">
+    <view bindtap="onTurnBack" class="current-url-title-block" wx:if="{{current_path!='/'}}">
+        <icon class="icon-current-url"></icon>
+        <view class="current-url-title">{{currentFolder}}</view>
+    </view>
+    <view class="current-url-title-right-icon">
+        <view wx:if="{{screenShow}}">
+            <icon bindtap="onScreen" class="icon-screen"></icon>
+        </view>
+        <view>
+            <icon bindtap="onShowSearchFrame" class="icon-search"></icon>
+        </view>
+    </view>
+</view>
+<view class="card-search" wx:if="{{show_search_frame}}">
+    <card-search bind:clear="onClearSearch" bind:onCancel="onCancel" bind:onGetInputValue="onUserSearch"></card-search>
+</view>
+<view class="current-url-address" wx:if="{{view_current_path!=''}}">
+    <rich-text nodes="{{position_title+view_current_path}}"></rich-text>
+</view>

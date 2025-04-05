@@ -1,0 +1,24 @@
+<view class="container-wallet-item-base" style="width: {{itemWidth}};">
+    <view class="checkbox-block" wx:if="{{showCheckbox}}">
+        <van-checkbox bind:change="{{showCheckbox==true?'onSelectItem':'onDumpItemClick'}}" checkedColor="#f5a200" iconSize="15px" shape="square" value="{{checked}}"></van-checkbox>
+    </view>
+    <view bindtap="{{showCheckbox==true?'onSelectItem':'onDumpItemClick'}}" class="container-wallet-item-left">
+        <view wx:if="{{mode==0}}">
+            <text class="txt-wallet-item-left-type">{{type}}</text>
+        </view>
+        <view wx:if="{{mode==1}}">
+            <icon class="{{file_type=='folder'?'folder-icon':file_type=='file-ID'?'file-ID':'file-IC'}}"></icon>
+        </view>
+    </view>
+    <view bindtap="{{showCheckbox==true?'onSelectItem':'onDumpItemClick'}}" class="container-wallet-item-right" style="margin-left: {{marginLeft}}">
+        <view class="txt-wallet-item-right-name">{{nick}}</view>
+        <view class="{{type=='IC'||type=='ID'?'txt-wallet-item-right-type-pub txt-wallet-item-right-type':'type txt-wallet-item-right-type-pub txt-wallet-item-right-type1'}}">
+            <view class="type">{{type}} <view wx:if="{{mode==0}}">卡</view>
+            </view>
+            <view class="path" wx:if="{{file_type!='folder'&&path.length>0}}">位置:{{path}}</view>
+        </view>
+    </view>
+    <view bindtap="{{showCheckbox==true?'onSelectItem':'onDumpItemClick'}}" class="container-wallet-item-slot" style="padding-right: {{paddingRight}}">
+        <slot></slot>
+    </view>
+</view>

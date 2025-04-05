@@ -61,7 +61,7 @@
                 </view>
                 <view class="remainingTimes">
                     <view wx:if="{{phone}}">
-                        <view bindtap="purchase" class="purchase">购买</view>
+                        <view bindtap="purchase" class="purchase" wx:if="{{buyWriteCardChanceEnable}}">购买</view>
                         <view>
                             <text bindtap="purchase" class="rightNumber">{{remainingTimes}}</text>
                         </view>

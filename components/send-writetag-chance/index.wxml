@@ -1,5 +1,5 @@
-<view class="frame" wx:if="{{sendVip==false}}">
+<van-overlay bind:click="onClose" show="{{sendVip==false}}">
     <view class="modalBlock">
-        <image bindtap="onClose" class="modalImg" src="https://static.nikola-lab.cn/we-chat-app/sendVip.png"></image>
+        <image class="modalImg" src="https://static.nikola-lab.cn/we-chat-app/send_vip.png"></image>
     </view>
-</view>
+</van-overlay>

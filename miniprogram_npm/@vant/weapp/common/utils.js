@@ -1,6 +1,6 @@
 require("../../../../@babel/runtime/helpers/Arrayincludes"), Object.defineProperty(exports, "__esModule", {
     value: !0
-}), exports.isPC = exports.getCurrentPage = exports.clamp = exports.addNumber = exports.toPromise = exports.groupSetData = exports.getAllRect = exports.getRect = exports.pickExclude = exports.requestAnimationFrame = exports.addUnit = exports.nextTick = exports.range = exports.getSystemInfoSync = exports.isDef = void 0;
+}), exports.getCurrentPage = exports.toPromise = exports.groupSetData = exports.getAllRect = exports.getRect = exports.pickExclude = exports.requestAnimationFrame = exports.addUnit = exports.nextTick = exports.range = exports.getSystemInfoSync = exports.isDef = void 0;
 
 var e = require("./validator"), t = require("./version"), r = require("./validator");
 
@@ -50,14 +50,7 @@ Object.defineProperty(exports, "getSystemInfoSync", {
     (0, t.canIUseGroupSetData)() ? e.groupSetData(r) : r();
 }, exports.toPromise = function(t) {
     return (0, e.isPromise)(t) ? t : Promise.resolve(t);
-}, exports.addNumber = function(e, t) {
-    var r = Math.pow(10, 10);
-    return Math.round((e + t) * r) / r;
-};
-
-exports.clamp = function(e, t, r) {
-    return Math.min(Math.max(e, t), r);
 }, exports.getCurrentPage = function() {
     var e = getCurrentPages();
     return e[e.length - 1];
-}, exports.isPC = [ "mac", "windows" ].includes((0, t.getSystemInfoSync)().platform);
+};

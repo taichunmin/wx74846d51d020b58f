@@ -29,10 +29,6 @@ var o = require("../common/component"), e = require("../mixins/button");
             type: String,
             value: "fill"
         },
-        webp: {
-            type: Boolean,
-            value: !1
-        },
         showError: {
             type: Boolean,
             value: !0

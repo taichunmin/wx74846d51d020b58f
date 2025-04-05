@@ -7,10 +7,14 @@
         "devicebar": "/components/device-tab-bar/device",
         "master": "../../components/switch-master-mode/master",
         "tabbar": "../../components/custom-tab-bar/index",
-        "card-item": "../../components/card-wallet-item/item",
+        "folder-item": "../../components/folder-item/item",
+        "folder-top": "../../components/folder-top/index",
+        "save-data": "../../components/dialog-tag-nick-editor/editor",
         "card-search": "/components/card-wallet-search/index",
+        "cloud-or-local": "/components/cloud-or-local/index",
         "no-card": "/components/no-card/index",
-        "add-card": "/components/dialog-add-card/index"
+        "add-card": "/components/dialog-add-card/index",
+        "backitp": "/components/back-intercept/back"
     },
     "navigationBarTitleText": "卡包",
     "navigationStyle": "custom",

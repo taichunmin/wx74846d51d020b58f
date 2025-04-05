@@ -60,6 +60,9 @@
                 <view style="width:100%;" wx:if="{{showHardTips}}">
                     <view style="line-height:50rpx; width:64%; margin:auto; text-align: center;">高难度CPU卡，耗时较久，请耐心等待</view>
                 </view>
+                <view style="width:100%;" wx:if="{{fchkStatus.show}}">
+                    <view style="line-height:50rpx; margin:auto; text-align: center;"> {{fchkStatus.max}}个密钥包已扫描{{fchkStatus.current}}个，请耐心等待哦~ </view>
+                </view>
             </view>
         </view>
     </block>
@@ -108,5 +111,5 @@
         </view>
     </block>
     <backitp bindback="onUserBack" canback="{{canExit}}" id="backIntercept"></backitp>
-    <save-data bind:cancel="onUserCancelDumpSave" bind:confirm="onUserConfirmDumpSave" placeholder="请输入数据名称" show="{{showDumpSaveDialog}}" theme="light" title="保存数据" type="save-nick"></save-data>
+    <save-data bind:cancel="onUserCancelDumpSave" bind:confirm="onUserConfirmDumpSave" btnCancel="取消" btnConfirm="确定" placeholder="请输入数据名称" show="{{showDumpSaveDialog}}" theme="light" title="保存数据" type="save-nick"></save-data>
 </view>

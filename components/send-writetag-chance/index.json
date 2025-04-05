@@ -1,4 +1,6 @@
 {
     "component": true,
-    "usingComponents": {}
+    "usingComponents": {
+        "van-overlay": "../../miniprogram_npm/@vant/weapp/overlay/index"
+    }
 }

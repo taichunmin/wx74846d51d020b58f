@@ -1,7 +1,6 @@
 Object.defineProperty(exports, "__esModule", {
     value: !0
 }), (0, require("../common/component").VantComponent)({
-    classes: [ "info-class" ],
     props: {
         dot: Boolean,
         info: null,

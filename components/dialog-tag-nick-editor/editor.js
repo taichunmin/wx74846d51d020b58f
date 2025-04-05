@@ -1,6 +1,6 @@
-var e = require("../../8462214255C842DFE2044945663685D7.js");
+var t = require("../../76F8096255C842DF109E616502B6D685.js");
 
-require("../../6B5F0E3755C842DF0D39663027C585D7.js");
+require("../../AB5D946455C842DFCD3BFC63A316D685.js");
 
 Component({
     properties: {
@@ -27,18 +27,24 @@ Component({
         placeholder: {
             type: String,
             value: ""
+        },
+        btnCancel: {
+            type: String
+        },
+        btnConfirm: {
+            type: String
         }
     },
     data: {},
     observers: {
-        show: function(t) {
-            if (console.log("这里的placeholder是" + this.data.type), "save-nick" == this.data.type && t) {
+        show: function(e) {
+            if ("save-nick" == this.data.type && e) {
                 var a = this;
-                "local" == e.cloudOrLocal() ? a.setData({
-                    placeholder: e.createDefaultNick()
-                }) : e.createDefaultNickCloud(function(e) {
+                "local" == t.cloudOrLocal() ? a.setData({
+                    placeholder: t.createDefaultNick()
+                }) : t.createDefaultNickCloud(function(t) {
                     a.setData({
-                        placeholder: e
+                        placeholder: t
                     });
                 });
             }
@@ -46,22 +52,22 @@ Component({
     },
     lifetimes: {
         attached: function() {
-            var e = {};
+            var t = {};
             switch (this.data.theme) {
               case "light":
-                e.base = "background: #FFFFFF", e.title = "color: #000000; font-weigth", e.input = "color: #333333; border-color: rgba(0, 0, 0, 0.1); caret-color: #F5A200;", 
-                e.btnbase = "border-top: 1px solid rgba(0, 0, 0, 0.1);", e.btncancel = "border-right: 1px solid rgba(0, 0, 0, 0.1); color: #000000;";
+                t.base = "background: #FFFFFF", t.title = "color: #000000; font-weigth", t.input = "color: #333333; border-color: rgba(0, 0, 0, 0.1); caret-color: #F5A200;", 
+                t.btnbase = "border-top: 1px solid rgba(0, 0, 0, 0.1);", t.btncancel = "border-right: 1px solid rgba(0, 0, 0, 0.1); color: #000000;";
             }
             this.setData({
-                themeMap: e
+                themeMap: t
             });
         }
     },
     methods: {
         onSaveDumpClick: function() {
-            var e = this.data.value;
-            e.length <= 0 && (e = this.data.placeholder), this.triggerEvent("confirm", {
-                dumpName: e
+            var t = this.data.value;
+            t.length <= 0 && (t = this.data.placeholder), this.triggerEvent("confirm", {
+                dumpName: t
             });
         },
         onSaveCancel: function() {
@@ -69,9 +75,9 @@ Component({
                 value: ""
             }), this.triggerEvent("cancel");
         },
-        onCardNameInput: function(t) {
-            t.detail.value.length > 12 ? e.showToast("输入字符不能大于12位") : this.setData({
-                value: t.detail.value
+        onCardNameInput: function(e) {
+            e.detail.value.length > 12 ? t.showToast("输入字符不能大于12位") : this.setData({
+                value: e.detail.value
             });
         }
     }

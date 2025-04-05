@@ -1,15 +1,25 @@
-<view class="container-page-base">
-    <card-search bind:clear="onClearSearch" bind:inputTyping="onUserSearch"></card-search>
+<view class="wraper">
+    <cloud-or-local></cloud-or-local>
     <view class="container-line"></view>
-    <view class="container-dump-list" style="display: {{dumpList==''||dumpSearchFound==false?'none':''}};" wx:if="{{dumpSearchFound||dumpList!=''}}">
-        <view class="container-dump-item" wx:if="{{item.show}}" wx:for="{{dumpList}}" wx:for-index="key" wx:key="key">
-            <card-item bind:click="onDumpSelected" color="{{item.color}}" data-id="{{key}}" nick="{{item.nick}}" type="{{item.type}}" uuid="{{item.uuid}}">
-                <radio checked="{{item.checked}}" class="rightArrowImg"></radio>
-            </card-item>
-        </view>
+    <view class="header">
+        <folder-top bind:onCancel="onCancel" bind:onClearSearch="onClearSearch" bind:onScreen="onScreen" bind:onShowSearchFrame="onShowSearchFrame" bind:onTurnBack="onTurnBackPreviousFolder" bind:onUserSearch="onUserSearch" currentFolder="{{currentFolder}}" current_path="{{current_path}}" position_title="{{position_title}}" screenShow="{{false}}" show_search_frame="{{show_search_frame}}" view_current_path="{{view_current_path}}"></folder-top>
     </view>
-    <view style="margin-top: 232rpx;flex: 1;" wx:if="{{!dumpSearchFound||dumpList==''}}">
-        <no-card bind:addCard="addCard" cardType="{{type}}" mode="0"></no-card>
+    <view class="main">
+        <view class="folder-content folder-content-public-style1' ">
+            <view class="folder-content-item" wx:if="{{item.show==true&&showFolder==true}}" wx:for="{{dir_view}}" wx:key="index">
+                <folder-item bind:onDumpItemClick="onFolderItemClick" bind:onSelectItem="onSelectItem" checked="{{item.checked}}" file_type="folder" index="{{item.index}}" itemWidth="" marginLeft="20rpx" mode="1" nick="{{item.name}}" showCheckbox="{{showCheckbox}}" type="{{item.fileCount}}">
+                    <image src="../../static/img/rightArrow.png" style="width: 35rpx; height: 35rpx;"></image>
+                </folder-item>
+            </view>
+            <view class="folder-content-item" wx:if="{{item.show==true}}" wx:for="{{file_view}}" wx:key="index">
+                <folder-item bind:onFileItemClick="onFileItemClick" bind:onSelectItem="onSelectItem" checked="{{item.checked}}" fileUuid="{{item.uuid}}" file_type="{{item.file_type}}" index="{{index}}" itemWidth="" marginLeft="20rpx" mode="1" nick="{{item.name}}" path="{{item.path}}" showCheckbox="{{showCheckbox}}" type="{{item.type}}">
+                    <radio checked="{{item.checked}}" color="#f5a200"></radio>
+                </folder-item>
+            </view>
+        </view>
+        <view class="no-card" wx:if="{{dumpSearchFound}}">
+            <no-card bind:addCard="addCard" cardType="{{type}}" mode="0"></no-card>
+        </view>
     </view>
     <view class="bottomBtn">
         <button bindtap="turnBack" class="cancel-btn prohibit">取消选择</button>

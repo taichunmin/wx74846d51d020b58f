@@ -1,4 +1,4 @@
-var t = require("../../8462214255C842DFE2044945663685D7.js");
+var t = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
@@ -171,7 +171,6 @@ Page({
     onLoad: function(t) {},
     onReady: function() {},
     onShow: function() {
-        t.checkToken(this);
         var a = this;
         t.query_video_platform(function(t) {
             for (var o = [], e = 0; e < t.length; e++) o.push(t[e].platform);

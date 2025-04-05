@@ -1,4 +1,4 @@
-var t = require("../../8462214255C842DFE2044945663685D7.js");
+var t = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
@@ -58,78 +58,56 @@ Page({
         var e = this;
         e.setData({
             disabled: !0
-        }), wx.request({
-            url: t.getRequestUrl() + "Login/getCode",
-            data: {
-                phone: e.data.input_phone,
-                uuid: e.data.uuid,
-                code: e.data.input_graphic_verification_code
-            },
-            header: {
-                "content-type": "application/json"
-            },
-            success: function(i) {
-                if (console.log("验证码的返回信息是 " + JSON.stringify(i)), 1 == i.data.status) {
-                    wx.showToast({
-                        title: "短信验证码已发送",
-                        icon: "none",
-                        duration: 2e3
-                    });
-                    var a = e.data.currentTime, n = setInterval(function() {
-                        a--, e.setData({
-                            remainText: a + "s"
-                        }), a <= 0 && (clearInterval(n), e.setData({
-                            remainText: "重新发送",
-                            currentTime: 61,
-                            disabled: !1,
-                            color: "#59b550"
-                        }));
-                    }, 1e3);
-                } else t.showToast(i.data.msg), e.getCode(), e.setData({
-                    disabled: !1
+        });
+        var i = t.getRequestUrl() + "Login/getCode", a = {
+            phone: e.data.input_phone,
+            uuid: e.data.uuid,
+            code: e.data.input_graphic_verification_code
+        };
+        t.requestFn(i, "post", a, function(i) {
+            if (1 == i.data.status) {
+                wx.showToast({
+                    title: "短信验证码已发送",
+                    icon: "none",
+                    duration: 2e3
                 });
-            },
-            fail: function(t) {
-                console.log(t);
-            }
+                var a = e.data.currentTime, n = setInterval(function() {
+                    a--, e.setData({
+                        remainText: a + "s"
+                    }), a <= 0 && (clearInterval(n), e.setData({
+                        remainText: "重新发送",
+                        currentTime: 61,
+                        disabled: !1,
+                        color: "#59b550"
+                    }));
+                }, 1e3);
+            } else t.showToast(i.data.msg), e.getCode(), e.setData({
+                disabled: !1
+            });
         });
     },
     onLogin: function() {
-        var e = this;
-        wx.request({
-            url: t.getRequestUrl() + "Login/loginByMobileVerificationCode",
-            data: {
-                phone: e.data.input_phone,
-                mobileVerificationCode: e.data.input_mobile_verification_code,
-                system_type: e.data.platform
-            },
-            header: {
-                "content-type": "application/json"
-            },
-            success: function(i) {
-                1 == i.data.status ? (wx.showToast({
-                    title: i.data.msg,
-                    icon: "success",
-                    duration: 1e3
-                }), t.getOpenId(i.data.data.phone), wx.setStorage({
-                    key: "phoneObj",
-                    data: i.data.data.phone,
-                    success: function(t) {
-                        console.log("数据缓存成功");
-                    }
-                }), wx.setStorage({
-                    key: "token",
-                    data: i.data.data.token,
-                    success: function(t) {
-                        console.log("数据缓存成功");
-                    }
-                }), e.getOpenerEventChannel().emit("closeMainLoginPage"), wx.navigateBack({
-                    delta: -1
-                })) : t.showToast(i.data.msg);
-            },
-            fail: function(t) {
-                console.log(t);
-            }
+        var e = this, i = t.getRequestUrl() + "Login/loginByMobileVerificationCode", a = {
+            phone: e.data.input_phone,
+            mobileVerificationCode: e.data.input_mobile_verification_code,
+            system_type: e.data.platform
+        };
+        t.requestFn(i, "post", a, function(i) {
+            1 == i.data.status ? (wx.showToast({
+                title: i.data.msg,
+                icon: "success",
+                duration: 1e3
+            }), t.getOpenId(i.data.data.phone), wx.setStorage({
+                key: "phoneObj",
+                data: i.data.data.phone,
+                success: function(t) {}
+            }), wx.setStorage({
+                key: "token",
+                data: i.data.data.token,
+                success: function(t) {}
+            }), e.getOpenerEventChannel().emit("closeMainLoginPage"), wx.navigateBack({
+                delta: -1
+            })) : t.showToast(i.data.msg);
         });
     },
     onUserLoginCancel: function() {
@@ -139,24 +117,14 @@ Page({
         this.getCode();
     },
     getCode: function() {
-        var e = this;
-        wx.request({
-            url: t.getRequestUrl() + "Verifycode/verifyCode",
-            data: {
-                key: e.data.input_graphic_verification_code
-            },
-            header: {
-                "content-type": "application/json"
-            },
-            success: function(t) {
-                e.setData({
-                    imgCodeIcon: t.data.data.img,
-                    uuid: t.data.data.uuid
-                });
-            },
-            fail: function(t) {
-                console.log(t);
-            }
+        var e = this, i = t.getRequestUrl() + "Verifycode/verifyCode", a = {
+            key: e.data.input_graphic_verification_code
+        };
+        t.requestFn(i, "post", a, function(t) {
+            e.setData({
+                imgCodeIcon: t.data.data.img,
+                uuid: t.data.data.uuid
+            });
         });
     },
     judgeSystemType: function() {

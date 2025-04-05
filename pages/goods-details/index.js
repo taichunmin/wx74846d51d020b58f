@@ -1,5 +1,10 @@
-var a = (0, require("../../@babel/runtime/helpers/interopRequireDefault").default)(require("@vant/weapp/dialog/dialog")), t = (require("../../8462214255C842DFE2044945663685D7.js"), 
-require("../../8462214255C842DFE2044945663685D7.js"));
+var a, t = (a = require("@vant/weapp/dialog/dialog")) && a.__esModule ? a : {
+    default: a
+};
+
+require("../../76F8096255C842DF109E616502B6D685.js");
+
+var e = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
@@ -69,7 +74,7 @@ Page({
     },
     pullAaddressData: function() {
         var a = this;
-        t.pullAddressData(function(t) {
+        e.pullAddressData(function(t) {
             t.length <= 0 ? a.setData({
                 addressData: null
             }) : a.setData({
@@ -78,88 +83,88 @@ Page({
         });
     },
     onChoosePayMethod: function(a) {
-        var e = this;
-        e.setData({
+        var t = this;
+        t.setData({
             userInputGoldCoin: 0
         });
-        for (var s, o = a.currentTarget.dataset.id, i = e.data.cashAndGoldCoinsData, d = 0; d < i.length; d++) i[d].checked = !1;
-        if (i[o].checked = !0, 0 == o) {
-            var n = i[0].cash;
-            e.data.select_category[0].price = n.slice(0, n.length - 1), e.setData({
-                select_category: e.data.select_category,
+        for (var s, o = a.currentTarget.dataset.id, d = t.data.cashAndGoldCoinsData, i = 0; i < d.length; i++) d[i].checked = !1;
+        if (d[o].checked = !0, 0 == o) {
+            var n = d[0].cash;
+            t.data.select_category[0].price = n.slice(0, n.length - 1), t.setData({
+                select_category: t.data.select_category,
                 needGoldCoin: 0
             });
         } else {
             var c, r;
-            c = null != e.data.goods_data.commodity_classification ? e.data.select_category[0].index : "", 
-            2 == o ? (r = "true", e.setData({
+            c = null != t.data.goods_data.commodity_classification ? t.data.select_category[0].index : "", 
+            2 == o ? (r = "true", t.setData({
                 userInputStatus: "true"
-            })) : (r = "false", e.setData({
+            })) : (r = "false", t.setData({
                 userInputStatus: "false"
-            })), t.calculatedAmount(e.data.goods_data.id, 1, !0, c, r, e.data.userInputGoldCoin, function(a) {
+            })), e.calculatedAmount(t.data.goods_data.id, 1, !0, c, r, t.data.userInputGoldCoin, function(a) {
                 if (1 == a.data.status) {
-                    var t = e.data.select_category;
-                    t[0].price = a.data.data.final_price, e.setData({
-                        select_category: t,
+                    var e = t.data.select_category;
+                    e[0].price = a.data.data.final_price, t.setData({
+                        select_category: e,
                         needGoldCoin: a.data.data.deduct_gold_coins
                     });
                 }
             });
         }
-        s = 0 != o, e.setData({
-            cashAndGoldCoinsData: i,
+        s = 0 != o, t.setData({
+            cashAndGoldCoinsData: d,
             cashChoose: s,
             purchase_count: 1,
             payment_method_index: o
         });
     },
     onUserInputGoldCoin: function(a) {
-        var e, s = this;
+        var t, s = this;
         s.setData({
             userInputStatus: !0,
             userInputGoldCoin: a.detail.value
-        }), "" == a.detail.value && (a.detail.value = 0), null != s.data.goods_data.commodity_classification && (e = s.data.select_category[0].index), 
-        t.calculatedAmount(s.data.goods_data.id, 1, !0, e, s.data.userInputStatus, a.detail.value, function(a) {
-            var e = s.data.select_category, o = s.data.cashAndGoldCoinsData;
-            1 == a.data.status ? (o[2].actualPayment = a.data.data.final_price + "元", e[0].price = a.data.data.final_price, 
+        }), "" == a.detail.value && (a.detail.value = 0), null != s.data.goods_data.commodity_classification && (t = s.data.select_category[0].index), 
+        e.calculatedAmount(s.data.goods_data.id, 1, !0, t, s.data.userInputStatus, a.detail.value, function(a) {
+            var t = s.data.select_category, o = s.data.cashAndGoldCoinsData;
+            1 == a.data.status ? (o[2].actualPayment = a.data.data.final_price + "元", t[0].price = a.data.data.final_price, 
             s.setData({
-                select_category: e,
+                select_category: t,
                 cashAndGoldCoinsData: o,
                 needGoldCoin: a.data.data.deduct_gold_coins
-            })) : (t.showToast(a.data.msg), o[2].actualPayment = a.data.data.original_price + "元", 
-            e[0].price = a.data.data.original_price, s.setData({
-                select_category: e,
+            })) : (e.showToast(a.data.msg), o[2].actualPayment = a.data.data.original_price + "元", 
+            t[0].price = a.data.data.original_price, s.setData({
+                select_category: t,
                 cashAndGoldCoinsData: o,
                 userInputGoldCoin: 0
             }));
         });
     },
     onPurchaseLimit: function() {
-        1 == this.data.purchase_count ? t.showToast("购买件数只能是>=1且小于" + this.data.select_category[0].purchase_limit_count) : t.showToast("此商品限购" + this.data.select_category[0].purchase_limit_count + "件");
+        1 == this.data.purchase_count ? e.showToast("购买件数只能是>=1且小于" + this.data.select_category[0].purchase_limit_count) : e.showToast("此商品限购" + this.data.select_category[0].purchase_limit_count + "件");
     },
     onGetCount: function(a) {
-        var e = this;
+        var t = this;
         if (a.detail.length > 1) {
-            if (0 == a.detail.substr(0, 1)) return e.setData({
+            if (0 == a.detail.substr(0, 1)) return t.setData({
                 purchase_count: 1
-            }), void t.showToast("不能以0开头");
-        } else if (0 == a.detail) return e.setData({
+            }), void e.showToast("不能以0开头");
+        } else if (0 == a.detail) return t.setData({
             purchase_count: 1
-        }), void t.showToast("不能为0");
-        e.setData({
+        }), void e.showToast("不能为0");
+        t.setData({
             purchase_count: a.detail
         });
-        var s = e.data.goods_data, o = e.data.select_category[0].index, i = e.data.userInputStatus, d = e.data.userInputGoldCoin;
-        t.calculatedAmount(s.id, a.detail, e.data.cashChoose, o, i, d, function(a) {
-            var s = e.data.select_category, o = e.data.cashAndGoldCoinsData;
-            1 == a.data.status ? (s[0].price = a.data.data.final_price, 2 == e.data.payment_method_index && (o[2].actualPayment = a.data.data.final_price + "元", 
-            e.setData({
+        var s = t.data.goods_data, o = t.data.select_category[0].index, d = t.data.userInputStatus, i = t.data.userInputGoldCoin;
+        e.calculatedAmount(s.id, a.detail, t.data.cashChoose, o, d, i, function(a) {
+            var s = t.data.select_category, o = t.data.cashAndGoldCoinsData;
+            1 == a.data.status ? (s[0].price = a.data.data.final_price, 2 == t.data.payment_method_index && (o[2].actualPayment = a.data.data.final_price + "元", 
+            t.setData({
                 cashAndGoldCoinsData: o
-            })), e.setData({
+            })), t.setData({
                 select_category: s,
                 needGoldCoin: a.data.data.deduct_gold_coins
-            })) : 0 == a.data.status && (t.showToast("金币不够"), 2 == e.data.payment_method_index && (s[0].price = a.data.data.original_price, 
-            o[2].actualPayment = a.data.data.original_price + "元", e.setData({
+            })) : 0 == a.data.status && (e.showToast("金币不够"), 2 == t.data.payment_method_index && (s[0].price = a.data.data.original_price, 
+            o[2].actualPayment = a.data.data.original_price + "元", t.setData({
                 cashAndGoldCoinsData: o,
                 select_category: s,
                 purchase_count: 1,
@@ -169,16 +174,16 @@ Page({
         });
     },
     categorySelect: function(a) {
-        if (t.isLogin()) {
-            var e = this, s = a.currentTarget.dataset.id, o = this.data.goods_data;
-            e.currentCategorySelect(o, s);
-            var i = e.data.select_category[0].index;
-            e.setData({
+        if (e.isLogin()) {
+            var t = this, s = a.currentTarget.dataset.id, o = this.data.goods_data;
+            t.currentCategorySelect(o, s);
+            var d = t.data.select_category[0].index;
+            t.setData({
                 userInputStatus: "false",
                 userInputGoldCoin: 0
-            }), t.calculatedAmount(o.id, 1, !0, i, "false", 0, function(a) {
+            }), e.calculatedAmount(o.id, 1, !0, d, "false", 0, function(a) {
                 if (1 == a.data.status) {
-                    var t = [ {
+                    var e = [ {
                         pay_method: "现金",
                         cash: a.data.data.original_price + "元",
                         checked: !0,
@@ -193,26 +198,26 @@ Page({
                         checked: !1,
                         actualPayment: "0元"
                     } ];
-                    e.setData({
-                        cashAndGoldCoinsData: t
+                    t.setData({
+                        cashAndGoldCoinsData: e
                     });
                 }
-            }), e.setData({
+            }), t.setData({
                 goods_data: o
             });
         } else this.loginTips();
     },
     setStatus: function(a, t, e) {
-        var s = a.commodity_classification, o = s[t].classification_name, i = s[t].classification_img, d = s[t].price, n = s[t].purchase_limit_count, c = s[t].needGoldCoinCount;
-        d = s[t].price;
+        var s = a.commodity_classification, o = s[t].classification_name, d = s[t].classification_img, i = s[t].price, n = s[t].purchase_limit_count, c = s[t].needGoldCoinCount;
+        i = s[t].price;
         if (0 == e) {
             for (var r = 0; r < s.length; r++) s[r].checked = !1;
             s[t].checked = !0, this.setData({
                 select_category: [ {
                     index: t,
-                    img_url: i,
+                    img_url: d,
                     category_name: o,
-                    price: d,
+                    price: i,
                     purchase_limit_count: n
                 } ],
                 goods_data: a,
@@ -225,7 +230,7 @@ Page({
                     index: t,
                     img_url: u,
                     category_name: "",
-                    price: d,
+                    price: i,
                     purchase_limit_count: n
                 } ],
                 goods_data: this.data.goods_data
@@ -253,7 +258,7 @@ Page({
         });
     },
     loginTips: function() {
-        a.default.confirm({
+        t.default.confirm({
             message: "购买商品需要先登录哦~",
             confirmButtonText: "登录",
             cancelButtonText: "取消"
@@ -264,33 +269,33 @@ Page({
         }).catch(function() {});
     },
     submit: function() {
-        t.isLogin() ? "goldCoin" == this.data.goods_type ? this.goodsExchange() : this.buyNow() : this.loginTips();
+        e.isLogin() ? "goldCoin" == this.data.goods_type ? this.goodsExchange() : this.buyNow() : this.loginTips();
     },
     addressInfo: function() {
         var a = this.data.addressData;
         if (null == a || 0 == a.length) return null;
         var t = a.id, e = a.consignee, s = a.phone, o = a.address;
         a = e + " " + s + " " + o;
-        var i = {};
-        i.address_id = t, i.consignee = e, i.consignee_phone = s, i.consignee_address = o;
         var d = {};
-        return d.mailAddress = a, d.address_info = i, d;
+        d.address_id = t, d.consignee = e, d.consignee_phone = s, d.consignee_address = o;
+        var i = {};
+        return i.mailAddress = a, i.address_info = d, i;
     },
     buyNow: function() {
         wx.showLoading("订单生成中");
-        var e = this, s = t.getPhone(), o = t.obtain(), i = e.addressInfo();
-        if (null != i) {
-            var d = i.mailAddress, n = i.address_info, c = e.data.select_category[0].index, r = e.data.userInputStatus, u = e.data.userInputGoldCoin;
+        var a = this, s = e.getPhone(), o = e.obtain(), d = a.addressInfo();
+        if (null != d) {
+            var i = d.mailAddress, n = d.address_info, c = a.data.select_category[0].index, r = a.data.userInputStatus, u = a.data.userInputGoldCoin;
             wx.request({
-                url: t.getRequestUrl() + "Createorder/createOrder",
+                url: e.getRequestUrl() + "Createorder/createOrder",
                 data: {
                     phone: s,
                     token: o,
-                    product_id: e.data.goods_data.id,
-                    mailAddress: d,
+                    product_id: a.data.goods_data.id,
+                    mailAddress: i,
                     address_info: n,
-                    choose: e.data.cashChoose,
-                    purchase_count: e.data.purchase_count,
+                    choose: a.data.cashChoose,
+                    purchase_count: a.data.purchase_count,
                     select_index: c,
                     userInputStatus: r,
                     userInputGoldCoin: u
@@ -298,41 +303,41 @@ Page({
                 header: {
                     "content-type": "application/json"
                 },
-                success: function(a) {
-                    if (0 != a.data.status && 2 != a.data.status) {
-                        if (1 == a.data.status) {
-                            var i = a.data.data;
+                success: function(t) {
+                    if (0 != t.data.status && 2 != t.data.status) {
+                        if (1 == t.data.status) {
+                            var d = t.data.data;
                             wx.request({
-                                url: t.getRequestUrl() + "Goldcoincash/prepayId",
+                                url: e.getRequestUrl() + "Goldcoincash/prepayId",
                                 data: {
                                     phone: s,
                                     token: o,
-                                    db_order_number: i
+                                    db_order_number: d
                                 },
                                 header: {
                                     "content-type": "application/json"
                                 },
-                                success: function(a) {
-                                    t.goToPay(i, function(a) {
+                                success: function(t) {
+                                    e.goToPay(d, function(t) {
                                         wx.requestPayment({
-                                            timeStamp: a.data.timeStamp,
-                                            nonceStr: a.data.nonceStr,
-                                            package: a.data.package,
+                                            timeStamp: t.data.timeStamp,
+                                            nonceStr: t.data.nonceStr,
+                                            package: t.data.package,
                                             signType: "MD5",
-                                            paySign: a.data.paySign,
+                                            paySign: t.data.paySign,
                                             total_fee: .01,
                                             success: function(a) {
                                                 wx.navigateTo({
-                                                    url: "/pages/user-payment-succeeded/index?db_order_number=" + i,
+                                                    url: "/pages/user-payment-succeeded/index?db_order_number=" + d,
                                                     complete: function() {
                                                         wx.hideLoading({});
                                                     }
                                                 });
                                             },
-                                            fail: function(a) {
-                                                t.showToast("用户取消支付"), e.setData({
+                                            fail: function(t) {
+                                                e.showToast("用户取消支付"), a.setData({
                                                     needGoldCoin: 0
-                                                }), t.queryOrderInfo(i, function(a) {
+                                                }), e.queryOrderInfo(d, function(a) {
                                                     wx.navigateTo({
                                                         url: "/pages/goods-received/index?data=".concat(JSON.stringify(a)),
                                                         complete: function() {
@@ -346,65 +351,65 @@ Page({
                                 }
                             });
                         }
-                    } else t.showToast(a.data.msg);
+                    } else e.showToast(t.data.msg);
                 }
             });
-        } else a.default.alert({
+        } else t.default.alert({
             message: "请先选择一个收货地址"
         }).then(function() {});
     },
     goodsExchange: function() {
-        var e = this, s = e.data.select_category[0].category_name, o = !1;
-        if ("安卓OTG供电插头" == s || "苹果OTG供电插头" == s) o = !0; else if (1 == this.data.isvip) return void t.showToast("您已经是永久VIP，无需兑换");
+        var a = this, s = a.data.select_category[0].category_name, o = !1;
+        if ("安卓OTG供电插头" == s || "苹果OTG供电插头" == s) o = !0; else if (1 == this.data.isvip) return void e.showToast("您已经是永久VIP，无需兑换");
         wx.showModal({
             title: "",
             content: "确认兑换吗？",
             success: function(s) {
                 if (s.confirm) {
-                    var i = e.data.select_category[0].index, d = e.data.goods_data.id, n = e.addressInfo();
+                    var d = a.data.select_category[0].index, i = a.data.goods_data.id, n = a.addressInfo();
                     if (1 == o) {
-                        if (null == n) return void a.default.alert({
+                        if (null == n) return void t.default.alert({
                             message: "请先选择一个收货地址"
                         }).then(function() {});
                         var c = n.mailAddress, r = n.address_info;
                     }
-                    var u = d, l = t.getPhone(), h = t.obtain();
+                    var u = i, l = e.getPhone(), h = e.obtain();
                     wx.request({
-                        url: t.getRequestUrl() + "goldcoin/commodityExchange",
+                        url: e.getRequestUrl() + "goldcoin/commodityExchange",
                         data: {
                             phone: l,
                             token: h,
                             exchange_item: u,
-                            select_category_index: i,
+                            select_category_index: d,
                             mailAddress: c,
                             address_info: r
                         },
                         header: {
                             "content-type": "application/json"
                         },
-                        success: function(a) {
-                            if (0 != a.data.status) if (1 == a.data.status) {
+                        success: function(t) {
+                            if (0 != t.data.status) if (1 == t.data.status) {
                                 var s;
-                                if ("10次写卡次数" == a.data.msg || "30次写卡次数" == a.data.msg || "50次写卡次数" == a.data.msg) s = {
-                                    number: a.data.msg.slice(0, 3),
-                                    text: a.data.msg.slice(3, 7)
-                                }, e.setData({
+                                if ("10次写卡次数" == t.data.msg || "30次写卡次数" == t.data.msg || "50次写卡次数" == t.data.msg) s = {
+                                    number: t.data.msg.slice(0, 3),
+                                    text: t.data.msg.slice(3, 7)
+                                }, a.setData({
                                     goods_name_frequency: s,
                                     monthly_card: ""
-                                }); else e.setData({
-                                    monthly_card: a.data.msg,
+                                }); else a.setData({
+                                    monthly_card: t.data.msg,
                                     goods_name_frequency: ""
                                 });
-                                "VIP永久" == a.data.msg && e.setData({
+                                "VIP永久" == t.data.msg && a.setData({
                                     isvip: !0
-                                }), e.setData({
+                                }), a.setData({
                                     overlayShow: !0,
                                     exchange_status: "success"
                                 });
-                            } else "金币余额不足" == a.data.msg ? e.setData({
+                            } else "金币余额不足" == t.data.msg ? a.setData({
                                 overlayShow: !0,
                                 exchange_status: "fail"
-                            }) : "已经兑换过了" == a.data.msg ? t.showToast("每个账户只能兑换苹果/安卓转接头各一个") : 0 == a.data.status && t.showToast("兑换失败，请与客服联系"); else t.showToast(a.data.msg);
+                            }) : "已经兑换过了" == t.data.msg ? e.showToast("每个账户只能兑换苹果/安卓转接头各一个") : 0 == t.data.status && e.showToast("兑换失败，请与客服联系"); else e.showToast(t.data.msg);
                         }
                     });
                 } else console.log("用户点击取消");
@@ -412,10 +417,10 @@ Page({
         });
     },
     calculatedAmount: function(a) {
-        var e = this, s = this.data.select_category[0].index;
-        t.calculatedAmount(a.id, 1, !0, s, !1, 0, function(a) {
+        var t = this, s = this.data.select_category[0].index;
+        e.calculatedAmount(a.id, 1, !0, s, !1, 0, function(a) {
             if (1 == a.data.status) {
-                var t = [ {
+                var e = [ {
                     pay_method: "现金",
                     cash: a.data.data.original_price + "元",
                     checked: !0,
@@ -429,13 +434,13 @@ Page({
                     pay_method: "自定义抵扣金币",
                     checked: !1,
                     actualPayment: "0元"
-                } ], s = e.data.select_category;
-                s[0].price = a.data.data.original_price, e.setData({
-                    cashAndGoldCoinsData: t,
+                } ], s = t.data.select_category;
+                s[0].price = a.data.data.original_price, t.setData({
+                    cashAndGoldCoinsData: e,
                     select_category: s
                 });
             }
-        }), e.setData({
+        }), t.setData({
             goods_data: a
         });
     },
@@ -446,7 +451,7 @@ Page({
     },
     checkVip: function() {
         var a = this;
-        t.remainNumber(function(t, e, s) {
+        e.remainNumber(function(t, e, s) {
             if (null == e) a.setData({
                 isvip: !1
             }); else {
@@ -477,7 +482,7 @@ Page({
         });
     },
     onShow: function() {
-        t.isLogin() ? (this.setData({
+        e.isLogin() ? (this.setData({
             payment_method_index: 0,
             cashChoose: !1
         }), this.calculatedAmount(this.data.received_data), null == this.data.addressData && this.pullAaddressData(), 

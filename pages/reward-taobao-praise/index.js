@@ -1,4 +1,4 @@
-var t = require("../../8462214255C842DFE2044945663685D7.js");
+var t = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
@@ -105,14 +105,14 @@ Page({
                 a.setData({
                     canSubmit: !1
                 });
-                var c = t.randomUuid();
+                var f = t.randomUuid();
                 wx.showLoading({
                     title: "上传中"
                 });
-                var f = a.data.fileList, l = t.obtain(this), d = t.getPhone();
-                for (s = 0; s < f.length; s++) wx.uploadFile({
+                var c = a.data.fileList, l = t.obtain(this), d = t.getPhone();
+                for (s = 0; s < c.length; s++) wx.uploadFile({
                     url: t.getRequestUrl() + "Taobaopraise/newUploadimg",
-                    filePath: f[s].url,
+                    filePath: c[s].url,
                     name: "file",
                     formData: {
                         user_name: a.data.username,
@@ -121,7 +121,7 @@ Page({
                         chooseData: a.data.chooseData,
                         phone: d,
                         token: l,
-                        uuid: c
+                        uuid: f
                     },
                     success: function(e) {
                         e = JSON.parse(e.data);
@@ -152,9 +152,7 @@ Page({
     },
     onLoad: function(t) {},
     onReady: function() {},
-    onShow: function() {
-        t.checkToken(this);
-    },
+    onShow: function() {},
     onHide: function() {},
     onUnload: function() {},
     onPullDownRefresh: function() {},

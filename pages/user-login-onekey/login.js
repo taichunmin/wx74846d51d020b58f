@@ -1,4 +1,4 @@
-var e = require("../../8462214255C842DFE2044945663685D7.js"), o = "";
+var e = require("../../76F8096255C842DF109E616502B6D685.js"), t = "";
 
 Page({
     data: {
@@ -11,24 +11,24 @@ Page({
         this.judgeSystemType();
     },
     onShow: function() {
-        var o, t = this, n = e.systemInfo.mpenv;
-        "SAAASDK" == n && (o = 1, wx.getPhoneMask({
+        var t, o = this, n = e.systemInfo.mpenv;
+        "SAAASDK" == n && (t = 1, wx.getPhoneMask({
             success: function(e) {
-                console.log("本机号码的掩码获取成功了。"), t.setData({
+                console.log("本机号码的掩码获取成功了。"), o.setData({
                     thisPhoneOneKeyLoginMask: e.phoneMask
                 });
             },
             fail: function(e) {
                 console.error(e);
             }
-        })), "WeChat" == n && (o = 0), this.setData({
-            loginMethod: o
+        })), "WeChat" == n && (t = 0), this.setData({
+            loginMethod: t
         });
     },
     judgeSystemType: function() {
-        var o = e.judgeSystemType();
+        var t = e.judgeSystemType();
         this.setData({
-            platform: o
+            platform: t
         });
     },
     onUserClickReadPrivacyPolicy: function() {
@@ -44,9 +44,9 @@ Page({
         });
     },
     onCheckChange: function(e) {
-        var o = !0;
-        e.detail.value.length <= 0 && (this.showPermissionWarn(), o = !1), this.setData({
-            canLogin: o
+        var t = !0;
+        e.detail.value.length <= 0 && (this.showPermissionWarn(), t = !1), this.setData({
+            canLogin: t
         });
     },
     checkPermission: function() {
@@ -62,62 +62,53 @@ Page({
             }
         });
     },
-    onPhoneOneClickLogin: function(t) {
-        console.log(t);
-        var n = t.detail.code;
-        wx.request({
-            url: e.getRequestUrl() + "Login/loginByMyNumberOneClickLogin",
-            method: "GET",
-            data: {
-                requestPhoneNumberCode: n,
-                system_type: that.data.platform
-            },
-            success: function(t) {
-                o = t.data.msg;
-                var n = t.data.data;
-                wx.setStorage({
-                    key: "phoneObj",
-                    data: o,
-                    success: function(e) {
-                        console.log("数据缓存成功");
-                    }
-                }), wx.setStorage({
-                    key: "token",
-                    data: n,
-                    success: function(e) {
-                        console.log("数据缓存成功");
-                    }
-                }), wx.removeStorageSync("image_cache"), setTimeout(function() {
-                    wx.navigateBack(), e.creatDefaultUserName(function(e) {
-                        console.log("2222sdljsdlj" + JSON.stringify(e)), 1 == e.data && console.log("生成默认名称成功！");
-                    });
-                }, 1e3);
-            },
-            fail: function(e) {
-                console.log(e);
-            }
+    onPhoneOneClickLogin: function(o) {
+        var n = o.detail.code, a = e.getRequestUrl() + "Login/loginByMyNumberOneClickLogin", s = {
+            requestPhoneNumberCode: n,
+            system_type: that.data.platform
+        };
+        e.requestFn(a, "GET", s, function(o) {
+            t = o.data.msg;
+            var n = o.data.data;
+            wx.setStorage({
+                key: "phoneObj",
+                data: t,
+                success: function(e) {
+                    console.log("数据缓存成功");
+                }
+            }), wx.setStorage({
+                key: "token",
+                data: n,
+                success: function(e) {
+                    console.log("数据缓存成功");
+                }
+            }), wx.removeStorageSync("image_cache"), setTimeout(function() {
+                wx.navigateBack(), e.creatDefaultUserName(function(e) {
+                    1 == e.data && console.log("生成默认名称成功！");
+                });
+            }, 1e3);
         });
     },
-    getPhoneNumber: function(t) {
-        "getPhoneNumber:ok" === t.detail.errMsg ? wx.request({
+    getPhoneNumber: function(o) {
+        "getPhoneNumber:ok" === o.detail.errMsg ? wx.request({
             url: e.getRequestUrl() + "Login/loginByWeChatOneClickLogin",
             data: {
-                code: t.detail.code
+                code: o.detail.code
             },
             header: {
                 "content-type": "application/json"
             },
-            success: function(t) {
-                if (1 == t.data.status) {
+            success: function(o) {
+                if (1 == o.data.status) {
                     wx.showToast({
-                        title: t.data.msg,
+                        title: o.data.msg,
                         icon: "success",
                         duration: 1e3
-                    }), e.getOpenId(t.data.data.phone), o = t.data.data.phone;
-                    var n = t.data.data.token;
+                    }), e.getOpenId(o.data.data.phone), t = o.data.data.phone;
+                    var n = o.data.data.token;
                     wx.setStorage({
                         key: "phoneObj",
-                        data: o,
+                        data: t,
                         success: function(e) {
                             console.log("数据缓存成功");
                         }

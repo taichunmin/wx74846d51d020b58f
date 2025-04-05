@@ -1,4 +1,4 @@
-var e = require("../../275D798255C842DF413B1185FE3585D7.js"), t = require("../../C667561555C842DFA0013E12C80685D7.js"), a = require("../../A3859AB555C842DFC5E3F2B2FA5585D7.js"), n = require("../../8462214255C842DFE2044945663685D7.js");
+var e = require("../../D6EF5C7155C842DFB08934760C65D685.js"), t = require("../../F9C23E6755C842DF9FA45660EB56D685.js"), a = require("../../DFE4D8E455C842DFB982B0E32585D685.js"), n = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
@@ -81,7 +81,7 @@ Page({
         var e = this;
         wx.showModal({
             title: "警告",
-            content: "更新前请确保：\r\n使用稳定可靠的电源，不使用充电宝或者笔记本进行供电，并且确保更新途中电源连接稳定，中途断电会损坏设备",
+            content: "更新前请确保：\r\n使用5v2a充电插头连接设备，不使用充电宝或者笔记本进行供电，并且确保更新途中电源连接稳定，中途断电会损坏设备，不做售后处理",
             cancelText: "取消更新",
             confirmText: "确认更新",
             success: function(t) {

@@ -11,16 +11,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var t = require("../common/utils"), i = require("../common/validator");
 
-function r(i) {
-    return i.tempFiles.map(function(i) {
-        return e(e({}, (0, t.pickExclude)(i, [ "path" ])), {
-            type: "image",
-            url: i.tempFilePath || i.path,
-            thumb: i.tempFilePath || i.path
-        });
-    });
-}
-
 exports.isImageFile = function(e) {
     return null != e.isImage ? e.isImage : e.type ? "image" === e.type : !!e.url && (0, 
     i.isImageUrl)(e.url);
@@ -28,40 +18,37 @@ exports.isImageFile = function(e) {
     return null != e.isVideo ? e.isVideo : e.type ? "video" === e.type : !!e.url && (0, 
     i.isVideoUrl)(e.url);
 }, exports.chooseFile = function(i) {
-    var u = i.accept, a = i.multiple, o = i.capture, n = i.compressed, s = i.maxDuration, c = i.sizeType, p = i.camera, m = i.maxCount, l = i.mediaType, h = i.extension;
-    return new Promise(function(i, f) {
-        switch (u) {
+    var r = i.accept, u = i.multiple, o = i.capture, a = i.compressed, n = i.maxDuration, c = i.sizeType, s = i.camera, p = i.maxCount, l = i.mediaType;
+    return new Promise(function(i, m) {
+        switch (r) {
           case "image":
-            t.isPC ? wx.chooseImage({
-                count: a ? Math.min(m, 9) : 1,
+            wx.chooseImage({
+                count: u ? Math.min(p, 9) : 1,
                 sourceType: o,
                 sizeType: c,
-                success: function(e) {
-                    return i(r(e));
+                success: function(r) {
+                    return i(function(i) {
+                        return i.tempFiles.map(function(i) {
+                            return e(e({}, (0, t.pickExclude)(i, [ "path" ])), {
+                                type: "image",
+                                url: i.path,
+                                thumb: i.path
+                            });
+                        });
+                    }(r));
                 },
-                fail: f
-            }) : wx.chooseMedia({
-                count: a ? Math.min(m, 9) : 1,
-                mediaType: [ "image" ],
-                sourceType: o,
-                maxDuration: s,
-                sizeType: c,
-                camera: p,
-                success: function(e) {
-                    return i(r(e));
-                },
-                fail: f
+                fail: m
             });
             break;
 
           case "media":
             wx.chooseMedia({
-                count: a ? Math.min(m, 9) : 1,
+                count: u ? Math.min(p, 9) : 1,
                 mediaType: l,
                 sourceType: o,
-                maxDuration: s,
+                maxDuration: n,
                 sizeType: c,
-                camera: p,
+                camera: s,
                 success: function(r) {
                     return i(function(i) {
                         return i.tempFiles.map(function(r) {
@@ -73,16 +60,16 @@ exports.isImageFile = function(e) {
                         });
                     }(r));
                 },
-                fail: f
+                fail: m
             });
             break;
 
           case "video":
             wx.chooseVideo({
                 sourceType: o,
-                compressed: n,
-                maxDuration: s,
-                camera: p,
+                compressed: a,
+                maxDuration: n,
+                camera: s,
                 success: function(r) {
                     return i(function(i) {
                         return [ e(e({}, (0, t.pickExclude)(i, [ "tempFilePath", "thumbTempFilePath", "errMsg" ])), {
@@ -92,17 +79,14 @@ exports.isImageFile = function(e) {
                         }) ];
                     }(r));
                 },
-                fail: f
+                fail: m
             });
             break;
 
           default:
-            wx.chooseMessageFile(e(e({
-                count: a ? m : 1,
-                type: u
-            }, h ? {
-                extension: h
-            } : {}), {
+            wx.chooseMessageFile({
+                count: u ? p : 1,
+                type: r,
                 success: function(r) {
                     return i(function(i) {
                         return i.tempFiles.map(function(i) {
@@ -112,8 +96,8 @@ exports.isImageFile = function(e) {
                         });
                     }(r));
                 },
-                fail: f
-            }));
+                fail: m
+            });
         }
     });
 };

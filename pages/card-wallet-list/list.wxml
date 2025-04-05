@@ -1,51 +1,46 @@
 <view class="container-page-base">
-    <card-search bind:clear="onClearSearch" bind:inputTyping="onUserSearch"></card-search>
-    <devicebar showcontent="{{true}}"></devicebar>
-    <view style="margin-top: 16rpx;">
-        <block wx:if="{{showFunctionButton}}">
-            <view bindtap="{{item.click}}" class="container-fucntion-item-base" data-id="{{key}}" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100" wx:for="{{btnFunctionList}}" wx:for-index="key" wx:key="key">
-                <icon class="{{item.icon}}"></icon>
-                <view class="container-function-item-right-title">
-                    <view class="txt-function-item-main-title">{{item.titleMain}}</view>
-                    <view class="txt-function-item-sub-title">{{item.titleSub}}</view>
-                </view>
-            </view>
-        </block>
-        <view bindtap="onUserSwitchFunctionBtnsStatusClick" style="width: 100%; padding: 5rpx;">
-            <view class="{{showFunctionButton?'btn-list-close-icon':'btn-list-open-icon'}}" style="margin-left: auto; margin-right: auto; margin-top: 10rpx; margin-bottom: 10rpx;"></view>
+    <cloud-or-local></cloud-or-local>
+    <folder-top bind:onCancel="onCancel" bind:onClearSearch="onClearSearch" bind:onScreen="onScreen" bind:onShowSearchFrame="onShowSearchFrame" bind:onTurnBack="onTurnBack" bind:onUserSearch="onUserSearch" currentFolder="{{currentFolder}}" current_path="{{current_path}}" position_title="{{position_title}}" screenShow="{{true}}" show_search_frame="{{show_search_frame}}" view_current_path="{{view_current_path}}"></folder-top>
+    <view class="no-card" wx:if="{{dumpSearchFound}}">
+        <no-card addCard="{{noData}}" bind:addCard="addCard" mode="1"></no-card>
+    </view>
+    <view class="{{showCheckbox==false?'folder-content folder-content-public-style1':'folder-content folder-content-public-style2'}}">
+        <view class="folder-content-item" wx:if="{{item.show==true&&showFolder==true}}" wx:for="{{dir_view}}" wx:key="index">
+            <folder-item bind:onDumpItemClick="onFolderItemClick" bind:onSelectItem="onSelectItem" checked="{{item.checked}}" file_type="folder" index="{{item.index}}" mode="1" nick="{{item.name}}" paddingRight="" showCheckbox="{{showCheckbox}}" type="{{item.fileCount}}">
+                <image src="../../static/img/rightArrow.png" style="width: 35rpx; height: 35rpx;"></image>
+            </folder-item>
+        </view>
+        <view class="folder-content-item" wx:if="{{item.show==true}}" wx:for="{{file_view}}" wx:key="index">
+            <folder-item bind:onFileItemClick="onFileItemClick" bind:onSelectItem="onSelectItem" checked="{{item.checked}}" fileUuid="{{item.uuid}}" file_type="{{item.file_type}}" index="{{index}}" mode="1" nick="{{item.name}}" paddingRight="" path="{{item.path}}" showCheckbox="{{showCheckbox}}" type="{{item.type}}"></folder-item>
         </view>
     </view>
-    <view class="container-line"></view>
-    <view bindtouchend="onOverviewMPDumpToDeviceViewTouchEnd" catchtouchmove="onOverviewMPDumpToDeviceViewMove" style="display: flex; flex-direction: row; height: 100%; overflow: scroll;">
-        <scroll-view class="container-dump-list" scrollY="{{!overviewMPDumpToDevice.show}}" style="flex: 1;" wx:if="{{dumpSearchFound||dumpList!=''}}">
-            <view bindlongpress="onUserCardDumpItemLongPress" class="container-dump-item" data-id="{{key}}" hoverClass="function-button-item-hover" hoverStartTime="10" hoverStayTime="100" wx:if="{{item.show}}" wx:for="{{dumpList}}" wx:for-index="key" wx:key="key">
-                <card-item bind:click="onDumpItemClick" color="{{item.color}}" nick="{{item.nick}}" type="{{item.type}}" uuid="{{item.uuid}}">
-                    <image src="../../static/img/rightArrow.png" style="width: 40rpx; height: 40rpx;"></image>
-                </card-item>
-            </view>
-        </scroll-view>
-        <view style="margin-top: 100rpx; flex: 1;" wx:if="{{!dumpSearchFound&&dumpList==''}}">
-            <no-card addCard="{{noData}}" bind:addCard="addCard" mode="1"></no-card>
-        </view>
-        <scroll-view scrollY style="width: auto; flex: 1; border-left: rgba(196, 196, 196, 0.2) solid 1rpx;" wx:if="{{chameleonTagSlot.show}}">
-            <block wx:for="{{chameleonTagSlot.group}}" wx:for-index="key" wx:key="key">
-                <view style="padding: 32rpx;">
-                    <view data-id="{{key}}">
-                        <view style="display: flex; flex-direction: row; align-items: center;">
-                            <view style="width: 16rpx; height: 16rpx; border-radius: 16rpx; margin-right: 24rpx; background: #f5a200"></view>
-                            <view class="txt-tag-slot-item-right-name">{{item.tag_hf}}</view>
-                        </view>
-                        <view style="border-top: rgba(0, 0, 0, 0.08) solid 0.5rpx; margin-top: 16rpx; margin-bottom: 16rpx;"></view>
-                        <view style="display: flex; flex-direction: row; align-items: center;">
-                            <view style="width: 16rpx; height: 16rpx; border-radius: 16rpx; margin-right: 24rpx; background: #008EF5;"></view>
-                            <view class="txt-tag-slot-item-right-name">{{item.tag_lf}}</view>
-                        </view>
-                    </view>
+    <view class="tarbar-style" style="height: 168rpx;" wx:if="{{showCheckbox||showBottomBar}}">
+        <view class="{{!changeBottomBtnStatus&&showCheckbox?'tarbar-item-block tarbar-item-block-grey':'tarbar-item-block'}}">
+            <view class="tarbar-item-block-public-style {{showCheckbox?'move-block':'delete-block'}}">
+                <view bindtap="{{showCheckbox?'onBtnMove':'onBtnDeleteFolder'}}" class="tarbar-text-block">
+                    <icon class="icon-move" wx:if="{{showCheckbox}}"></icon>
+                    <view class="tarbar-text">{{showCheckbox?'移动':'删除文件夹'}}</view>
                 </view>
-                <view class="line-chameleon-slot-item"></view>
-            </block>
-        </scroll-view>
+            </view>
+            <view class="divider" wx:if="{{!showCheckbox}}"></view>
+            <view class="{{showCheckbox?'delete-block':'move-block'}} tarbar-item-block-public-style">
+                <view bindtap="{{showCheckbox?'onBtnDeleteFile':'onBtnRename'}}" class="tarbar-text-block">
+                    <icon class="icon-delete" wx:if="{{showCheckbox}}"></icon>
+                    <view class="tarbar-text">{{showCheckbox?'删除':'重命名'}}</view>
+                </view>
+            </view>
+        </view>
     </view>
+    <view class="suspended-window" style="margin-top: {{navHeight}}px">
+        <view bindtap="onDumpImportFromAnyWhereClick" class="suspended-window-public-style">
+            <icon class="icon-import"></icon>
+        </view>
+        <view bindtap="onCreateFolder" class="suspended-window-public-style">
+            <icon class="icon-new-create-folder"></icon>
+        </view>
+    </view>
+    <save-data bind:cancel="{{createFolder.onClickLeft}}" bind:confirm="{{createFolder.onClickRight}}" btnCancel="取消" btnConfirm="保存" placeholder="{{createFolder.placeholder}}" show="{{createFolder.show}}" theme="light" title="{{createFolder.title}}" value="{{createFolder.value}}"></save-data>
+    <van-dialog confirmButtonColor="#F5A200" id="van-dialog"></van-dialog>
     <view class="container-mp-dump-to-device-overview" style="left: {{overviewMPDumpToDevice.x}}px; top: {{overviewMPDumpToDevice.y}}px;" wx:if="{{overviewMPDumpToDevice.show}}">
         <text style="font-size: 28rpx; color: #fff;">这是卡包名</text>
     </view>
@@ -108,4 +103,5 @@
     </van-popup>
     <add-card bind:cancel="bottomBtnCancel" bind:confirm="bottomBtnConfirm" showDailog="{{showModal}}"></add-card>
     <tabbar selected="2"></tabbar>
+    <backitp bindback="onUserBack" canback="{{!isCanback}}" id="backIntercept"></backitp>
 </view>

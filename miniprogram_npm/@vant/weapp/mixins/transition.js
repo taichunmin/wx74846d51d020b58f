@@ -44,8 +44,7 @@ exports.transition = function(n) {
             },
             enter: function() {
                 var n = this, s = this.data, i = s.duration, r = s.name, o = a(r), c = (0, t.isObj)(i) ? i.enter : i;
-                "enter" !== this.status && (this.status = "enter", this.$emit("before-enter"), (0, 
-                e.requestAnimationFrame)(function() {
+                this.status = "enter", this.$emit("before-enter"), (0, e.requestAnimationFrame)(function() {
                     "enter" === n.status && (n.$emit("enter"), n.setData({
                         inited: !0,
                         display: !0,
@@ -56,7 +55,7 @@ exports.transition = function(n) {
                             classes: o["enter-to"]
                         }));
                     }));
-                }));
+                });
             },
             leave: function() {
                 var n = this;

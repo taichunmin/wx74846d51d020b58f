@@ -20,7 +20,7 @@
     bottom: 0;
     height: 500rpx;
     padding-top: 20rpx;
-    z-index: 2000;
+    z-index: 9999;
 }
 
 .van_action_left_title {

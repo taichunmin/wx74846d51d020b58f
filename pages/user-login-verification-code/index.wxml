@@ -4,7 +4,7 @@
     <view class="login-input-info">
         <view class="horizon">
             <view class="input-phone-block">
-                <input bindinput="onGetPhone" class="input" maxlength="11" placeholder="请输入您的手机号" placeholderClass="placeholder-style" type="number" value="{{input_phone}}"></input>
+                <input bindinput="onGetPhone" class="input" placeholder="请输入您的手机号" placeholderClass="placeholder-style" type="number" value="{{input_phone}}"></input>
             </view>
             <view class="icon-clear-phone-block" wx:if="{{input_phone!=''}}">
                 <icon bindtap="clearPhone" size="18" type="clear"></icon>

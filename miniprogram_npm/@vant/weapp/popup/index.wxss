@@ -132,10 +132,6 @@
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-.van-popup--bottom.van-popup--safeTabBar,.van-popup--top.van-popup--safeTabBar {
-    bottom: var(--tabbar-height,50px);
-}
-
 .van-popup--safeTop {
     padding-top: env(safe-area-inset-top);
 }

@@ -1,4 +1,8 @@
-var e = (0, require("../../@babel/runtime/helpers/interopRequireDefault").default)(require("@vant/weapp/dialog/dialog")), a = require("../../8462214255C842DFE2044945663685D7.js");
+var e, a = (e = require("@vant/weapp/dialog/dialog")) && e.__esModule ? e : {
+    default: e
+};
+
+var s = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
@@ -24,17 +28,17 @@ Page({
         });
     },
     onUserShareToLinkChipBoardClick: function() {
-        var s = a.createShareLinkMessage(this.data.userName, this.data.shareCode, this.data.accessCode, this.data.appendAC);
+        var e = s.createShareLinkMessage(this.data.userName, this.data.shareCode, this.data.accessCode, this.data.appendAC);
         wx.setClipboardData({
-            data: s,
-            success: function(a) {
-                e.default.alert({
+            data: e,
+            success: function(e) {
+                a.default.alert({
                     message: "链接复制成功啦，快去发送给你的好友吧~"
                 }).then(function() {});
             }
         });
     },
     onShareAppMessage: function(e) {
-        return a.createShareFriendMessage(this.data.userName, this.data.shareCode, this.data.accessCode, this.data.appendAC);
+        return s.createShareFriendMessage(this.data.userName, this.data.shareCode, this.data.accessCode, this.data.appendAC);
     }
 });

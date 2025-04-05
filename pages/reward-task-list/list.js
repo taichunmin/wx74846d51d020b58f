@@ -1,4 +1,8 @@
-var t = (0, require("../../@babel/runtime/helpers/interopRequireDefault").default)(require("@vant/weapp/dialog/dialog")), e = require("../../8462214255C842DFE2044945663685D7.js");
+var t, e = (t = require("@vant/weapp/dialog/dialog")) && t.__esModule ? t : {
+    default: t
+};
+
+var i = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Page({
     data: {
@@ -50,10 +54,10 @@ Page({
         remainder: ""
     },
     playbackReward: function() {
-        if ("true" != this.data.prohibition) return "true" == this.data.list1[1].disabled ? void e.showToast("请等待审核") : void wx.navigateTo({
+        if ("true" != this.data.prohibition) return "true" == this.data.list1[1].disabled ? void i.showToast("请等待审核") : void wx.navigateTo({
             url: "/pages/reward-task-video/index"
         });
-        e.showToast("禁止做任务，解禁剩" + this.data.remainder + "天");
+        i.showToast("禁止做任务，解禁剩" + this.data.remainder + "天");
     },
     gold_coin_details: function() {
         wx.navigateTo({
@@ -71,30 +75,30 @@ Page({
         });
     },
     suggest: function() {
-        "true" == this.data.prohibition ? e.showToast("禁止做任务，解禁剩" + this.data.remainder + "天") : wx.navigateTo({
+        "true" == this.data.prohibition ? i.showToast("禁止做任务，解禁剩" + this.data.remainder + "天") : wx.navigateTo({
             url: "/pages/user-feedback-commit/feedback"
         });
     },
     tiktok: function() {
-        if ("true" != this.data.prohibition) return "true" == this.data.list1[0].disabled ? void e.showToast("今日已达上限") : void wx.navigateTo({
+        if ("true" != this.data.prohibition) return "true" == this.data.list1[0].disabled ? void i.showToast("今日已达上限") : void wx.navigateTo({
             url: "/pages/reward-task-tiktok/tiktok"
         });
-        e.showToast("禁止做任务，解禁剩" + this.data.remainder + "天");
+        i.showToast("禁止做任务，解禁剩" + this.data.remainder + "天");
     },
     praise: function() {
-        var i = this;
-        t.default.alert({
+        var t = this;
+        e.default.alert({
             title: "温馨提示",
             message: "好评仅限于尼古拉实验室官方TB店铺和PDD店铺"
         }).then(function() {
-            "true" == i.data.prohibition ? e.showToast("禁止做任务，解禁剩" + i.data.remainder + "天") : wx.navigateTo({
+            "true" == t.data.prohibition ? i.showToast("禁止做任务，解禁剩" + t.data.remainder + "天") : wx.navigateTo({
                 url: "/pages/reward-taobao-praise/index"
             });
         });
     },
     checkGoldCoinCount: function() {
         var t = this;
-        e.gold_coin_count(function(e) {
+        i.gold_coin_count(function(e) {
             console.log("金币的数量" + e), 0 == e ? t.setData({
                 gold_coin_count: 0
             }) : t.setData({
@@ -103,9 +107,9 @@ Page({
         });
     },
     onLoad: function(t) {
-        var i = this;
-        e.prohibition(function(t) {
-            console.log("000 " + JSON.stringify(t)), 1 == t.data.status && "true" == t.data.data.state && i.setData({
+        var e = this;
+        i.prohibition(function(t) {
+            console.log("000 " + JSON.stringify(t)), 1 == t.data.status && "true" == t.data.data.state && e.setData({
                 prohibition: "true",
                 remainder: t.data.data.remainder
             });
@@ -113,7 +117,7 @@ Page({
     },
     onShow: function() {
         var t = this;
-        t.checkGoldCoinCount(), e.checkSign(function(e) {
+        t.checkGoldCoinCount(), i.checkSign(function(e) {
             "今天已签到" == e.msg ? t.setData({
                 signShow: !0,
                 "list[0].number": 1
@@ -121,7 +125,7 @@ Page({
                 signShow: !1,
                 "list[0].number": 0
             });
-        }), e.checkFeedback(function(e) {
+        }), i.checkFeedback(function(e) {
             console.log("反馈res是" + e), "今天已完成" == e ? t.setData({
                 "list[1].btnText": "完成",
                 "list[1].number": 3
@@ -129,7 +133,7 @@ Page({
                 "list[1].btnText": "去完成",
                 "list[1].number": e
             });
-        }), e.checkTiktokStatus(function(e) {
+        }), i.checkTiktokStatus(function(e) {
             "今天已完成" == e ? t.setData({
                 "list1[0].btnText": "完成",
                 "list1[0].number": 2,
@@ -138,14 +142,14 @@ Page({
                 "list1[0].btnText": "去完成",
                 "list1[0].number": e
             });
-        }), e.check_video_rewards_count(function(e) {
+        }), i.check_video_rewards_count(function(e) {
             console.log("22w" + JSON.stringify(e)), "已完成" == e ? t.setData({
                 "list1[1].btnText": "完成",
                 "list1[1].disabled": "true"
             }) : t.setData({
                 "list1[1].btnText": "去完成"
             });
-        }), e.checkTaoBaoPraise(function(e) {
+        }), i.checkTaoBaoPraise(function(e) {
             "今天已完成" == e ? t.setData({
                 "list[2].number": 2,
                 "list[2].btnText": "完成"

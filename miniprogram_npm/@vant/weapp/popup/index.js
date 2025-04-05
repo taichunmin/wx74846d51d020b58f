@@ -49,17 +49,9 @@ var e = require("../common/component"), o = require("../mixins/transition");
             type: Boolean,
             value: !1
         },
-        safeAreaTabBar: {
-            type: Boolean,
-            value: !1
-        },
         lockScroll: {
             type: Boolean,
             value: !0
-        },
-        rootPortal: {
-            type: Boolean,
-            value: !1
         }
     },
     created: function() {
@@ -73,11 +65,11 @@ var e = require("../common/component"), o = require("../mixins/transition");
             this.$emit("click-overlay"), this.data.closeOnClickOverlay && this.$emit("close");
         },
         observeClass: function() {
-            var e = this.data, o = e.transition, t = e.position, a = e.duration, s = {
+            var e = this.data, o = e.transition, t = e.position, s = e.duration, n = {
                 name: o || t
             };
-            "none" === o ? (s.duration = 0, this.originDuration = a) : null != this.originDuration && (s.duration = this.originDuration), 
-            this.setData(s);
+            "none" === o ? (n.duration = 0, this.originDuration = s) : null != this.originDuration && (n.duration = this.originDuration), 
+            this.setData(n);
         }
     }
 });

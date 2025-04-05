@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "van-checkbox": "../../miniprogram_npm/@vant/weapp/checkbox/index"
+    }
+}

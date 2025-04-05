@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "save-data": "../../components/dialog-tag-nick-editor/editor"
+    },
+    "navigationBarTitleText": "移动至"
+}

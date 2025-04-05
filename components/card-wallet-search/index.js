@@ -1,43 +1,14 @@
-var t = require("../../8462214255C842DFE2044945663685D7.js");
+var t = require("../../76F8096255C842DF109E616502B6D685.js");
 
 Component({
-    properties: {
-        holderText: {
-            type: String,
-            value: "搜索卡片"
-        }
-    },
+    properties: {},
     data: {
-        custom_height: "",
-        menuButtonToTop: "",
-        menubuttonHeight: "",
-        search_to_menu_right: "",
-        serach_width: "",
-        inputVal: "",
-        changeBtn: !1,
-        position: ""
+        position: "",
+        inputVal: ""
     },
     lifetimes: {
         ready: function() {
-            var t = this, i = wx.getMenuButtonBoundingClientRect(), e = i.top, n = i.height, o = i.width;
-            wx.getSystemInfo({
-                success: function(a) {
-                    var s = a.windowWidth - i.right + o + 18, u = a.statusBarHeight, h = u + i.height + 2 * (i.top - u), r = a.windowWidth - o - 65 - 14;
-                    t.setData({
-                        custom_height: h,
-                        menuButtonToTop: e,
-                        menubuttonHeight: n,
-                        search_to_menu_right: s,
-                        serach_width: r
-                    });
-                }
-            });
-        }
-    },
-    pageLifetimes: {
-        show: function() {
-            var i = t.cloudOrLocal();
-            console.log("res是" + i), "local" == i ? this.setData({
+            "local" == t.cloudOrLocal() ? this.setData({
                 position: "本地卡包"
             }) : this.setData({
                 position: "云端卡包"
@@ -50,10 +21,13 @@ Component({
                 inputVal: ""
             }), this.triggerEvent("clear");
         },
-        inputTyping: function(t) {
+        onGetInputValue: function(t) {
             this.setData({
                 inputVal: t.detail.value
-            }), this.triggerEvent("inputTyping", this.data.inputVal);
+            }), this.triggerEvent("onGetInputValue", this.data.inputVal);
+        },
+        onCancel: function() {
+            this.triggerEvent("onCancel");
         }
     }
 });

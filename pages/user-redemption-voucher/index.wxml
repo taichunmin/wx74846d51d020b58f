@@ -36,8 +36,9 @@
             <view class="rule-content-text">2.代金券仅用于卡贴与小程序VIP购买使用；</view>
             <view class="rule-content-text">3.代金券使用有效期: 自兑换之日起，一个月内有效，逾期作废；</view>
             <view class="rule-content-text">4.代金券不兑换现金，不设找赎，不提供发票；</view>
-            <view class="rule-content-text">5.如有疑问，可联系店铺客服；</view>
-            <view class="rule-content-text">6.代金券功能最终解释权归深圳尼古拉斯高端设备研发有限公司所有；</view>
+            <view class="rule-content-text">5.代金券仅淘宝用户兑换使用；</view>
+            <view class="rule-content-text">6.如有疑问，可联系店铺客服；</view>
+            <view class="rule-content-text">7.代金券功能最终解释权归深圳尼古拉斯高端设备研发有限公司所有；</view>
         </view>
     </view>
 </view>

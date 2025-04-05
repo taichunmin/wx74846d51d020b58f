@@ -1,4 +1,8 @@
-var t = (0, require("../../@babel/runtime/helpers/interopRequireDefault").default)(require("@vant/weapp/dialog/dialog")), e = require("../../8462214255C842DFE2044945663685D7.js"), a = require("../../EC07278055C842DF8A614F87062685D7.js"), s = require("../../6B5F0E3755C842DF0D39663027C585D7.js"), o = require("../../306D78F255C842DF560B10F52E4585D7.js"), i = "".concat("https://rcopy.nikola-lab.cn", "/server1/openapi/dump/shared/info");
+var t, e = (t = require("@vant/weapp/dialog/dialog")) && t.__esModule ? t : {
+    default: t
+};
+
+var a, o = require("../../76F8096255C842DF109E616502B6D685.js"), i = require("../../A781651255C842DFC1E70D15E296D685.js"), n = require("../../4723B54355C842DF2145DD44B4A6D685.js"), r = require("../../AB5D946455C842DFCD3BFC63A316D685.js"), s = require("../../AC1F69C355C842DFCA7901C4DB75D685.js"), d = require("../../F1D2DB1455C842DF97B4B3130476D685.js"), u = "".concat("https://rcopy.nikola-lab.cn", "/server1/openapi/dump/shared/info");
 
 Page({
     data: {
@@ -19,7 +23,6 @@ Page({
             click: "onDumpImportFromAnyWhereClick"
         } ],
         dumpList: [],
-        dumpListStandby: [],
         dumpImport: {
             show: !1,
             mode: "list",
@@ -78,10 +81,337 @@ Page({
         },
         dumpSearchFound: !1,
         showModal: "",
-        noData: ""
+        noData: "",
+        showCheckbox: !1,
+        tabBarHeight: "",
+        changeBottomBtnStatus: !1,
+        dataIndexArr: [ {
+            folder: [],
+            file: []
+        } ],
+        navHeight: 0,
+        position_title: "",
+        position: "local",
+        current_path: "/",
+        view_current_path: "",
+        show_search_frame: !1,
+        dir_view: [],
+        createFolder: {
+            show: !1,
+            title: "",
+            placeholder: "",
+            value: "",
+            onClickLeft: "onUserCloseFrame",
+            onClickRight: ""
+        },
+        currentFolderIndex: "",
+        file_view: [],
+        userSearchCardName: "",
+        currentFolder: "",
+        checked: !1,
+        showFolder: !0,
+        isCanback: !1
+    },
+    onCreateFolder: function() {
+        this.optionCreateFolderObj(!0, "新建文件夹", "请输入文件夹名称", "onUserConfirmcreateFolder");
+    },
+    setPopupBox: function() {
+        this.data.createFolder.show = !1, this.setData({
+            createFolder: this.data.createFolder,
+            dumpSearchFound: !1
+        }), this.setDirView();
+    },
+    onUserConfirmcreateFolder: function(t) {
+        var e = this, a = t.detail.dumpName;
+        i.userConfirmcreateFolder(a, function(t, a) {
+            1 == t ? (o.showToast(a), e.setPopupBox()) : 3 == t ? o.loginToast() : o.showToast(a);
+        });
+    },
+    judgePosition: function() {
+        "local" == o.cloudOrLocal() ? this.setData({
+            position_title: "本地卡包",
+            position: "local"
+        }) : this.setData({
+            position_title: "云端卡包",
+            position: "cloud"
+        });
+    },
+    getNavBarHeight: function() {
+        var t = this, e = wx.getMenuButtonBoundingClientRect();
+        wx.getSystemInfo({
+            success: function(a) {
+                var o = a.statusBarHeight, i = o + e.height + 2 * (e.top - o);
+                t.setData({
+                    navHeight: i + 163
+                });
+            }
+        });
+    },
+    onScreen: function() {
+        var t = this.data.showCheckbox;
+        t ? this.setData({
+            showCheckbox: !t,
+            tabBarHeight: ""
+        }) : this.setData({
+            showCheckbox: !0
+        });
+    },
+    onShowSearchFrame: function() {
+        this.setData({
+            show_search_frame: !0
+        });
+    },
+    onSelectItem: function(t) {
+        var e, a = t.detail.index, o = t.detail.fileType, i = t.detail.checked, n = t.detail.fileUuid, r = this.data.dataIndexArr, s = this.data.dir_view, d = this.data.file_view;
+        if ("folder" == o) {
+            for (var u = 0; u < s.length; u++) s[u].index == a && (e = s[u].name, s[u].checked = i);
+            this.setData({
+                dir_view: s
+            });
+        } else {
+            for (u = 0; u < d.length; u++) d[u].index == a && (e = d[u].name, d[u].checked = i);
+            this.setData({
+                file_view: d
+            });
+        }
+        if ("folder" == o) if (1 == i) r[0].folder.push(e); else {
+            var c = r[0].folder;
+            r[0].folder = c.filter(function(t) {
+                return t != e;
+            });
+        } else if (1 == i) r[0].file.push({
+            name: e,
+            fileUuid: n
+        }); else {
+            var l = r[0].file;
+            r[0].file = l.filter(function(t) {
+                return t.fileUuid != n;
+            });
+        }
+        this.setData({
+            dataIndexArr: r
+        }), this.changeBottomBtnStatus();
+    },
+    changeBottomBtnStatus: function() {
+        for (var t = this.data.dir_view, e = 0; e < t.length; e++) if (t[e].checked) return void this.setData({
+            changeBottomBtnStatus: !0
+        });
+        for (var a = this.data.file_view, o = 0; o < a.length; o++) if (a[o].checked) return void this.setData({
+            changeBottomBtnStatus: !0
+        });
+        this.setData({
+            changeBottomBtnStatus: !1
+        });
+    },
+    judgeBtnStatus: function() {
+        return 0 != this.data.changeBottomBtnStatus || (o.showToast("请选择需要操作的项"), !1);
+    },
+    onBtnMove: function() {
+        if (this.judgeBtnStatus()) {
+            var t = this.data.dataIndexArr, e = t[0].folder, a = t[0].file, o = i.returnCurrentPath(), n = [ {
+                folder: [],
+                file: []
+            } ];
+            if (e.length > 0) for (var r = 0; r < e.length; r++) {
+                var s = o + e[r] + "/";
+                n[0].folder.push(s);
+            }
+            a.length > 0 && (n[0].file = a), i.setCurrentPath("/"), this.setData({
+                showCheckbox: !1,
+                dataIndexArr: [ {
+                    folder: [],
+                    file: []
+                } ],
+                checked: !1
+            }), wx.navigateTo({
+                url: "/pages/folder-move/index?old_path=".concat(o, "&selectItem=").concat(JSON.stringify(n))
+            });
+        }
+    },
+    optionCreateFolderObj: function(t, e, a, o) {
+        this.data.createFolder.show = t, this.data.createFolder.title = e, this.data.createFolder.placeholder = a, 
+        this.data.createFolder.onClickRight = o, this.setData({
+            createFolder: this.data.createFolder
+        });
+    },
+    onUserCloseFrame: function() {
+        this.data.createFolder.show = !1, this.setData({
+            createFolder: this.data.createFolder
+        });
+    },
+    onBtnDeleteFile: function() {
+        this.judgeBtnStatus() && this.deleteFolderAndFile("deleteFolder", "是否确认删除选中的选项,\n删除后，文件夹或者卡片数据将不存在");
+    },
+    deleteFolderAndFileOptionData: function() {
+        var t = this;
+        i.drawFileViewByCurrentPath(function(e) {
+            t.setDirView(), t.setData({
+                file_view: e,
+                showCheckbox: !1,
+                checked: !1,
+                changeBottomBtnStatus: !1
+            }, function() {
+                t.judgeNoSubFolders(t.data.dir_view, t.data.file_view), o.showToast("删除成功");
+            });
+        });
+    },
+    deleteFolderAndFile: function(t, a) {
+        var n = this, r = this;
+        e.default.confirm({
+            message: a,
+            confirmButtonText: "确认",
+            cancelButtonText: "取消"
+        }).then(function() {
+            var e = r.data.dataIndexArr, a = e[0].folder, s = e[0].file;
+            "deleteCurrentFolder" == t ? i.optionDeleteCurrentFolder(t, function(t) {
+                null != t ? 1 == t.data.status ? (r.onTurnBack(), o.showToast(t.data.msg)) : o.showToast(t.data.msg) : (r.onTurnBack(), 
+                o.showToast("删除成功"));
+            }) : i.optionDeleteCurrentFolderAndAllFile(t, a, s, function(t) {
+                null == t || 1 == t.data.status ? r.deleteFolderAndFileOptionData() : o.showToast(t.data.msg);
+            }), n.setData({
+                dataIndexArr: [ {
+                    folder: [],
+                    file: []
+                } ]
+            });
+        }).catch(function() {});
+    },
+    onBtnDeleteFolder: function() {
+        this.deleteFolderAndFile("deleteCurrentFolder", "是否确认删除此文件夹,\n文件夹内的卡片都会被删除");
+    },
+    onBtnRename: function() {
+        this.optionCreateFolderObj(!0, "重命名文件夹", this.data.currentFolder, "onUserConfirmRename");
+    },
+    setPopupBoxClose: function(t, e) {
+        this.setData({
+            currentFolder: t,
+            current_path: e.current_path,
+            view_current_path: e.view_current_path
+        }), this.onUserCloseFrame();
+    },
+    onUserConfirmRename: function(t) {
+        var e = this, a = t.detail.dumpName;
+        i.userConfirmRename(a, function(t, i, n) {
+            1 == t ? (o.showToast(i), e.setPopupBoxClose(a, n)) : o.showToast(i);
+        });
+    },
+    judgeNoSubFolders: function(t, e) {
+        t.length > 0 || e.length > 0 ? this.setData({
+            dumpSearchFound: !1
+        }) : this.setData({
+            dumpSearchFound: !0
+        });
+    },
+    onTurnBack: function() {
+        var t = this, e = i.onTurnBack();
+        t.setData({
+            file_view: [],
+            dir_view: []
+        }), i.drawFileViewByCurrentPath(function(e) {
+            t.setData({
+                file_view: e
+            });
+        }), i.drawDirViewByCurrentPath(function(a) {
+            t.setData({
+                dir_view: t.folderSorting(a)
+            }), t.setData({
+                checked: !1,
+                currentFolder: e.currentFolder,
+                current_path: e.current_path,
+                view_current_path: e.view_current_path
+            }, function() {
+                t.judgeNoSubFolders(t.data.dir_view, t.data.file_view), t.showBottomBar(null);
+            });
+        });
+    },
+    showBottomBar: function(t) {
+        1 != i.judgeCurrentPath(t) ? this.setData({
+            showBottomBar: !0
+        }) : this.setData({
+            showBottomBar: !1
+        });
+    },
+    onFolderItemClick: function(t) {
+        this.setData({
+            file_view: [],
+            dir_view: [],
+            isCanback: !0
+        });
+        var e = t.detail.index;
+        o.cloudOrLocal();
+        var a = i.onFolderItemClick(e);
+        this.showBottomBar("clickFolder"), this.setData({
+            checked: !1,
+            currentFolderIndex: e,
+            currentFolder: a.currentFolder,
+            current_path: a.current_path,
+            view_current_path: i.editCurrentPath(a.url_address, "•")
+        }), this.setDirView();
+        var n = this;
+        setTimeout(function() {
+            n.loadData();
+        }, 100);
+    },
+    onFileItemClick: function(t) {
+        var e = t.detail.index, a = this.data.file_view[e].uuid;
+        wx.navigateTo({
+            url: "/pages/card-wallet-info/info?id=" + a
+        });
+    },
+    noCardSetData: function(t) {
+        t.length <= 0 && this.setData({
+            noData: !0
+        });
+    },
+    loadData: function() {
+        var t = this;
+        i.loadData(function(e, a) {
+            "set" == e ? t.setData({
+                dumpSearchFound: !0,
+                noData: !0
+            }) : (t.setData({
+                file_view: a
+            }), t.judgeNoSubFolders(t.data.dir_view, a), t.noCardSetData(a));
+        });
+    },
+    onUserSearch: function(t) {
+        var e = this, n = t.detail;
+        if ("" == n) return clearTimeout(a), e.setData({
+            dir_view: e.data.dir_view,
+            showFolder: !0
+        }), void e.loadData();
+        e.setData({
+            userSearchCardName: n
+        }), clearTimeout(a), a = setTimeout(function() {
+            wx.showLoading({
+                title: "查询中"
+            }), i.userSearchCardData(n, function(t, a, i) {
+                1 == t ? e.setData({
+                    file_view: i,
+                    showFolder: !1
+                }) : setTimeout(function() {
+                    o.showToast(a);
+                }, 200), setTimeout(function() {
+                    wx.hideLoading();
+                }, 1e3);
+            });
+        }, 1500);
+    },
+    onClearSearch: function() {
+        this.setData({
+            showFolder: !0
+        }), this.loadData();
+    },
+    onCancel: function() {
+        this.loadData(), "" == this.data.userSearchCardName && this.setData({
+            dumpSearchFound: !1
+        }), this.setData({
+            show_search_frame: !1,
+            showFolder: !0
+        });
     },
     onOpenPCWebPageManagerClick: function() {
-        0 == e.isLogin() ? wx.navigateTo({
+        0 == o.isLogin() ? wx.navigateTo({
             url: "/pages/user-login-onekey/login"
         }) : wx.navigateTo({
             url: "/pages/card-wallet-import-export/index"
@@ -92,62 +422,14 @@ Page({
             url: "/pages/device-m1-keys-manager/manager"
         });
     },
-    readContentBytesFromFile: function(t) {
-        var e = wx.getFileSystemManager();
-        try {
-            return new Uint8Array(e.readFileSync(t));
-        } catch (t) {
-            t = VM2_INTERNAL_STATE_DO_NOT_USE_OR_PROGRAM_WILL_FAIL.handleException(t);
-            return console.error(t), null;
-        }
-    },
     importDumpFromMessageFile: function() {
-        var t = this, e = [];
-        wx.chooseMessageFile({
-            count: 25,
-            type: "file",
-            extension: [ "txt", "dump", "eml", "mfd", "bin", "json", "hex" ],
-            success: function(s) {
-                s.tempFiles.forEach(function(s, i) {
-                    var n = {
-                        name: s.name,
-                        data: null,
-                        prefix: "",
-                        suffix: "",
-                        status: "error",
-                        errmsg: "自动处理成功"
-                    }, r = s.name.match(/^(.*)\.(.*)$/);
-                    if (null != r && 3 === r.length) if (n.prefix = r[1], n.suffix = r[2], s.size <= 10240 && s.size >= 1024) {
-                        console.log("开始检测文件类型: " + s.name);
-                        var u = t.readContentBytesFromFile(s.path), c = a.checkDumpInBuffer(u);
-                        switch (c) {
-                          case "json":
-                            var d = a.getJsonFromBuffer(u);
-                            n.data = JSON.stringify(d), n.status = "success";
-                            break;
-
-                          case "hex":
-                          case "bin":
-                            if ((u = "bin" === c ? u : a.hexTextToBinary(u)).length % 16 == 0) {
-                                var p = u.length / 16 - 1;
-                                if (a.is0BlockBCCValid(u)) {
-                                    var l = o.bytes2hex(u, 0, 4), m = o.bytes2hex(u, 5, 1), h = o.bytes2hex(u, 6, 2), f = a.createTagInfoObj(l, m, h, p), g = a.createTagDumpObj(f, u, void 0);
-                                    n.data = JSON.stringify(g), n.status = "success";
-                                } else n.data = u, n.status = "custom";
-                            } else n.errmsg = "数据的大小不符合16个字节一个块的要求";
-                            break;
-
-                          default:
-                            n.errmsg = "无法检测文件的内容类型";
-                        }
-                    } else n.errmsg = "文件不在1KB到10KB内"; else n.errmsg = "无法识别文件名后缀: " + s.name;
-                    e.push(n);
-                }), t.setData({
-                    "dumpImport.show": !0,
-                    "dumpImport.mode": "list",
-                    "dumpImport.listConfig.importList": e
-                });
-            }
+        var t = this;
+        d.importDumpFromWechat(25, function(e) {
+            t.setData({
+                "dumpImport.show": !0,
+                "dumpImport.mode": "list",
+                "dumpImport.listConfig.importList": e
+            });
         });
     },
     parseShareCodeAndAccessCode: function(t) {
@@ -157,16 +439,16 @@ Page({
         }, a = t.match(/code=(\w+)&*/);
         if (null != a && a.length > 1) {
             e.sharedCode = a[1];
-            var s = t.match(/pwd=(\w+)&*/);
-            null != s && s.length > 1 && (e.accessCode = s[1]);
-        }
-        if (0 == e.accessCode.length) {
-            var o = t.match(/密码.*?(\w+)&*/);
+            var o = t.match(/pwd=(\w+)&*/);
             null != o && o.length > 1 && (e.accessCode = o[1]);
         }
         if (0 == e.accessCode.length) {
-            var i = t.match(/访问码.*?(\w+)&*/);
+            var i = t.match(/密码.*?(\w+)&*/);
             null != i && i.length > 1 && (e.accessCode = i[1]);
+        }
+        if (0 == e.accessCode.length) {
+            var n = t.match(/访问码.*?(\w+)&*/);
+            null != n && n.length > 1 && (e.accessCode = n[1]);
         }
         return e;
     },
@@ -174,8 +456,8 @@ Page({
         var t = this;
         wx.showActionSheet({
             itemList: [ "微信聊天记录", "粘贴板的分享链接" ],
-            success: function(a) {
-                switch (a.tapIndex) {
+            success: function(e) {
+                switch (e.tapIndex) {
                   case 0:
                     t.importDumpFromMessageFile();
                     break;
@@ -184,13 +466,12 @@ Page({
                     wx.getClipboardData({
                         success: function(e) {
                             var a = t.parseShareCodeAndAccessCode(e.data);
-                            console.log("粘贴板中的数据是: " + e.data), console.log("解析到的分享信息是: " + JSON.stringify(a)), 
                             a.sharedCode.length > 0 ? t.setData(a, function() {
                                 t.requestDumpShared();
                             }) : t.showErrorMsgDialog("无法从粘贴板中解析分享信息");
                         },
                         fail: function(t) {
-                            e.showToast("获取剪切板的记录失败: " + t.errMsg);
+                            o.showToast("获取剪切板的记录失败: " + t.errMsg);
                         }
                     });
                 }
@@ -198,26 +479,26 @@ Page({
         });
     },
     onDumpImportCustomTagInfo: function(t) {
-        var a = t.currentTarget.dataset.id, s = this.data.dumpImport.listConfig.importList[a];
-        switch (s.status) {
+        var e = t.currentTarget.dataset.id, a = this.data.dumpImport.listConfig.importList[e];
+        switch (a.status) {
           case "custom":
             this.setData({
                 "dumpImport.mode": "edit",
-                "dumpImport.editConfig.index": a,
-                "dumpImport.editConfig.blk0": o.bytes2hex(s.data, 0, 16),
+                "dumpImport.editConfig.index": e,
+                "dumpImport.editConfig.blk0": s.bytes2hex(a.data, 0, 16),
                 "dumpImport.editConfig.uidSize": 7,
-                "dumpImport.editConfig.uidInput": o.bytes2hex(s.data, 0, 7),
+                "dumpImport.editConfig.uidInput": s.bytes2hex(a.data, 0, 7),
                 "dumpImport.editConfig.sakInput": "08",
                 "dumpImport.editConfig.atqaInput": "0400"
             });
             break;
 
           case "error":
-            e.showToast("该数据异常");
+            o.showToast("该数据异常");
             break;
 
           case "success":
-            e.showToast("该数据正常");
+            o.showToast("该数据正常");
         }
     },
     onUserSelectTagUIDSizeClick: function() {
@@ -264,14 +545,14 @@ Page({
         });
     },
     onUserEditDumpInfoConfirm: function() {
-        var t = this.data.dumpImport.editConfig.uidSize, s = this.data.dumpImport.editConfig.uidInput, o = this.data.dumpImport.editConfig.sakInput, i = this.data.dumpImport.editConfig.atqaInput, n = this.data.dumpImport.editConfig.index;
-        if (this.isHexInput(s, 2 * t)) if (this.isHexInput(o, 2)) if (this.isHexInput(i, 4)) {
-            var r = this.data.dumpImport.listConfig.importList[n], u = r.data.length / 16 - 1, c = a.createTagInfoObj(s, o, i, u), d = a.createTagDumpObj(c, r.data, void 0);
-            r.data = d, r.status = "success", r.errmsg = "用户手动处理成功", this.data.dumpImport.mode = "list", 
+        var t = this.data.dumpImport.editConfig.uidSize, e = this.data.dumpImport.editConfig.uidInput, a = this.data.dumpImport.editConfig.sakInput, i = this.data.dumpImport.editConfig.atqaInput, n = this.data.dumpImport.editConfig.index;
+        if (this.isHexInput(e, 2 * t)) if (this.isHexInput(a, 2)) if (this.isHexInput(i, 4)) {
+            var r = this.data.dumpImport.listConfig.importList[n], s = r.data.length / 16 - 1, d = dump.createTagInfoObj(e, a, i, s), u = dump.createTagDumpObj(d, r.data, void 0);
+            r.data = u, r.status = "success", r.errmsg = "用户手动处理成功", this.data.dumpImport.mode = "list", 
             this.setData({
                 dumpImport: this.data.dumpImport
             });
-        } else e.showToast("请确保输入4个Hex字符的ATQA"); else e.showToast("请确保输入2个Hex字符的SAK"); else e.showToast("请确保输入".concat(2 * t, "个Hex字符的卡号"));
+        } else o.showToast("请确保输入4个Hex字符的ATQA"); else o.showToast("请确保输入2个Hex字符的SAK"); else o.showToast("请确保输入".concat(2 * t, "个Hex字符的卡号"));
     },
     clearImportListCloseDialog: function() {
         this.setData({
@@ -280,17 +561,17 @@ Page({
         });
     },
     onUserImportDumpConfirm: function() {
-        for (var e = this, a = this.data.dumpImport.listConfig.importList, s = 0, o = 0, i = [], n = 0; n < a.length; n++) {
-            var r = a[n];
-            switch (r.status) {
+        for (var t = this, a = this.data.dumpImport.listConfig.importList, o = 0, i = 0, n = [], r = 0; r < a.length; r++) {
+            var s = a[r];
+            switch (s.status) {
               case "custom":
-                s += 1;
+                o += 1;
                 break;
 
               case "success":
-                o += 1, i.push({
-                    nick: r.prefix,
-                    data: r.data
+                i += 1, n.push({
+                    nick: s.prefix,
+                    data: s.data
                 });
                 break;
 
@@ -298,38 +579,40 @@ Page({
                 1;
             }
         }
-        s > 0 ? t.default.confirm({
-            message: "检测到您有".concat(s, "个文件需要手动进行处理，需要跳过吗？")
+        o > 0 ? e.default.confirm({
+            message: "检测到您有".concat(o, "个文件需要手动进行处理，需要跳过吗？")
         }).then(function() {
-            e.clearImportListCloseDialog(), e.processDataImport(i);
-        }).catch(function() {}) : o > 0 ? (this.clearImportListCloseDialog(), this.processDataImport(i)) : this.clearImportListCloseDialog();
+            t.clearImportListCloseDialog(), t.processDataImport(n);
+        }).catch(function() {}) : i > 0 ? (this.clearImportListCloseDialog(), this.processDataImport(n)) : this.clearImportListCloseDialog();
     },
     processDataImport: function(t) {
         t.forEach(function(t) {
             t.nick = t.nick.substr(0, 12), "string" == typeof t.data && (t.data = JSON.parse(t.data)), 
             t.data.tag_date = new Date().getTime();
         });
-        var a = e.cloudOrLocal(), o = this;
+        var e, a = o.cloudOrLocal(), n = this;
         if ("local" == a) {
-            var i = e.getDumpNicks();
+            var s = o.getDumpNicks();
             t.forEach(function(t) {
-                var a = s.appendDumpFileCache(t.data);
-                null != a ? i[a] = t.nick : e.showToast("".concat(t.nick, "保存失败"));
-            }), wx.setStorageSync("dump_nicks", i), this.loadData();
+                null != (e = r.appendDumpFileCache(t.data)) ? s[e] = t.nick : o.showToast("".concat(t.nick, "保存失败"));
+            }), wx.setStorageSync("dump_nicks", s);
+            var d = r.getStorageSyncHasDefault("folderData", {}), u = i.returnCurrentPath();
+            d[e] = u, wx.setStorageSync("folderData", d), this.loadData();
         } else t.forEach(function(t) {
-            e.saveDataToTheCloud(t.nick, "", t.data, 1, function(t) {
-                o.loadData();
+            var e = i.returnCurrentPath();
+            o.saveDataToTheCloud(t.nick, "", t.data, 1, e, function(t) {
+                1 == t.data.status ? n.loadData() : o.showToast(t.data.msg);
             });
         });
     },
-    showErrorMsgDialog: function(e) {
-        t.default.alert({
+    showErrorMsgDialog: function(t) {
+        e.default.alert({
             title: "发生错误",
-            message: e
+            message: t
         });
     },
     requestDumpShared: function() {
-        var e = this;
+        var t = this;
         wx.showLoading({
             title: "加载中"
         });
@@ -339,44 +622,44 @@ Page({
         };
         wx.request({
             method: "GET",
-            url: i,
+            url: u,
             data: a,
             success: function(a) {
-                var s = a.data;
-                switch (s.code) {
+                var o = a.data;
+                switch (o.code) {
                   case 0:
-                    e.setData({
+                    t.setData({
                         showAccessCodeInputDialog: !1
                     }, function() {
-                        t.default.confirm({
-                            message: "".concat(s.result.user, "给您分享了").concat(s.result.name, "，确认导入吗？")
+                        e.default.confirm({
+                            message: "".concat(o.result.user, "给您分享了").concat(o.result.name, "，确认导入吗？")
                         }).then(function() {
-                            e.processDataImport([ {
-                                nick: s.result.name,
-                                data: s.result.data
+                            t.processDataImport([ {
+                                nick: o.result.name,
+                                data: o.result.data
                             } ]);
                         }).catch(function() {});
                     });
                     break;
 
                   case 5:
-                    "err_code" === s.msg ? e.showErrorMsgDialog("不存在的分享码，可能是该用户取消了分享") : "err_expire" === s.msg ? e.showErrorMsgDialog("该分享码已经过期，可联系分享人重新分享") : "err_pwd" === s.msg ? e.data.showAccessCodeInputDialog ? e.setData({
+                    "err_code" === o.msg ? t.showErrorMsgDialog("不存在的分享码，可能是该用户取消了分享") : "err_expire" === o.msg ? t.showErrorMsgDialog("该分享码已经过期，可联系分享人重新分享") : "err_pwd" === o.msg ? t.data.showAccessCodeInputDialog ? t.setData({
                         errorRequestDumpShareMsg: "访问码错误，请修正或者联系分享人确认"
-                    }) : e.setData({
+                    }) : t.setData({
                         showAccessCodeInputDialog: !0,
                         errorRequestDumpShareMsg: "",
                         accessCode: ""
-                    }) : e.showErrorMsgDialog("发生了未知的错误：".concat(s.msg));
+                    }) : t.showErrorMsgDialog("发生了未知的错误：".concat(o.msg));
                     break;
 
                   default:
-                    e.showErrorMsgDialog("未处理的错误：".concat(s.msg));
+                    t.showErrorMsgDialog("未处理的错误：".concat(o.msg));
                 }
             },
-            fail: function(t) {
-                console.log("请求获取dump信息时出现问题: " + t.errMsg), e.data.showAccessCodeInputDialog ? e.setData({
+            fail: function(e) {
+                console.log("请求获取dump信息时出现问题: " + e.errMsg), t.data.showAccessCodeInputDialog ? t.setData({
                     errorRequestDumpShareMsg: "网络异常"
-                }) : e.showErrorMsgDialog("网络异常");
+                }) : t.showErrorMsgDialog("网络异常");
             },
             complete: function() {
                 wx.hideLoading();
@@ -397,23 +680,6 @@ Page({
             showAccessCodeInputDialog: !1
         });
     },
-    onDumpItemClick: function(t) {
-        var e = t.detail.uuid;
-        wx.navigateTo({
-            url: "/pages/card-wallet-info/info?id=" + e
-        });
-    },
-    loadData: function() {
-        var t = this;
-        e.getCardDataList(function(e) {
-            var a;
-            a = "" == e ? "none" : "", t.setData({
-                dumpList: e,
-                dumpListStandby: e,
-                noData: a
-            });
-        });
-    },
     addCard: function() {
         this.setData({
             showModal: !0
@@ -425,94 +691,72 @@ Page({
         });
     },
     bottomBtnConfirm: function(t) {
-        var a = this, s = t.detail;
-        (console.log("接收的数据是" + JSON.stringify(s)), "local" == e.cloudOrLocal()) ? e.newCard(s).isok && (this.setData({
-            showModal: !1
-        }), this.loadData()) : e.saveDataToTheCloud("", s, "", 2, function(t) {
-            a.loadData(), a.setData({
+        var e = this, a = t.detail;
+        if ("local" == o.cloudOrLocal()) {
+            var n = i.returnCurrentPath();
+            o.newCard(n, a).isok && (this.setData({
+                showModal: !1
+            }), this.loadData());
+        } else n = i.returnCurrentPath(), o.saveDataToTheCloud("", a, "", 2, n, function(t) {
+            e.loadData(), e.setData({
                 showModal: !1
             });
         });
     },
+    folderSorting: function(t) {
+        return n.sortData(t);
+    },
+    setDirView: function() {
+        var t = this;
+        i.drawDirViewByCurrentPath(function(e) {
+            t.setData({
+                dir_view: t.folderSorting(e)
+            });
+        });
+    },
+    onUserBack: function() {
+        var t = i.parseCurrentPathToList(i.returnCurrentPath());
+        "/" != i.returnCurrentPath() && t.length >= 0 && this.onTurnBack(), 1 == t.length && this.setData({
+            isCanback: !1
+        });
+    },
     onLoad: function(t) {
         var e = this;
-        if (wx.hideTabBar(), "src" in t && "share" == t.src) {
-            var a = "", s = "";
-            "code" in t && (a = t.code), "pwd" in t && (s = t.pwd), /^[A-Za-z0-9]{8}$/.test(a) ? this.setData({
+        if (wx.hideTabBar(), this.judgePosition(), this.getNavBarHeight(), "src" in t && "share" == t.src) {
+            var a = "", o = "";
+            "code" in t && (a = t.code), "pwd" in t && (o = t.pwd), /^[A-Za-z0-9]{8}$/.test(a) ? this.setData({
                 sharedCode: a,
-                accessCode: s
+                accessCode: o
             }, function() {
                 e.requestDumpShared();
             }) : console.warn("警告，发现传入了不合规的分享码，将不做加载：" + a);
         }
     },
     onShow: function() {
-        this.setData({
-            showFunctionButton: e.isCardWalletListFunctionBtnsEnable()
-        }), this.loadData();
-    },
-    pySegSort: function() {
-        var t = this.data.dumpListStandby;
-        if (0 != t) {
-            if (!String.prototype.localeCompare) return null;
-            var e, a = "*ABCDEFGHJKLMNOPQRSTWXYZ".split(""), s = "阿八嚓哒妸发旮哈讥咔垃痳拏噢妑七呥扨它穵夕丫帀".split(""), o = [], i = {}, n = /[^\u4e00-\u9fa5]/, r = new RegExp("[`\\-~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？12345678990]");
-            a.filter(function(i, u) {
-                e = {
-                    initial: "",
-                    data: []
-                }, t.map(function(t, a) {
-                    r.test(t.nick[0]) && (!s[u - 1] || s[u - 1].localeCompare(t.nick) <= 0) && -1 == t.nick.localeCompare(s[u]) && e.data.push(t), 
-                    n.test(t.nick[0]) ? t.nick[0].toUpperCase() == i && e.data.push(t) : (!s[u - 1] || s[u - 1].localeCompare(t.nick) <= 0) && -1 == t.nick.localeCompare(s[u]) && e.data.push(t);
-                }), e.data.length && (e.initial = a[u], o.push(e), e.data.sort(function(t, e) {
-                    return t.nick.localeCompare(e.nick);
-                }));
-            }), i.segs = Array.from(new Set(o));
-            for (var u = [], c = 0; c < i.segs.length; c++) if (i.segs[c].data.length >= 1) for (var d = 0; d < i.segs[c].data.length; d++) u.push(i.segs[c].data[d]); else u.push(i.segs[c].data);
-            this.setData({
-                dumpList: u
+        i.initData(), i.setFolderMoveData([]);
+        var t = this;
+        t.setData({
+            showFunctionButton: o.isCardWalletListFunctionBtnsEnable()
+        }), o.isLogin() && "cloud" == t.data.position ? setTimeout(function() {
+            i.drawDirViewByCurrentPath(function(e) {
+                t.setData({
+                    dir_view: t.folderSorting(e)
+                }, function() {
+                    t.loadData();
+                });
             });
-        }
+        }, 300) : i.drawDirViewByCurrentPath(function(e) {
+            t.setData({
+                dir_view: t.folderSorting(e)
+            }, function() {
+                t.loadData();
+            });
+        });
     },
     typeFilter: function(t) {
-        for (var e = this.data.dumpList, a = [], s = 0; s < e.length; s++) e[s].type == t && a.push(e[s]);
+        for (var e = this.data.dumpList, a = [], o = 0; o < e.length; o++) e[o].type == t && a.push(e[o]);
         this.setData({
             dumpList: a
-        });
-    },
-    showIC: function() {
-        this.setData({
-            dumpList: this.data.dumpListStandby
-        }, function() {
-            this.typeFilter("IC");
-        });
-    },
-    showID: function() {
-        this.setData({
-            dumpList: this.data.dumpListStandby
-        }, function() {
-            this.typeFilter("ID");
-        });
-    },
-    clearFilter: function() {
-        this.setData({
-            dumpList: this.data.dumpListStandby
-        });
-    },
-    onUserSearch: function(t) {
-        var e = t.detail;
-        "" == e && this.loadData();
-        for (var a = this.data.dumpList, s = !1, o = 0; o < a.length; o++) a[o].nick.indexOf(e) >= 0 ? (a[o].show = !0, 
-        s = !0) : a[o].show = !1;
-        this.setData({
-            dumpList: a,
-            dumpSearchFound: s
-        });
-    },
-    onClearSearch: function() {
-        for (var t = this.data.dumpList, e = 0; e < t.length; e++) t[e].show = !0;
-        this.setData({
-            dumpList: t,
-            dumpSearchFound: !0
         });
     },
     onUserSwitchFunctionBtnsStatusClick: function() {
@@ -520,7 +764,7 @@ Page({
         this.setData({
             showFunctionButton: !this.data.showFunctionButton
         }, function() {
-            e.setCardWalletListFunctionBtnsEnable(t.data.showFunctionButton);
+            o.setCardWalletListFunctionBtnsEnable(t.data.showFunctionButton);
         });
     },
     updateOverviewMPDumpToDeviceView: function(t, e) {

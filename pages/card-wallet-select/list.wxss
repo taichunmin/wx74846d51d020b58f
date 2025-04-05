@@ -1,34 +1,60 @@
-.container-page-base {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-}
-
-.container-line {
-    background: #f9f9f9;
-    height: 16rpx;
-    margin-top: 6rpx;
-    width: 100%;
-}
-
-.container-dump-list {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    overflow: scroll;
-    width: 100%;
-}
-
-.container-dump-item {
-    padding: 30rpx;
-}
-
 page {
     height: 100%;
     height: calc(100% - constant(safe-area-inset-bottom));
     height: calc(100% - env(safe-area-inset-bottom));
     width: 100%;
+}
+
+.wraper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    flex: 0 0 40rpx;
+    line-height: 40rpx;
+}
+
+.main {
+    flex: 1;
+    margin-top: 60rpx;
+    position: relative;
+}
+
+.folder-content {
+    align-content: flex-start;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    overflow-y: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.folder-content-public-style1 {
+    padding: 0rpx 18rpx 0rpx 48rpx;
+}
+
+.folder-content-public-style2 {
+    padding: 0rpx 18rpx;
+}
+
+.folder-content-item {
+    display: flex;
+    flex-direction: column;
+    height: 65rpx;
+    margin-bottom: 62rpx;
+    width: 100%;
+}
+
+.wx-radio-input {
+    height: 32rpx!important;
+    margin-right: 2rpx!important;
+    width: 32rpx!important;
 }
 
 .rightArrowImg {
@@ -38,7 +64,9 @@ page {
 
 .bottomBtn {
     background: #fff;
+    flex: 0 0 100rpx;
     flex-direction: row;
+    line-height: 100rpx;
     width: 100%;
 }
 
@@ -82,4 +110,8 @@ button[disabled]:not([type]) {
 
 button::after {
     border: none;
+}
+
+.no-card {
+    margin-top: 200rpx;
 }

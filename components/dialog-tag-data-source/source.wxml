@@ -1,0 +1,21 @@
+<van-popup bind:close="onClose" closeOnClickOverlay="true" closeable="true" customStyle="width: 88%; border-radius: 24rpx; background: #1A1D26;margin-top:-100rpx;" duration="100" show="{{show}}">
+    <view style="display: flex; flex-direction: column; width: 100%;">
+        <view class="container-title">
+            <text class="txt-title-main">请选择从哪里打开数据</text>
+        </view>
+        <view class="container-source-main">
+            <view bind:tap="onConfirm" class="container-source-item" data-type="wechat" hoverClass="btn-bottom-hover" hoverStartTime="0" hoverStayTime="50">
+                <view>
+                    <icon class="icon-wechat"></icon>
+                </view>
+                <text class="txt-source-item">微信聊天记录</text>
+            </view>
+            <view bind:tap="onConfirm" class="container-source-item" data-type="cards" hoverClass="btn-bottom-hover" hoverStartTime="0" hoverStayTime="50">
+                <view>
+                    <icon class="icon-cards"></icon>
+                </view>
+                <text class="txt-source-item">小程序卡包</text>
+            </view>
+        </view>
+    </view>
+</van-popup>

@@ -15,10 +15,6 @@ Object.defineProperty(exports, "__esModule", {
         lockScroll: {
             type: Boolean,
             value: !0
-        },
-        rootPortal: {
-            type: Boolean,
-            value: !1
         }
     },
     methods: {

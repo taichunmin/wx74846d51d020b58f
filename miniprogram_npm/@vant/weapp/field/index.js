@@ -1,6 +1,6 @@
 var e = function() {
     return (e = Object.assign || function(e) {
-        for (var t, i = 1, a = arguments.length; i < a; i++) for (var n in t = arguments[i]) Object.prototype.hasOwnProperty.call(t, n) && (e[n] = t[n]);
+        for (var t, i = 1, n = arguments.length; i < n; i++) for (var a in t = arguments[i]) Object.prototype.hasOwnProperty.call(t, a) && (e[a] = t[a]);
         return e;
     }).apply(this, arguments);
 };
@@ -9,12 +9,12 @@ Object.defineProperty(exports, "__esModule", {
     value: !0
 });
 
-var t = require("../common/utils"), i = require("../common/component"), a = require("./props");
+var t = require("../common/utils"), i = require("../common/component"), n = require("./props");
 
 (0, i.VantComponent)({
     field: !0,
     classes: [ "input-class", "right-icon-class", "label-class" ],
-    props: e(e(e(e({}, a.commonProps), a.inputProps), a.textareaProps), {
+    props: e(e(e(e({}, n.commonProps), n.inputProps), n.textareaProps), {
         size: String,
         icon: String,
         label: String,
@@ -56,10 +56,6 @@ var t = require("../common/utils"), i = require("../common/component"), a = requ
         clearIcon: {
             type: String,
             value: "clear"
-        },
-        extraEventParams: {
-            type: Boolean,
-            value: !1
         }
     }),
     data: {
@@ -73,15 +69,9 @@ var t = require("../common/utils"), i = require("../common/component"), a = requ
         });
     },
     methods: {
-        formatValue: function(e) {
-            var t = this.data.maxlength;
-            return -1 !== t && e.length > t ? e.slice(0, t) : e;
-        },
-        onInput: function(t) {
-            var i = (t.detail || {}).value, a = void 0 === i ? "" : i, n = this.formatValue(a);
-            return this.value = n, this.setShowClear(), this.emitChange(e(e({}, t.detail), {
-                value: n
-            }));
+        onInput: function(e) {
+            var t = (e.detail || {}).value, i = void 0 === t ? "" : t;
+            this.value = i, this.setShowClear(), this.emitChange();
         },
         onFocus: function(e) {
             this.focused = !0, this.setShowClear(), this.$emit("focus", e.detail);
@@ -100,9 +90,7 @@ var t = require("../common/utils"), i = require("../common/component"), a = requ
             this.setData({
                 innerValue: ""
             }), this.value = "", this.setShowClear(), (0, t.nextTick)(function() {
-                e.emitChange({
-                    value: ""
-                }), e.$emit("clear", "");
+                e.emitChange(), e.$emit("clear", "");
             });
         },
         onConfirm: function(e) {
@@ -112,9 +100,7 @@ var t = require("../common/utils"), i = require("../common/component"), a = requ
         setValue: function(e) {
             this.value = e, this.setShowClear(), "" === e && this.setData({
                 innerValue: ""
-            }), this.emitChange({
-                value: e
-            });
+            }), this.emitChange();
         },
         onLineChange: function(e) {
             this.$emit("linechange", e.detail);
@@ -122,21 +108,17 @@ var t = require("../common/utils"), i = require("../common/component"), a = requ
         onKeyboardHeightChange: function(e) {
             this.$emit("keyboardheightchange", e.detail);
         },
-        emitChange: function(t) {
-            var i, a = this.data.extraEventParams;
+        emitChange: function() {
+            var e = this;
             this.setData({
-                value: t.value
+                value: this.value
+            }), (0, t.nextTick)(function() {
+                e.$emit("input", e.value), e.$emit("change", e.value);
             });
-            var n = a ? e(e({}, t), {
-                callback: function(e) {
-                    i = e;
-                }
-            }) : t.value;
-            return this.$emit("input", n), this.$emit("change", n), i;
         },
         setShowClear: function() {
-            var e = this.data, t = e.clearable, i = e.readonly, a = e.clearTrigger, n = this.focused, o = this.value, r = !1;
-            t && !i && (r = !!o && ("always" === a || "focus" === a && n));
+            var e = this.data, t = e.clearable, i = e.readonly, n = e.clearTrigger, a = this.focused, o = this.value, r = !1;
+            t && !i && (r = !!o && ("always" === n || "focus" === n && a));
             this.setData({
                 showClear: r
             });

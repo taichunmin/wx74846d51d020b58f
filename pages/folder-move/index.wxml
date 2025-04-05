@@ -1,0 +1,52 @@
+<view class="wraper">
+    <view class="header">
+        <view class="topLine"></view>
+        <view class="top-location" wx:if="{{view_current_path!=''}}">
+            <rich-text nodes="{{'位置：'+position+view_current_path}}"></rich-text>
+        </view>
+    </view>
+    <view class="main" style="height: 100%">
+        <block wx:if="{{noFolder==false}}">
+            <view bindtap="onFirstItemClick" class="container-wallet-item-base" wx:if="{{onFirstItemShow}}">
+                <view class="container-cloud-disk-left"></view>
+                <view class="container-wallet-item-right1">
+                    <view class="txt-wallet-item-right-name">{{firstItem.name}}</view>
+                </view>
+                <view class="container-wallet-item-slot">
+                    <radio checked="{{radioChecked}}" color="#f5a200"></radio>
+                </view>
+            </view>
+            <view bindtap="onDumpItemClick" class="container-wallet-item-base" data-id="{{item.index}}" wx:if="{{item.show==true}}" wx:for="{{dir_view}}" wx:key="index">
+                <view class="folder-icon"></view>
+                <view class="container-wallet-item-right">
+                    <view class="txt-wallet-item-right-name">{{item.name}}</view>
+                    <view class="txt-wallet-item-right-type">{{item.fileCount}}</view>
+                </view>
+                <view class="container-wallet-item-slot">
+                    <icon class="iconArrow"></icon>
+                </view>
+            </view>
+        </block>
+        <view class="no-folder-block" wx:else>
+            <icon class="no-folder-icon"></icon>
+            <view class="no-folder-text">没有子文件夹</view>
+        </view>
+    </view>
+    <view class="footer">
+        <view class="tarbar-style">
+            <view class="tarbar-item-block tarbar-item-block-no-checkbox">
+                <view bindtap="onCreateFolder" class="tarbar-item-block-public-style move-block">
+                    <view class="tarbar-text-block">
+                        <view class="tarbar-text">新建文件夹</view>
+                    </view>
+                </view>
+                <view bindtap="onMoveFolder" class="move-block tarbar-item-block-public-style">
+                    <view class="tarbar-text-block">
+                        <view class="tarbar-text" style="color: #f5a200;">确定</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<save-data bind:cancel="{{createFolder.onClickLeft}}" bind:confirm="{{createFolder.onClickRight}}" btnCancel="取消" btnConfirm="保存" placeholder="{{createFolder.placeholder}}" show="{{createFolder.show}}" theme="light" title="{{createFolder.title}}"></save-data>

@@ -1,4 +1,4 @@
-var e = require("../../6B5F0E3755C842DF0D39663027C585D7.js"), t = require("../../275D798255C842DF413B1185FE3585D7.js"), i = require("../../8462214255C842DFE2044945663685D7.js"), c = require("../../306D78F255C842DF560B10F52E4585D7.js"), n = require("../../A3859AB555C842DFC5E3F2B2FA5585D7.js"), a = require("../../9C37ADA155C842DFFA51C5A618F585D7.js"), o = require("../../A4B4ED0255C842DFC2D285056D6585D7.js"), s = !0, l = !0, r = !0, u = -1, d = !1, h = !1;
+var e = require("../../AB5D946455C842DFCD3BFC63A316D685.js"), t = require("../../D6EF5C7155C842DFB08934760C65D685.js"), i = require("../../76F8096255C842DF109E616502B6D685.js"), c = require("../../AC1F69C355C842DFCA7901C4DB75D685.js"), n = require("../../DFE4D8E455C842DFB982B0E32585D685.js"), a = require("../../C1A0022355C842DFA7C66A247256D685.js"), o = require("../../B7540E6555C842DFD13266622795D685.js"), s = !0, l = !0, r = !0, u = -1, d = !1, h = !1;
 
 Page({
     data: {
@@ -110,7 +110,7 @@ Page({
     },
     connectFirstDevice: function() {
         if (t.isLeAdapterInitialized()) {
-            if (1 != i.isLogin(this)) return console.log("未登录"), i.login(this), !1;
+            if (1 != i.isLogin(this)) return console.log("未登录"), i.checkToken(), !1;
             console.log("已经登录"), this.cancelResourceCheckTimer(), wx.showLoading({
                 title: "正在连接中"
             });
